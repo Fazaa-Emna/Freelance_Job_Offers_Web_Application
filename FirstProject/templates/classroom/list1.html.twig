@@ -1,0 +1,15 @@
+
+
+{#ff#}
+<table border=1>
+<tr> 
+<th> Id</th>
+<th> Name </th>
+
+</tr>
+{% for classroom in classrooms %}
+<tr>
+<td>{{ classroom.id }}</td>
+<td>{{ classroom.name }}</td>
+{% endfor %}
+</table>
