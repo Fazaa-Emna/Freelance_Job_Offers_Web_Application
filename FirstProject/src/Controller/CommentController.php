@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Blog;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,7 +40,9 @@ class CommentController extends AbstractController
         #[Route("/addComment", name:"add_comment")]
     public function addComment(Request $request, ManagerRegistry $doctrine): Response
     {
+        
         $comment = new Comment;
+       //$comment->setBlog($blog);
         $form = $this ->createForm(CommentType::class,$comment);
         $form->handleRequest ($request);
         if($form ->isSubmitted()&& $form->isValid()){
@@ -48,7 +51,7 @@ class CommentController extends AbstractController
             $em->flush();
             return $this -> redirectToRoute(route:'display_comment');
         }
-        return $this -> render('comment/addComment.html.twig' , ['f'=>$form->createView()]);
+        return $this -> render('comment/ajoutComment.html.twig' , ['f'=>$form->createView()]);
     }
 
 
@@ -83,6 +86,15 @@ class CommentController extends AbstractController
         }
         return $this -> render('comment/modifComment.html.twig' , ['f' => $form->createView()]);
     }
+
+
+
+
+
+   
+
+
+
 
 
     #[Route("/Error", name:"error")]

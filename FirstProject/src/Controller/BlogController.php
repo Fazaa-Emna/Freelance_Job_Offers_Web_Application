@@ -75,13 +75,27 @@ class BlogController extends AbstractController
         if ($form->isSubmitted()) {
             $entityManager = $doctrine->getManager();
             $entityManager->flush();
-            return $this->redirectToRoute('display_blog', ['id' => $blog->getId()]);
+            return $this->redirectToRoute('showBlog', ['id' => $blog->getId()]);
         }
             
         return $this -> render('blog/addBlog.html.twig' , ['f'=>$form->createView()]);
 
     }
+    
+    #[Route('afficherBlog/{id}', name: 'showBlog')]
+    public function showBlog($id, ManagerRegistry $doctrine): Response
+    {
+        //Trouver le bon Classroom
+        $repoC = $doctrine->getRepository(Blog::class);
+        $blog= $repoC->find($id);
+        $comments=$blog->getComments();     
 
+        return $this->render('blog/showB.html.twig', [
+            'blog' => $blog,
+            'comments'=>$comments,
+        ]);
+    }
+  
 
     
 }

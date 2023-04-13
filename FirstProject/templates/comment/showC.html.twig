@@ -1,0 +1,18 @@
+<div style="text-align:center;">
+    <h1>{{ comment.id }}</h1>
+
+    <div class="article-body" style="display:inline-block; text-align:left;">
+        {{ comment.body|raw }}
+    </div>
+
+    <div style="text-align:center;">
+    <h1>This comment belongs to the following blog : {{ comment.blog }}</h1>
+</div>
+<td>
+           <td>
+    <a href="{{ path('modif_comment', {'id': comment.id}) }}" class="btn btn-primary">Modifier</a>
+</td>
+<td>
+    <a href="{{ path('supp_comment', {'id': comment.id}) }}" class="btn btn-danger">Supprimer</a>
+ 
+</td>

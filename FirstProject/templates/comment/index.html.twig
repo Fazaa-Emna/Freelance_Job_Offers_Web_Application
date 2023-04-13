@@ -18,11 +18,8 @@
             <table class="table">
             <h2 class="col-sm-4">Table de comment</h2>
             <thead>           
-                <th scope="col"> IdProduit </th>
-                <th scope="col"> Produit </th>
-                <th scope="col"> Categorie </th>
-                <th scope="col"> Quantite Total</th>
-                <th scope="col"> Quantite Disponible</th> 
+                <th scope="col"> Comment Id </th>
+                <th scope="col"> Body </th>
                 <th scope="col"> Modification</th>
                 <th scope="col"> suppression</th>
             </thead>
@@ -32,11 +29,10 @@
                     <tr>
                         
                         <td > {{comment.id}}</td>
-                        <td > {{comment.blog}}</td>
                         <td > {{comment.body}} </td>
                         <td >
                             <a class = 'btn btn-success' href="{{path ('modif_comment',{'id':comment.id}) }}">Modifier </a>
-                        </td>
+                        
                         
                         <td>
                             <a class = 'btn btn-danger' href="{{path ('supp_comment',{'id':comment.id}) }}">Supprimer </a>

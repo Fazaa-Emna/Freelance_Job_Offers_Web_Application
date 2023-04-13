@@ -6,18 +6,14 @@ use App\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class BlogType extends AbstractType
+class Blog1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
             ->add('title')
             ->add('body')
-            ->add('Ajouter',SubmitType::class)
-            
         ;
     }
 

@@ -15,30 +15,30 @@
         <thead>           
             <th>|     Id   |</th>
             <th>|   title   |</th>
-            <th>|   body   |</th>
- 
-            <th>|   Modification   |</th>
-            <th>|   suppression   |</th>
+           
         </thead>
         <tbody>
         {% for blog in b %}
         <tr>
             <td> {{blog.id}}</td>
-            <td> {{blog.title}} </td>
-            <td> {{blog.body}} </td>
-
-            <td>
-                <a href="{{path ('modif_blog',{'id':blog.id}) }}">Modifier </a>
+             <td>
+                <a href="{{path ('showBlog',{'id':blog.id}) }}">{{blog.title}} </a>
             </td>
-            <td>
-                <a href="{{path ('supp_blog',{'id':blog.id}) }}">Supprimer </a>
-            </td>
+            
+            
         </tr>            
         {% endfor %}
         </tbody>
     </table>
+    
     </div>
+    
+        <a class='btn btn-primary' href="{{path ('addBlog') }}">ajouter </a>
+
+    
 </div>
+
+
 {% endblock %}
 
 
