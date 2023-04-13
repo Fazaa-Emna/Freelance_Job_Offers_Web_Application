@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Workshop{% endblock %}
+
+{% block body %}
+    <h1>Create new Workshop</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.event) }}
+
+    {{ form_row(form.agenda) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+<div class="header-btn d-none  d-lg-block">
+    <a href="{{ path('app_workshop_index') }}">Back</a>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event index{% endblock %}
+
+{% block body %}
+    <h1>Event index</h1>
+    <div class="header-btn d-none f-centre d-lg-block">
+        <a href="{{ path('app_hackathon_index') }}" class="btn head-btn2">Hackathon Space</a>
+        <a href="#" class="btn head-btn2">Workshop Space</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>EventId</th>
+                <th>EventName</th>
+                <th>Description</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Location</th>
+                <th>MaxAttendees</th>
+                <th>Registrationdeadline</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td>{{ event.eventId }}</td>
+                <td>{{ event.eventName }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.startDate ? event.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.endDate ? event.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ event.location }}</td>
+                <td>{{ event.maxAttendees }}</td>
+                <td>{{ event.registrationdeadline ? event.registrationdeadline|date('Y-m-d') : '' }}</td>
+                <td>
+                  <button  class="btn"><a href="{{ path('app_event_show', {'eventId': event.eventId}) }}">show</a></button> </td>
+                <td> <button  class="btn"><a href="{{ path('app_event_edit', {'eventId': event.eventId}) }}">edit</a></button></td>
+                <td> {{ include('event/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <button  class="btn"><a href="{{ path('app_event_new') }}">Create new event</a></button>
+
+
+{% endblock %}

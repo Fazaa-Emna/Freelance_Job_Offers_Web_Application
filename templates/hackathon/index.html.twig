@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hackathon Display{% endblock %}
+
+{% block body %}
+    <h1>Hackathon Display</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Submissiondeadline</th>
+                <th>Prizes</th>
+
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hackathon in hackathons %}
+            <tr>
+                <td>{{ hackathon.submissiondeadline ? hackathon.submissiondeadline|date('Y-m-d') : '' }}</td>
+                <td>{{ hackathon.prizes }}</td>
+
+                <td>
+                    <button  class="btn"> <a href="{{ path('app_hackathon_show', {'event': hackathon.event.eventId}) }}">show</a></button> </td>
+                <td>  <button  class="btn"><a href="{{ path('app_hackathon_edit', {'event': hackathon.event.eventId}) }}">edit</a></button> </td>
+                <td> {{ include('hackathon/_delete_form.html.twig') }} </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button  class="btn"><a href="{{ path('app_hackathon_new') }}">Create new Hackathon</a></button>
+
+{% endblock %}

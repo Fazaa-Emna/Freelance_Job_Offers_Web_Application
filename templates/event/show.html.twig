@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <h1>Event</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>EventId</th>
+                <td>{{ event.eventId }}</td>
+            </tr>
+            <tr>
+                <th>EventName</th>
+                <td>{{ event.eventName }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>StartDate</th>
+                <td>{{ event.startDate ? event.startDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDate</th>
+                <td>{{ event.endDate ? event.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ event.location }}</td>
+            </tr>
+            <tr>
+                <th>MaxAttendees</th>
+                <td>{{ event.maxAttendees }}</td>
+            </tr>
+            <tr>
+                <th>Registrationdeadline</th>
+                <td>{{ event.registrationdeadline ? event.registrationdeadline|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_event_index') }}">back to list</a>
+
+    <a href="{{ path('app_event_edit', {'eventId': event.eventId}) }}">edit</a>
+
+
+{% endblock %}

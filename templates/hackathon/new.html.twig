@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Hackathon{% endblock %}
+
+{% block body %}
+    <h1>Create new Hackathon</h1>
+
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.event) }}
+
+    {{ form_row(form.prizes) }}
+    <div class="row">
+        {{ form_row(form.submissiondeadline) }}
+    </div >
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+    <div class="header-btn d-none  d-lg-block">
+
+        <a class="btn head-btn2" href="{{ path('app_hackathon_index') }}">Back</a>
+    </div>
+
+
+{% endblock %}
