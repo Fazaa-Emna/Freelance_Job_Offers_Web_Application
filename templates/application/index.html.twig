@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Application index{% endblock %}
+
+{% block body %}
+    <h1>Application index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idapp</th>
+                <th>Idfreelancer</th>
+                <th>Idbo</th>
+                <th>FnFreelancer</th>
+                <th>LnFreelancer</th>
+                <th>Emailfreelancer</th>
+                <th>Applicationdate</th>
+                <th>UrlCv</th>
+                <th>Confirmation</th>
+                <th>Notification</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for application in applications %}
+            <tr>
+                <td>{{ application.idapp }}</td>
+                <td>{{ application.idfreelancer }}</td>
+                <td>{{ application.idbo }}</td>
+                <td>{{ application.fnFreelancer }}</td>
+                <td>{{ application.lnFreelancer }}</td>
+                <td>{{ application.emailfreelancer }}</td>
+                <td>{{ application.applicationdate ? application.applicationdate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ application.urlCv }}</td>
+                <td>{{ application.confirmation ? 'Yes' : 'No' }}</td>
+                <td>{{ application.notification ? 'Yes' : 'No' }}</td>
+                <td>
+                    {#<a href="{{ path('app_application_show', {'idapp': application.idapp}) }}">show</a>
+                    <a href="{{ path('app_application_edit', {'idapp': application.idapp}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
