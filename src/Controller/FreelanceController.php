@@ -55,6 +55,7 @@ class FreelanceController extends AbstractController
         $freelance = new Freelance();
         $freelance->setAdddate(new DateTime());
         $freelance->setState(true);
+        $freelance->setNbapplicants(0);
         $form = $this->createForm(FreelanceType::class, $freelance);
         $form->handleRequest($request);
 

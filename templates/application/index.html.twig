@@ -35,8 +35,7 @@
                 <td>{{ application.confirmation ? 'Yes' : 'No' }}</td>
                 <td>{{ application.notification ? 'Yes' : 'No' }}</td>
                 <td>
-                    {#<a href="{{ path('app_application_show', {'idapp': application.idapp}) }}">show</a>
-                    <a href="{{ path('app_application_edit', {'idapp': application.idapp}) }}">edit</a>#}
+                    <a href="{{ path('app_application_select', {'idapp': application.idapp}) }}">Select</a>
                 </td>
             </tr>
         {% else %}

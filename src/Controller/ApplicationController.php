@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\FreelanceRepository;
+use App\Repository\ApplicationRepository;
 
 
 #[Route('/application')]
@@ -60,12 +61,11 @@ class ApplicationController extends AbstractController
         ]);
     }
 
-    #[Route('/{idFreelance}', name: 'app_application_show', methods: ['GET'])]
-    public function show($idFreelance, EntityManagerInterface $entityManager, Application $application): Response
+    #[Route('/{idFreelance}', name: 'app_application_showSecific', methods: ['GET'])]
+    public function show(ApplicationRepository $AppRepo,FreelanceRepository $FreelanceRepo, $idFreelance, EntityManagerInterface $entityManager): Response
     {
-        $applications = $entityManager
-            ->getRepository(Application::class)
-            ->findBy(['idfreelance' => $idFreelance]);
+        $freelance=$FreelanceRepo->find($idFreelance);
+        $applications = $AppRepo->findBy(['idfreelance' => $freelance]);
         
         return $this->render('application/index.html.twig', [
             'applications' => $applications,
@@ -87,6 +87,23 @@ class ApplicationController extends AbstractController
         return $this->renderForm('application/edit.html.twig', [
             'application' => $application,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{idapp}/select', name: 'app_application_select', methods: ['GET', 'POST'])]
+    public function select(ApplicationRepository $AppRepo,Request $request, $idapp, EntityManagerInterface $entityManager): Response
+    {
+        $applications = $entityManager
+            ->getRepository(Application::class)
+            ->findAll();
+            
+        $app = $AppRepo->find($idapp);
+        $app->setConfirmation(true);
+        $app->setNotification(true);
+        $entityManager->persist($app);
+        $entityManager->flush();
+        return $this->render('application/index.html.twig', [
+            'applications' => $applications,
         ]);
     }
 

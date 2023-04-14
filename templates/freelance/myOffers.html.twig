@@ -234,12 +234,12 @@
                             {% set diff = date(currentDate).diff(date(add)) %}
                             {% if currentDate == add %}
                             <div class="items-link items-link2 f-right">
-                                <a href="{{ path('app_application_index', {'idfreelance': freelance.idfreelance}) }}">{{ freelance.nbapplicants }} applicants</a>
+                                <a href="{{ path('app_application_showSecific', {'idFreelance': freelance.idfreelance}) }}">{{ freelance.nbapplicants }} applicants</a>
                                 <span>New</span>
                             </div>
                             {% else %}
                                 <div class="items-link items-link2 f-right">
-                                    <a href="{{ path('app_application_index', {'idfreelance': freelance.idfreelance}) }}">{{ freelance.nbapplicants }} applicants</a>
+                                    <a href="{{ path('app_application_showSecific', {'idFreelance': freelance.idfreelance}) }}">{{ freelance.nbapplicants }} applicants</a>
                                     <span>{{ diff.format('%d days ago') }}</span>
                                 </div>
                             {% endif %}                            
