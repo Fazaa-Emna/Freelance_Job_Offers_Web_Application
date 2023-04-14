@@ -82,7 +82,7 @@ class Lesson
     public function setCid(?Course $cid): self
     {
         $this->cid = $cid;
-
+        $this->Course = $cid;
         return $this;
     }
 

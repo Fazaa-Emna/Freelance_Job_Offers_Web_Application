@@ -2,8 +2,96 @@
 
 {% block title %}Course{% endblock %}
 
-{% block body %}
-    <h1>Course</h1>
+{% block body %} <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('assets/img/' ~ course.photo) }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                          
+                            <h2>{{course.title}}</h2>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                               
+                                <div class="job-tittle">
+                                    <a href="#">
+                                    <iframe width="560" height="315" src={{ course.description }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                       
+                                    </a>
+                                    <br> 
+                                    <p>  </p>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+                                <!-- Small Section Tittle -->
+                                <div class="small-section-tittle">
+                                    <h4></h4>
+                                </div>
+                             
+                            </div>
+                           
+                          
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Course content</h4>
+                               <a href="{{ path('app_lesson_course_front', {'cid': course.cid}) }}" class="genric-btn info circle">Check Lessons</a>
+                      
+                               <br>
+                               <br>
+                           </div>               
+      
+         
+                         <div class="apply-btn2">
+                            <a href="#" class="btn">Buy Now</a>
+                         </div>
+                       </div>
+                        <div class="post-details4  mb-50">
+                            <!-- Small Section Tittle -->
+                           <div class="small-section-tittle">
+                               <h4>Teacher Information</h4>
+                           </div>
+                             
+                            <ul>
+                                <li>Name: <span>Colorlib </span></li>
+                                <li>Web : <span> colorlib.com</span></li>
+                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                            </ul>
+                       </div>
+                    </div>
+                 
+                </div>
+            </div>
+               <a href="{{ path('app_course_front') }}" class="genric-btn info circle">back to list</a>
+
+  
+ 
+        </div>
+   <!-- <h1>{{ course.title }}</h1>
 
     <table class="table">
         <tbody>
@@ -11,10 +99,7 @@
                 <th>Cid</th>
                 <td>{{ course.cid }}</td>
             </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ course.title }}</td>
-            </tr>
+           
             <tr>
                 <th>Description</th>
                 <td>{{ course.description }}</td>
@@ -33,10 +118,8 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_course_index') }}" class="genric-btn info circle">back to list</a>
-
-    <a href="{{ path('app_course_edit', {'cid': course.cid}) }}" class="genric-btn info circle">edit</a>
-
-    {{ include('course/_delete_form.html.twig') }}
+ -->
+    
 {% endblock %}
+
+  

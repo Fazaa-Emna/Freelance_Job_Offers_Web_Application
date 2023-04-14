@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Course
  *
@@ -27,7 +27,9 @@ class Course
      * @ORM\OneToMany(targetEntity="Lesson", mappedBy="course")
      */
     private $lessons;
-
+    public function __toString() {
+        return $this->cid;
+}
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
@@ -66,6 +68,7 @@ class Course
      *
      * @ORM\Column(name="title", type="string", length=1000, nullable=false)
      */
+    #[Assert\NotBlank(message:"Title is required")]
     private $title;
 
     /**
@@ -73,6 +76,7 @@ class Course
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      */
+    #[Assert\NotBlank(message:"description is required")]
     private $description;
 
     /**
@@ -80,6 +84,7 @@ class Course
      *
      * @ORM\Column(name="price", type="integer", nullable=false)
      */
+    
     private $price;
 
     /**
@@ -87,6 +92,7 @@ class Course
      *
      * @ORM\Column(name="category", type="string", length=999, nullable=false)
      */
+    #[Assert\NotBlank(message:"category is required")]
     private $category;
 
     /**

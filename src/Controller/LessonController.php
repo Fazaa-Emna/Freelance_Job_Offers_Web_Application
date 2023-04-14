@@ -13,13 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/lesson')]
 class LessonController extends AbstractController
 {
-    #[Route('/', name: 'app_lesson_index', methods: ['GET'])]
-    public function index(LessonRepository $lessonRepository): Response
-    {
-        return $this->render('lesson/index.html.twig', [
-            'lessons' => $lessonRepository->findAll(),
-        ]);
-    }
+   
 
     #[Route('/new', name: 'app_lesson_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LessonRepository $lessonRepository): Response
@@ -39,7 +33,42 @@ class LessonController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[Route('/course/{cid}/lesson', name: 'app_lesson_course_front', methods: ['GET', 'POST'])]
+    public function showLessonsByCourseFront($cid)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $lessons = $entityManager->createQueryBuilder()
+            ->select('l', 'c')
+            ->from('App\Entity\Lesson', 'l')
+            ->join('l.cid', 'c')
+            ->where('c.cid = :cid')
+            ->setParameter('cid', $cid)
+            ->getQuery()
+            ->getResult();
+        
+        return $this->render('lesson/index.html.twig', [
+            'lessons' => $lessons,
+        ]);
+    }
+    #[Route('/course/{cid}/lessons', name: 'app_lesson_course', methods: ['GET', 'POST'])]
+    public function showLessonsByCourse($cid)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $lessons = $entityManager->createQueryBuilder()
+            ->select('l', 'c')
+            ->from('App\Entity\Lesson', 'l')
+            ->join('l.cid', 'c')
+            ->where('c.cid = :cid')
+            ->setParameter('cid', $cid)
+            ->getQuery()
+            ->getResult();
+        
+        return $this->render('lesson/lessonByCourse.html.twig', [
+            'lessons' => $lessons,
+        ]);
+    }
     #[Route('/{lid}', name: 'app_lesson_show', methods: ['GET'])]
     public function show(Lesson $lesson): Response
     {

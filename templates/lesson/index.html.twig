@@ -8,21 +8,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Lid</th>
+               
                 <th>Name</th>
                 <th>File</th>
-                <th>actions</th>
+              
             </tr>
         </thead>
         <tbody>
         {% for lesson in lessons %}
             <tr>
-                <td>{{ lesson.lid }}</td>
+            
                 <td>{{ lesson.name }}</td>
                 <td>{{ lesson.file }}</td>
                 <td>
-                    <a href="{{ path('app_lesson_show', {'lid': lesson.lid}) }}">show</a>
-                    <a href="{{ path('app_lesson_edit', {'lid': lesson.lid}) }}">edit</a>
+                  
                 </td>
             </tr>
         {% else %}
@@ -33,5 +32,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_lesson_new') }}">Create new</a>
+  
+    <a href="{{ path('app_course_front') }}" class="genric-btn info circle" >back to list</a>
 {% endblock %}
