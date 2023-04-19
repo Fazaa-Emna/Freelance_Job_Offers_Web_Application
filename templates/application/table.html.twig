@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List Of Applicants{% endblock %}
+
+{% block body %}
+<div class="section-top-border progress-table">
+    <div class="progress-table">
+    <h3 class="mb-3">List Of Applicants</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID Application</th>
+                    <th>ID Freelancer</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Freelancer</th>
+                    <th>Application Date</th>
+                    <th>Freelancer CV</th>
+                    <th>Confirmation</th>
+                    <th>Notification</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if applications is empty %}
+                    <tr>
+                        <td colspan="10">No Applications Yet</td>
+                    </tr>
+                {% else %}
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.idapp }}</td>
+                            <td>{{ application.idfreelancer }}</td>
+                            <td>{{ application.fnFreelancer }}</td>
+                            <td>{{ application.lnFreelancer }}</td>
+                            <td>{{ application.emailfreelancer }}</td>
+                            <td>{{ application.applicationdate ? application.applicationdate|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                {% if application.urlCv is not empty %}
+                                    <a href="{{ asset('uploads/' ~ application.urlCv) }} " target="_blank" style="color: pink;">View CV</a>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>{{ application.confirmation ? 'Yes' : 'No' }}</td>
+                            <td>{{ application.notification ? 'Yes' : 'No' }}</td>
+                            <td>
+                                <a href="{{ path('app_application_select', {'idapp': application.idapp}) }}" class="btn btn-sm btn-danger">Select</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+             </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

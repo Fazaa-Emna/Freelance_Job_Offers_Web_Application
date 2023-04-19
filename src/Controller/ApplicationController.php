@@ -29,8 +29,8 @@ class ApplicationController extends AbstractController
         ]);
     }
 
-    #[Route('/{idOffer}/new', name: 'app_application_new', methods: ['GET', 'POST'])]
-    public function new($idOffer,FreelanceRepository $FreelanceRepo,Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/{idOffer}', name: 'app_application_new', methods: ['GET', 'POST'])]
+    public function new($idOffer, FreelanceRepository $FreelanceRepo, Request $request, EntityManagerInterface $entityManager): Response
     {
         $application = new Application();
         $freelance = $FreelanceRepo->find($idOffer);
@@ -51,23 +51,29 @@ class ApplicationController extends AbstractController
             $entityManager->persist($application);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_freelance_showFree',['idfreelance'=>$freelance->getIdfreelance()], Response::HTTP_SEE_OTHER);
+            //upgrading the nbr of applicants in the freelance entity:
+            $nbapplicants = ($application->getIdfreelance())->getNbapplicants();
+            $nbapplicants++;
+            ($application->getIdfreelance())->setNbapplicants($nbapplicants);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_freelance_showFree', ['idfreelance' => $freelance->getIdfreelance()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('application/new.html.twig', [
             'application' => $application,
             'form' => $form,
-            'idfreelance'=>$freelance->getIdfreelance(),
+            'idfreelance' => $freelance->getIdfreelance(),
         ]);
     }
 
-    #[Route('/{idFreelance}', name: 'app_application_showSecific', methods: ['GET'])]
-    public function show(ApplicationRepository $AppRepo,FreelanceRepository $FreelanceRepo, $idFreelance, EntityManagerInterface $entityManager): Response
+    #[Route('applicants/{idFreelance}', name: 'app_application_showSecific', methods: ['GET'])]
+    public function show(ApplicationRepository $AppRepo, FreelanceRepository $FreelanceRepo, $idFreelance, EntityManagerInterface $entityManager): Response
     {
-        $freelance=$FreelanceRepo->find($idFreelance);
+        $freelance = $FreelanceRepo->find($idFreelance);
         $applications = $AppRepo->findBy(['idfreelance' => $freelance]);
-        
-        return $this->render('application/index.html.twig', [
+
+        return $this->render('application/table.html.twig', [
             'applications' => $applications,
         ]);
     }
@@ -91,26 +97,21 @@ class ApplicationController extends AbstractController
     }
 
     #[Route('/{idapp}/select', name: 'app_application_select', methods: ['GET', 'POST'])]
-    public function select(ApplicationRepository $AppRepo,Request $request, $idapp, EntityManagerInterface $entityManager): Response
+    public function select(ApplicationRepository $AppRepo, Request $request, $idapp, EntityManagerInterface $entityManager): Response
     {
-        $applications = $entityManager
-            ->getRepository(Application::class)
-            ->findAll();
-            
         $app = $AppRepo->find($idapp);
         $app->setConfirmation(true);
         $app->setNotification(true);
         $entityManager->persist($app);
         $entityManager->flush();
-        return $this->render('application/index.html.twig', [
-            'applications' => $applications,
-        ]);
+        //return $this->redirectToRoute('showOneC',['id'=>$classroom->getId()]);
+        return $this->redirectToRoute('app_application_showSecific', ['idFreelance' => ($app->getIdfreelance())->getIdfreelance()]);
     }
 
     #[Route('/{idapp}', name: 'app_application_delete', methods: ['POST'])]
     public function delete(Request $request, Application $application, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$application->getIdapp(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $application->getIdapp(), $request->request->get('_token'))) {
             $entityManager->remove($application);
             $entityManager->flush();
         }
