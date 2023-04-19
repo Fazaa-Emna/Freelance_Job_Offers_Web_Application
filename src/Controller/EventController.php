@@ -25,6 +25,43 @@ class EventController extends AbstractController
         ]);
     }
 
+    #[Route('/back', name: 'app_event_index_back', methods: ['GET'])]
+    public function indexBack(EntityManagerInterface $entityManager): Response
+    {
+        $events = $entityManager
+            ->getRepository(Event::class)
+            ->findAll();
+
+        return $this->render('eventback/index.html.twig', [
+            'events' => $events,
+        ]);
+    }
+
+    #[Route('/Event', name: 'app_event_event_front', methods: ['GET'])]
+    public function indexFront(EntityManagerInterface $entityManager,Request $request): Response
+    {
+        $services = $entityManager
+            ->getRepository(Event::class)
+            ->findAll();
+        $query = $request->query->get('query');
+        $events = [];
+
+        if ($query) {
+            $services = $this->getDoctrine()->getRepository(Event::class)
+                ->createQueryBuilder('e')
+                ->where('e.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
+        }
+
+        return $this->render('event/event_front.html.twig', [
+            'events' => $events,
+            'query' => $query,
+        ]);
+    }
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

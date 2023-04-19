@@ -27,6 +27,7 @@ class Event
      *
      * @ORM\Column(name="event_name", type="string", length=255, nullable=false)
      */
+    #[Assert\NotBlank(message:"Event Name required!")]
     private $eventName;
 
     /**
@@ -34,6 +35,7 @@ class Event
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
+    #[Assert\NotBlank(message:"Description required!")]
     private $description;
 
     /**
@@ -69,6 +71,7 @@ class Event
      *
      * @ORM\Column(name="registrationDeadline", type="date", nullable=false)
      */
+
     private $registrationdeadline;
 
     public function getEventId(): ?int
