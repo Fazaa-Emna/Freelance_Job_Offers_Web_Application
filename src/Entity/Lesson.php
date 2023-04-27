@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Lesson
  *
@@ -26,13 +26,16 @@ class Lesson
      *
      * @ORM\Column(name="name", type="string", length=999, nullable=false)
      */
+    #[Assert\NotBlank(message:"name is required")]
     private $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="file", type="string", length=999, nullable=false)
+   
      */
+    #[Assert\NotBlank(message:"file is required")]
     private $file;
 
     /**

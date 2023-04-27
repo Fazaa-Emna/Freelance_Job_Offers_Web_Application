@@ -75,8 +75,10 @@ class Course
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * 
      */
     #[Assert\NotBlank(message:"description is required")]
+
     private $description;
 
     /**

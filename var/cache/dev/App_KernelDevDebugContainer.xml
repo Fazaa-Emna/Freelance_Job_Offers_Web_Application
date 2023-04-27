@@ -358,6 +358,9 @@
     <service id="App\Form\LessonType" class="App\Form\LessonType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\SearchForm" class="App\Form\SearchForm" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -1145,6 +1148,7 @@
       <argument type="collection">
         <argument>App\Form\CourseType</argument>
         <argument>App\Form\LessonType</argument>
+        <argument>App\Form\SearchForm</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -3289,7 +3293,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.W0UofM4"/>
+      <argument type="service" id=".service_locator.i8Cy7z0"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -6146,6 +6150,8 @@
     <service id=".abstract.instanceof.App\Form\CourseType" class="App\Form\CourseType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\LessonType" class="App\Form\LessonType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\LessonType" class="App\Form\LessonType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SearchForm" class="App\Form\SearchForm" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\SearchForm" class="App\Form\SearchForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LessonRepository" class="App\Repository\LessonRepository" autowire="true" abstract="true"/>
@@ -6504,6 +6510,13 @@
         <argument key="courseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
       </argument>
     </service>
+    <service id=".errored.biZKtm8" class="App\Controller\NormalizerInterface"/>
+    <service id=".service_locator.fWv9bx5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="Normalizer" type="service_closure" id=".errored.biZKtm8"/>
+      </argument>
+    </service>
     <service id=".service_locator.5EKs91d" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6523,7 +6536,7 @@
         <argument key="lessonRepository" type="service_closure" id="App\Repository\LessonRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.I1FX3sl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.wCPTKfU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CourseController::delete" type="service_closure" id=".service_locator.TCOXoT8"/>
@@ -6531,9 +6544,11 @@
         <argument key="App\Controller\CourseController::index" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\CourseController::indexFront" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\CourseController::new" type="service_closure" id=".service_locator.w07iIQI"/>
+        <argument key="App\Controller\CourseController::search" type="service_closure" id=".service_locator.fWv9bx5"/>
         <argument key="App\Controller\CourseController::show" type="service_closure" id=".service_locator.lShnJV_"/>
         <argument key="App\Controller\LessonController::delete" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController::edit" type="service_closure" id=".service_locator.FvkWU6g"/>
+        <argument key="App\Controller\LessonController::index" type="service_closure" id=".service_locator.5EKs91d"/>
         <argument key="App\Controller\LessonController::new" type="service_closure" id=".service_locator.5EKs91d"/>
         <argument key="App\Controller\LessonController::show" type="service_closure" id=".service_locator.7BmVW2x"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6545,9 +6560,11 @@
         <argument key="App\Controller\CourseController:index" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\CourseController:indexFront" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\CourseController:new" type="service_closure" id=".service_locator.w07iIQI"/>
+        <argument key="App\Controller\CourseController:search" type="service_closure" id=".service_locator.fWv9bx5"/>
         <argument key="App\Controller\CourseController:show" type="service_closure" id=".service_locator.lShnJV_"/>
         <argument key="App\Controller\LessonController:delete" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController:edit" type="service_closure" id=".service_locator.FvkWU6g"/>
+        <argument key="App\Controller\LessonController:index" type="service_closure" id=".service_locator.5EKs91d"/>
         <argument key="App\Controller\LessonController:new" type="service_closure" id=".service_locator.5EKs91d"/>
         <argument key="App\Controller\LessonController:show" type="service_closure" id=".service_locator.7BmVW2x"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6613,11 +6630,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.W0UofM4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.i8Cy7z0" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CourseType" type="service_closure" id="App\Form\CourseType"/>
         <argument key="App\Form\LessonType" type="service_closure" id="App\Form\LessonType"/>
+        <argument key="App\Form\SearchForm" type="service_closure" id="App\Form\SearchForm"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -7176,12 +7194,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.I1FX3sl"/>
+      <argument type="service" id=".service_locator.wCPTKfU"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.I1FX3sl"/>
+      <argument type="service" id=".service_locator.wCPTKfU"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8149,7 +8167,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.I1FX3sl"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.wCPTKfU"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8173,9 +8191,9 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.U6AQg6o" alias=".service_locator.I1FX3sl"/>
+    <service id=".service_locator.nndRUaa" alias=".service_locator.wCPTKfU"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.bI3fMzK" alias=".service_locator.W0UofM4"/>
+    <service id=".service_locator.L5BG._p" alias=".service_locator.i8Cy7z0"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.0ghLsew" alias=".service_locator.mx0UMmY"/>

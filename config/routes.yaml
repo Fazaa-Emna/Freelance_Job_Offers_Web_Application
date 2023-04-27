@@ -1,3 +1,6 @@
 home:
     path: /
     controller: App\Controller\HomeController::index
+search_courses:
+    path: /courses/search
+    methods: [POST]

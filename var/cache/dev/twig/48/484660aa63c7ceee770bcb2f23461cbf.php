@@ -117,11 +117,15 @@ class __TwigTemplate_6c0973c4625e073d8d52cbcb513cbd47 extends Template
 
     <a href=\"";
         // line 27
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_lesson_edit", ["lid" => twig_get_attribute($this->env, $this->source, (isset($context["lesson"]) || array_key_exists("lesson", $context) ? $context["lesson"] : (function () { throw new RuntimeError('Variable "lesson" does not exist.', 27, $this->source); })()), "lid", [], "any", false, false, false, 27)]), "html", null, true);
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_index");
+        echo "\" class=\"genric-btn info circle\" >back to list</a>
+    <a href=\"";
+        // line 28
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_lesson_edit", ["lid" => twig_get_attribute($this->env, $this->source, (isset($context["lesson"]) || array_key_exists("lesson", $context) ? $context["lesson"] : (function () { throw new RuntimeError('Variable "lesson" does not exist.', 28, $this->source); })()), "lid", [], "any", false, false, false, 28)]), "html", null, true);
         echo "\" class=\"genric-btn info circle\">edit</a>
 
     ";
-        // line 29
+        // line 30
         echo twig_include($this->env, $context, "lesson/_delete_form.html.twig");
         echo "
 ";
@@ -145,7 +149,7 @@ class __TwigTemplate_6c0973c4625e073d8d52cbcb513cbd47 extends Template
 
     public function getDebugInfo()
     {
-        return array (  125 => 29,  120 => 27,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  129 => 30,  124 => 28,  120 => 27,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -176,6 +180,7 @@ class __TwigTemplate_6c0973c4625e073d8d52cbcb513cbd47 extends Template
 
 
 
+    <a href=\"{{ path('app_course_index') }}\" class=\"genric-btn info circle\" >back to list</a>
     <a href=\"{{ path('app_lesson_edit', {'lid': lesson.lid}) }}\" class=\"genric-btn info circle\">edit</a>
 
     {{ include('lesson/_delete_form.html.twig') }}

@@ -90,7 +90,7 @@ class __TwigTemplate_b9d5eee1d542469374b3e8782f7c07a8 extends Template
         $this->displayBlock('footer', $context, $blocks);
         // line 310
         $this->displayBlock('js', $context, $blocks);
-        // line 356
+        // line 357
         echo "      
     </body>
 </html>
@@ -638,18 +638,19 @@ class __TwigTemplate_b9d5eee1d542469374b3e8782f7c07a8 extends Template
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/jquery.ajaxchimp.min.js"), "html", null, true);
         echo "></script>
      
-        
+        <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">
 \t\t<!-- Jquery Plugins, main Jquery -->\t
             <script src=";
-        // line 351
+        // line 352
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/plugins.js"), "html", null, true);
         echo "></script>
           <script src=";
-        // line 352
+        // line 353
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/main.js"), "html", null, true);
         echo "></script>
      
-        
+           <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -666,7 +667,7 @@ class __TwigTemplate_b9d5eee1d542469374b3e8782f7c07a8 extends Template
 
     public function getDebugInfo()
     {
-        return array (  649 => 352,  645 => 351,  638 => 347,  634 => 346,  630 => 345,  626 => 344,  622 => 343,  615 => 339,  611 => 338,  607 => 337,  600 => 333,  596 => 332,  592 => 331,  585 => 327,  581 => 326,  577 => 325,  571 => 322,  564 => 318,  560 => 317,  556 => 316,  551 => 314,  546 => 311,  536 => 310,  396 => 179,  386 => 178,  294 => 89,  284 => 88,  246 => 56,  242 => 55,  234 => 50,  220 => 41,  209 => 32,  199 => 31,  187 => 28,  183 => 27,  179 => 26,  175 => 25,  171 => 24,  167 => 23,  163 => 22,  159 => 21,  155 => 20,  151 => 19,  147 => 18,  143 => 17,  139 => 16,  136 => 15,  126 => 14,  107 => 7,  94 => 356,  92 => 310,  90 => 178,  82 => 172,  80 => 88,  74 => 84,  72 => 31,  69 => 30,  67 => 14,  57 => 7,  49 => 1,);
+        return array (  650 => 353,  646 => 352,  638 => 347,  634 => 346,  630 => 345,  626 => 344,  622 => 343,  615 => 339,  611 => 338,  607 => 337,  600 => 333,  596 => 332,  592 => 331,  585 => 327,  581 => 326,  577 => 325,  571 => 322,  564 => 318,  560 => 317,  556 => 316,  551 => 314,  546 => 311,  536 => 310,  396 => 179,  386 => 178,  294 => 89,  284 => 88,  246 => 56,  242 => 55,  234 => 50,  220 => 41,  209 => 32,  199 => 31,  187 => 28,  183 => 27,  179 => 26,  175 => 25,  171 => 24,  167 => 23,  163 => 22,  159 => 21,  155 => 20,  151 => 19,  147 => 18,  143 => 17,  139 => 16,  136 => 15,  126 => 14,  107 => 7,  94 => 357,  92 => 310,  90 => 178,  82 => 172,  80 => 88,  74 => 84,  72 => 31,  69 => 30,  67 => 14,  57 => 7,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -1019,12 +1020,13 @@ class __TwigTemplate_b9d5eee1d542469374b3e8782f7c07a8 extends Template
              <script src={{asset('assets/js/mail-script.js')}}></script>
           <script src={{asset('assets/js/jquery.ajaxchimp.min.js')}}></script>
      
-        
+        <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">
 \t\t<!-- Jquery Plugins, main Jquery -->\t
             <script src={{asset('assets/js/plugins.js')}}></script>
           <script src={{asset('assets/js/main.js')}}></script>
      
-        
+           <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>
         {% endblock %}
       
     </body>

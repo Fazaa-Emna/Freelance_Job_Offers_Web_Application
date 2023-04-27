@@ -7,6 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class CourseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -25,11 +28,10 @@ class CourseType extends AbstractType
                     'Bussiness' => 'Bussiness',
                     'Development' => 'Development'
                 ],
-            ])
-           
-            ;
-        
+            ]);
+          
     }
+ 
 
     public function configureOptions(OptionsResolver $resolver): void
     {

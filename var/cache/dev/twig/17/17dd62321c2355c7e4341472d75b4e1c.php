@@ -94,7 +94,7 @@ class __TwigTemplate_b99f5b2c3a0f18141a0663e26d3346e1 extends Template
 
     <a href=\"";
         // line 10
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_lesson_index");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_index");
         echo "\" class=\"genric-btn info circle\">back to list</a>
 ";
         
@@ -131,7 +131,7 @@ class __TwigTemplate_b99f5b2c3a0f18141a0663e26d3346e1 extends Template
 
     {{ include('lesson/_form.html.twig') }}
 
-    <a href=\"{{ path('app_lesson_index') }}\" class=\"genric-btn info circle\">back to list</a>
+    <a href=\"{{ path('app_course_index') }}\" class=\"genric-btn info circle\">back to list</a>
 {% endblock %}
 ", "lesson/new.html.twig", "C:\\Users\\Zahra\\last\\pidev\\templates\\lesson\\new.html.twig");
     }

@@ -38,7 +38,17 @@ class CourseRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+   
+    public function searchByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.title LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery();
+    
+        return $qb->getResult();
+    }
+  
 //    /**
 //     * @return Course[] Returns an array of Course objects
 //     */

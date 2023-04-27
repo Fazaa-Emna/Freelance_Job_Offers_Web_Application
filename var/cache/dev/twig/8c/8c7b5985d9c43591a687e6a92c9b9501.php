@@ -95,7 +95,7 @@ class __TwigTemplate_d3491eaa7f6a9b099ffd79e9dcb9ef3b extends Template
     <a href=\"";
         // line 10
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_index");
-        echo "\">back to list</a>
+        echo "\" class=\"genric-btn info circle\">back to list</a>
 
     ";
         // line 12
@@ -136,7 +136,7 @@ class __TwigTemplate_d3491eaa7f6a9b099ffd79e9dcb9ef3b extends Template
 
     {{ include('course/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href=\"{{ path('app_course_index') }}\">back to list</a>
+    <a href=\"{{ path('app_course_index') }}\" class=\"genric-btn info circle\">back to list</a>
 
     {{ include('course/_delete_form.html.twig') }}
 {% endblock %}

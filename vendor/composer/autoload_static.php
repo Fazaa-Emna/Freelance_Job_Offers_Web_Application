@@ -582,7 +582,18 @@ class ComposerStaticInit94211bb90985a7b4650db90c028d2d86
     );
 
     public static $classMap = array (
+        'App\\Controller\\CourseController' => __DIR__ . '/../..' . '/src/Controller/CourseController.php',
+        'App\\Controller\\HomeController' => __DIR__ . '/../..' . '/src/Controller/HomeController.php',
+        'App\\Controller\\LessonController' => __DIR__ . '/../..' . '/src/Controller/LessonController.php',
+        'App\\Entity\\Course' => __DIR__ . '/../..' . '/src/Entity/Course.php',
+        'App\\Entity\\DoctrineMigrationVersions' => __DIR__ . '/../..' . '/src/Entity/DoctrineMigrationVersions.php',
+        'App\\Entity\\Lesson' => __DIR__ . '/../..' . '/src/Entity/Lesson.php',
+        'App\\Entity\\MessengerMessages' => __DIR__ . '/../..' . '/src/Entity/MessengerMessages.php',
+        'App\\Form\\CourseType' => __DIR__ . '/../..' . '/src/Form/CourseType.php',
+        'App\\Form\\LessonType' => __DIR__ . '/../..' . '/src/Form/LessonType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
+        'App\\Repository\\CourseRepository' => __DIR__ . '/../..' . '/src/Repository/CourseRepository.php',
+        'App\\Repository\\LessonRepository' => __DIR__ . '/../..' . '/src/Repository/LessonRepository.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Collator' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',

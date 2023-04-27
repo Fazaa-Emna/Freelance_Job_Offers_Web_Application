@@ -40,7 +40,7 @@ class __TwigTemplate_6e3755008736fba8581cfca1b4a738f9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "lesson/_form.html.twig"));
 
         // line 1
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 1, $this->source); })()), 'form_start');
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 1, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         echo "
     ";
         // line 2
@@ -80,7 +80,7 @@ class __TwigTemplate_6e3755008736fba8581cfca1b4a738f9 extends Template
 
     public function getSourceContext()
     {
-        return new Source("{{ form_start(form) }}
+        return new Source("{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

@@ -70,81 +70,50 @@ class __TwigTemplate_d4b47e285edbbc8211183c7dc2e049c0 extends Template
         // line 7
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_new");
         echo "\" class=\"genric-btn info circle\"> New course</a>
-    <table class=\"table\">
-        <thead>
-            <tr>
-                <th>Cid</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        ";
-        // line 21
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["courses"]) || array_key_exists("courses", $context) ? $context["courses"] : (function () { throw new RuntimeError('Variable "courses" does not exist.', 21, $this->source); })()));
-        $context['_iterated'] = false;
-        foreach ($context['_seq'] as $context["_key"] => $context["course"]) {
-            // line 22
-            echo "            <tr>
-                <td>";
-            // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "cid", [], "any", false, false, false, 23), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 24
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "title", [], "any", false, false, false, 24), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 25
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "description", [], "any", false, false, false, 25), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "price", [], "any", false, false, false, 26), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "category", [], "any", false, false, false, 27), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["course"], "photo", [], "any", false, false, false, 28), "html", null, true);
-            echo "</td>
-                <td>
-                    <a href=\"";
-            // line 30
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_lesson_course", ["cid" => twig_get_attribute($this->env, $this->source, $context["course"], "cid", [], "any", false, false, false, 30)]), "html", null, true);
-            echo "\" class=\"genric-btn info circle\">Check Lessons</a>
-                    <a href=\"";
-            // line 31
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_edit", ["cid" => twig_get_attribute($this->env, $this->source, $context["course"], "cid", [], "any", false, false, false, 31)]), "html", null, true);
-            echo "\" class=\"genric-btn info circle\">edit</a>
-                </td>
-            </tr>
-        ";
-            $context['_iterated'] = true;
-        }
-        if (!$context['_iterated']) {
-            // line 35
-            echo "            <tr>
-                <td colspan=\"7\">no records found</td>
-            </tr>
-        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['course'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
-        echo "        </tbody>
-    </table>
 
-  
+<div>
+<form id=\"search-form\" action=\"";
+        // line 10
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_course_index");
+        echo "\" method=\"post\">
+    <input type=\"text\" name=\"searchTerm\" placeholder=\"Search for courses\">
+    <button type=\"submit\" class=\"genric-btn info circle\">Search</button>
+    <div id=\"course-list\">
+    ";
+        // line 14
+        $this->loadTemplate("course/_course_list.html.twig", "course/index.html.twig", 14)->display(twig_array_merge($context, ["courses" => (isset($context["courses"]) || array_key_exists("courses", $context) ? $context["courses"] : (function () { throw new RuntimeError('Variable "courses" does not exist.', 14, $this->source); })())]));
+        // line 15
+        echo "</div>
+</form>
    
+
+  </div>
+
+<script
+src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">
+</script>
+<script>
+\$(document).on('submit', '#search-form', function(e) {
+    e.preventDefault();
+    var form = \$(this);
+    var url = form.attr('action');
+    var method = form.attr('method');
+    var data = form.serialize();
+    
+    \$.ajax({
+        url: url,
+        type: method,
+        data: data,
+        dataType: 'html',
+        success: function(response) {
+            \$('#course-list').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+});
+</script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -166,7 +135,7 @@ class __TwigTemplate_d4b47e285edbbc8211183c7dc2e049c0 extends Template
 
     public function getDebugInfo()
     {
-        return array (  143 => 39,  134 => 35,  125 => 31,  121 => 30,  116 => 28,  112 => 27,  108 => 26,  104 => 25,  100 => 24,  96 => 23,  93 => 22,  88 => 21,  71 => 7,  68 => 6,  58 => 5,  35 => 1,);
+        return array (  86 => 15,  84 => 14,  77 => 10,  71 => 7,  68 => 6,  58 => 5,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -178,43 +147,46 @@ class __TwigTemplate_d4b47e285edbbc8211183c7dc2e049c0 extends Template
 {% block body %}
       
    <a href=\"{{ path('app_course_new') }}\" class=\"genric-btn info circle\"> New course</a>
-    <table class=\"table\">
-        <thead>
-            <tr>
-                <th>Cid</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for course in courses %}
-            <tr>
-                <td>{{ course.cid }}</td>
-                <td>{{ course.title }}</td>
-                <td>{{ course.description }}</td>
-                <td>{{ course.price }}</td>
-                <td>{{ course.category }}</td>
-                <td>{{ course.photo }}</td>
-                <td>
-                    <a href=\"{{ path('app_lesson_course', {'cid': course.cid}) }}\" class=\"genric-btn info circle\">Check Lessons</a>
-                    <a href=\"{{ path('app_course_edit', {'cid': course.cid}) }}\" class=\"genric-btn info circle\">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan=\"7\">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-  
+<div>
+<form id=\"search-form\" action=\"{{ path('app_course_index') }}\" method=\"post\">
+    <input type=\"text\" name=\"searchTerm\" placeholder=\"Search for courses\">
+    <button type=\"submit\" class=\"genric-btn info circle\">Search</button>
+    <div id=\"course-list\">
+    {% include 'course/_course_list.html.twig' with {'courses': courses} %}
+</div>
+</form>
    
+
+  </div>
+
+<script
+src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">
+</script>
+<script>
+\$(document).on('submit', '#search-form', function(e) {
+    e.preventDefault();
+    var form = \$(this);
+    var url = form.attr('action');
+    var method = form.attr('method');
+    var data = form.serialize();
+    
+    \$.ajax({
+        url: url,
+        type: method,
+        data: data,
+        dataType: 'html',
+        success: function(response) {
+            \$('#course-list').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+});
+</script>
 {% endblock %}
+
 ", "course/index.html.twig", "C:\\Users\\Zahra\\last\\pidev\\templates\\course\\index.html.twig");
     }
 }

@@ -33,7 +33,7 @@ class __TwigTemplate_7e7a4652685ccacdfcddf0dae0a6a603 extends Template
     protected function doGetParent(array $context)
     {
         // line 1
-        return "base.html.twig";
+        return "back.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
@@ -45,7 +45,7 @@ class __TwigTemplate_7e7a4652685ccacdfcddf0dae0a6a603 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "course/show.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "course/show.html.twig", 1);
+        $this->parent = $this->loadTemplate("back.html.twig", "course/show.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -150,7 +150,7 @@ class __TwigTemplate_7e7a4652685ccacdfcddf0dae0a6a603 extends Template
                             <!-- Small Section Tittle -->
                            <div class=\"small-section-tittle\">
                                <h4>Course content</h4>
-                               <a href=\"";
+             <a href=\"";
         // line 62
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_lesson_course_front", ["cid" => twig_get_attribute($this->env, $this->source, (isset($context["course"]) || array_key_exists("course", $context) ? $context["course"] : (function () { throw new RuntimeError('Variable "course" does not exist.', 62, $this->source); })()), "cid", [], "any", false, false, false, 62)]), "html", null, true);
         echo "\" class=\"genric-btn info circle\">Check Lessons</a>
@@ -261,7 +261,7 @@ class __TwigTemplate_7e7a4652685ccacdfcddf0dae0a6a603 extends Template
 
     public function getSourceContext()
     {
-        return new Source("{% extends 'base.html.twig' %}
+        return new Source("{% extends 'back.html.twig' %}
 
 {% block title %}Course{% endblock %}
 
@@ -322,7 +322,7 @@ class __TwigTemplate_7e7a4652685ccacdfcddf0dae0a6a603 extends Template
                             <!-- Small Section Tittle -->
                            <div class=\"small-section-tittle\">
                                <h4>Course content</h4>
-                               <a href=\"{{ path('app_lesson_course_front', {'cid': course.cid}) }}\" class=\"genric-btn info circle\">Check Lessons</a>
+             <a href=\"{{ path('app_lesson_course_front', {'cid': course.cid}) }}\" class=\"genric-btn info circle\">Check Lessons</a>
                       
                                <br>
                                <br>
