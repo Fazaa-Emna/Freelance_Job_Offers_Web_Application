@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Categorie;
 use Symfony\Component\Form\Extension\Core\Type\DateType ;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType ;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CommentType extends AbstractType
 {

@@ -1,4 +1,5 @@
-    {% extends 'base.html.twig' %}
+   {% extends 'front.html.twig'%}
+
 
     {% block title %}Ici Ton comment{% endblock %}
 
@@ -73,9 +74,9 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(function () {
-                    $("#search_input").on("change", function () {
+                    $("#myInput").on("keyup", function () {
                     var value = $(this).val().toLowerCase();
-                    $("#myTable tbody tr").filter(function () {
+                    $("#myTable tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -84,6 +85,6 @@
     
         
     </div>
-    {% endblock %}
-
+    
+{% endblock %}
 

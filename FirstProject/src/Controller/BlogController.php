@@ -1,15 +1,24 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Blog;
 use App\Form\BlogType;
+use App\Form\SearchType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\BlogRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Snipe\BanBuilder\CensorWords;
+
+use Joli\JoliNotif\Notification;
+use Joli\JoliNotif\NotifierFactory;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 
 #[Route('/blog')]
@@ -29,17 +38,42 @@ class BlogController extends AbstractController
     #[Route('/add', name: 'addBlog')]
     public function addBlog(ManagerRegistry $doctrine, Request $request): Response
     {
+        $censor = new CensorWords;
         $blog= new Blog;
         $form=$this->createForm(BlogType::class, $blog);
-        
         $form->handleRequest($request);
- 
         if ($form->isSubmitted()) {
+            
+$notifier = NotifierFactory::create();
+
+// Create your notification
+ $notification =
+             (new Notification())
+             ->setTitle('Notification')
+             ->setBody('Your Blog is added successfully <3')
+             
+            
+;
+$notifier->send($notification);
+            $censor = new CensorWords();
+
+            $title = $blog->getTitle();
+            $body = $blog->getBody();
+    
+            $censoredTitle = $censor->censorString($title)['clean'];
+            $censoredBody = $censor->censorString($body)['clean'];
+    
+            $blog->setTitle($censoredTitle);
+            $blog->setBody($censoredBody);
+
+            
             $em= $doctrine->getManager();
             $em->persist($blog);
             $em->flush();
+            
         return $this->redirectToRoute('display_blog');
         }
+
         return $this->render('blog/addBlog.html.twig', [
             'f'=> $form->createView(),
         ]);
@@ -95,7 +129,9 @@ class BlogController extends AbstractController
             'comments'=>$comments,
         ]);
     }
-  
+ 
 
+
+    
     
 }

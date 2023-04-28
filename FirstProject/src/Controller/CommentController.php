@@ -49,7 +49,7 @@ class CommentController extends AbstractController
             $em= $doctrine->getManager();
             $em->persist($comment);//Add
             $em->flush();
-            return $this -> redirectToRoute(route:'display_comment');
+            return $this -> redirectToRoute(route:'display_blog');
         }
         return $this -> render('comment/ajoutComment.html.twig' , ['f'=>$form->createView()]);
     }
@@ -65,7 +65,7 @@ class CommentController extends AbstractController
         $em= $doctrine->getManager();
         $em->remove($comment);
         $em->flush();
-        return $this->redirectToRoute(route:'display_comment');
+        return $this->redirectToRoute(route:'display_blog');
         
     }
 
@@ -80,7 +80,7 @@ class CommentController extends AbstractController
         if($form ->isSubmitted() && $form->isValid()){
             $em= $doctrine->getManager();
             $em->flush();
-            return $this -> redirectToRoute(route:'display_comment');}
+            return $this -> redirectToRoute(route:'display_blog');}
         if(!$comment = $repository->find($id)){
             return $this -> redirectToRoute(route:'error');
         }

@@ -1,3 +1,5 @@
+{% extends 'front.html.twig' %}
+
 <div style="text-align:center;">
     <h1>{{ comment.id }}</h1>
 
@@ -16,3 +18,4 @@
     <a href="{{ path('supp_comment', {'id': comment.id}) }}" class="btn btn-danger">Supprimer</a>
  
 </td>
+{% endblock %}

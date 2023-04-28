@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'front.html.twig' %}
 
 {% block title %}Ici Ton blog{% endblock %}
 
@@ -11,18 +11,25 @@
 <div class="example-wrapper">
 <br></br><br></br>
     <div style="display:flex;align-items: center; justify-content:center">
-    <table border="5">
+    <div class="input-group no-border">
+
+    <input type="text" value="" class="form-control" placeholder="Search for..." id="myInput">
+    
+</div>
+</div>
+    <table border="5" id="t">
         <thead>           
-            <th>|     Id   |</th>
-            <th>|   title   |</th>
+            
+            <th>Title</th>
            
         </thead>
-        <tbody>
+        <tbody id="myTable">
         {% for blog in b %}
         <tr>
-            <td> {{blog.id}}</td>
+            
              <td>
-                <a href="{{path ('showBlog',{'id':blog.id}) }}">{{blog.title}} </a>
+                <a href="{{path ('showBlog',{'id':blog.id}) }}" style="color: black;">{{blog.title}}</a>
+
             </td>
             
             
@@ -34,11 +41,27 @@
     </div>
     
         <a class='btn btn-primary' href="{{path ('addBlog') }}">ajouter </a>
+                <a class='btn btn-primary' href="{{path ('app_bot') }}">chatbot </a>
 
-    
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                    $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </div>
 
 
 {% endblock %}
+
+
+
+
 
 
