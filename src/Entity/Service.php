@@ -1,21 +1,14 @@
 <?php
 
 namespace App\Entity;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-
-
-
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Service
  *
  * @ORM\Table(name="service")
- * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
-
+ * @ORM\Entity
  */
 class Service
 {
@@ -28,13 +21,11 @@ class Service
      */
     private $id;
 
-    
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
-    #[Assert\NotBlank(message:"is required")]
     private $name;
 
     /**
@@ -42,7 +33,6 @@ class Service
      *
      * @ORM\Column(name="descr", type="string", length=255, nullable=false)
      */
-    #[Assert\NotBlank(message:"is required")]
     private $descr;
 
     /**
@@ -64,26 +54,7 @@ class Service
      *
      * @ORM\Column(name="cat", type="string", length=255, nullable=false)
      */
-
-    private  $cat;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Packag", mappedBy="service")
-     */
-    private $packages;
-
-    public function __toString() {
-        return $this->id;
-}
-    public function __construct()
-    {
-        $this->packages = new ArrayCollection();
-    }
-  
-    public function getPackages()
-    {
-        return $this->packages;
-}
+    private $cat;
 
     public function getId(): ?int
     {
@@ -146,28 +117,6 @@ class Service
     public function setCat(string $cat): self
     {
         $this->cat = $cat;
-
-        return $this;
-    }
-
-    public function addPackage(Packag $package): self
-    {
-        if (!$this->packages->contains($package)) {
-            $this->packages->add($package);
-            $package->setService($this);
-        }
-
-        return $this;
-    }
-
-    public function removePackage(Packag $package): self
-    {
-        if ($this->packages->removeElement($package)) {
-            // set the owning side to null (unless already changed)
-            if ($package->getService() === $this) {
-                $package->setService(null);
-            }
-        }
 
         return $this;
     }

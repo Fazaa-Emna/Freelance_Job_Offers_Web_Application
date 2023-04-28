@@ -20,14 +20,16 @@ class ServiceType extends AbstractType
                 'mapped' => false, // don't map this field to any entity property
             ])
             
-            ->add('cat')   
-        ;
+          
+            ->add('cat');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Service::class,
+            'method' => 'POST',
+            'csrf_protection' => false,
         ]);
     }
 }

@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Your Services </h2>
+                            <h2>Our Services </h2>
                         </div>
                     </div>
                 </div>
@@ -19,22 +19,29 @@
         </div>
         </div>
  
+                                
+                                
+                                
                                  <form method="get">
         <input type="text" name="query" placeholder="Service Name"  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
        onblur="this.placeholder = ' Service Name '" value="{{ query }}">
         <button type="submit" class="genric-btn primary small">Search</button>
     </form>
-                                 {% for service in services %}
+
+
+                                {% for service in pagination %}
+
+
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
                                      
-                                            <a href="#"><img src= "{{ asset('assets/img/' ~ service.file) }}" alt=""></a>
+                                            <a href="#"><img src= "{{ asset('assets/img/' ~ service.file) }}" alt="" width="300" height="150"></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a  href="{{ path('app_service_show', {'id': service.id}) }}" >
                                               
-                                                <h4>{{ service.name }} </h4>
+                                                <h2>{{ service.name }}</h2>
 
                                             </a>
                                             <ul>
@@ -50,7 +57,9 @@
                           <tr>
                         <td colspan="7">no records found</td>
                       </tr>
-                    {% endfor %}
+                     {% endfor %}
+
+                      
                                 
                    <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
@@ -69,6 +78,10 @@
             </div>
         </div>
         <!-- job post company End -->
+  <div class="text-center">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
 
     </main>
 

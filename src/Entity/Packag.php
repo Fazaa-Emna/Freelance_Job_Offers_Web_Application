@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Packag
  *
- * @ORM\Table(name="packag")
- * @ORM\Entity(repositoryClass="App\Repository\PackagRepository")
+ * @ORM\Table(name="packag", indexes={@ORM\Index(name="sid", columns={"sid"})})
+ * @ORM\Entity
  */
 class Packag
 {
@@ -20,13 +20,6 @@ class Packag
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idP;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="packages")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", nullable=false)
-     */
-
-    private $sid;
 
     /**
      * @var string
@@ -42,23 +35,19 @@ class Packag
      */
     private $price;
 
+    /**
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sid", referencedColumnName="id")
+     * })
+     */
+    private $sid;
+
     public function getIdP(): ?int
     {
         return $this->idP;
-    }
-
-    public function getSid(): ?int
-    {
-        return $this->sid;
-    }
-
-    public function setSid( Service $sid): self
-    {
-        $this->sid = $sid;
-    
-        $this->service = $sid;
-    
-       return $this;
     }
 
     public function getType(): ?string
@@ -81,6 +70,18 @@ class Packag
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getSid(): ?Service
+    {
+        return $this->sid;
+    }
+
+    public function setSid(?Service $sid): self
+    {
+        $this->sid = $sid;
 
         return $this;
     }
