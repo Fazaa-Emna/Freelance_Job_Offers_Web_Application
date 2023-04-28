@@ -57,7 +57,7 @@ class ApplicationController extends AbstractController
             ($application->getIdfreelance())->setNbapplicants($nbapplicants);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_freelance_showFree', ['idfreelance' => $freelance->getIdfreelance()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_freelance_recommend');
         }
 
         return $this->renderForm('application/new.html.twig', [
@@ -118,4 +118,5 @@ class ApplicationController extends AbstractController
 
         return $this->redirectToRoute('app_application_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }

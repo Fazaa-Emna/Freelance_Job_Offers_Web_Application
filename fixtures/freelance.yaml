@@ -1,0 +1,25 @@
+App\Entity\Freelance:
+    freelance_{1..10}:
+        idbo: <randomElement([20, 30, 40])>
+        emailbo: <email()>
+        categoryF: <jobTitle()>
+        description: <text(60)>
+        budget: <randomFloat(2, 100, 1000)>
+        state: <boolean()>
+        urllogo: <imageUrl(85, 86, 'business')>
+        nbapplicants: <numberBetween(0, 3)>
+
+App\Entity\Application:
+    application_{1..15}:
+        idfreelancer: <randomElement([22, 33, 44, 55, 66])>
+        idbo: <randomElement([20, 30, 40])>
+        fnFreelancer: <firstName()>
+        lnFreelancer: <lastName()>
+        emailfreelancer: <companyEmail()>
+        urlCv: <file('public/assets/uploads/resumes', 'public/assets/uploads')>
+        confirmation: <boolean()>
+        notification: '(@confirmation ? true : false)'
+        idfreelance: '@freelance_*'
+
+
+ 

@@ -79,7 +79,7 @@ class Historysearch
         return $this->search;
     }
 
-    public function setSearch(string $search): self
+    public function etSearchs(string $search): self
     {
         $this->search = $search;
 

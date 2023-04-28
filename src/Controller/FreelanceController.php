@@ -2,38 +2,55 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Freelance;
+use App\Entity\Historysearch;
 use App\Form\FreelanceType;
+use App\Form\SearchForm;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\FreelanceRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 #[Route('/freelance')]
 class FreelanceController extends AbstractController
 {
     #[Route('/', name: 'app_freelance_index', methods: ['GET'])]
-public function index(EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
-{
-    $queryBuilder = $entityManager->getRepository(Freelance::class)->createQueryBuilder('f');
-    $queryBuilder->orderBy('f.adddate', 'DESC');
+    public function index(FreelanceRepository $FreelanceRepo, EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
+    {
+        $data = new SearchData();
+        $data->page = $request->query->getInt('page', 1);
+        // Get categories from Freelance entity
+        $categories = $FreelanceRepo->findCategories();
 
-    $pagination = $paginator->paginate(
-        $queryBuilder, // query to paginate
-        $request->query->getInt('page', 1), // current page number
-        4 // number of items per page
-    );
+        $form = $this->createForm(SearchForm::class, $data, [
+            'categories' => $categories,
+        ]);
 
-    return $this->render('freelance/index.html.twig', [
-        'freelances' => $pagination,
-        'page' => $request->query->getInt('page', 1),
-        'max' => 4,
-    ]);
-}
+        $form->handleRequest($request);
+        //dd($data);
+        $freelances = $FreelanceRepo->findSearch($data);
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'content' => $this->renderView('freelance/_freelances.html.twig', ['freelances' => $freelances]),
+                'pagination' => $this->renderView('freelance/_pagination.html.twig', ['freelances' => $freelances])
+            ]);
+        }
+        return $this->render('freelance/index.html.twig', [
+            'freelances' => $freelances,
+            'form' => $form->createView(),
+            'page' => $data->page,
+            'max' => 4,
+        ]);
+    }
 
     #[Route('/{idBO}/myOffersBO', name: 'app_freelance_myOffersBO', methods: ['GET'])]
     public function myOffers(FreelanceRepository $FreelanceRepo, $idBO): Response
@@ -46,14 +63,46 @@ public function index(EntityManagerInterface $entityManager, PaginatorInterface 
     }
 
     #[Route('/Freelancer', name: 'app_freelance_indexFree', methods: ['GET'])]
-    public function indexFree(EntityManagerInterface $entityManager): Response
+    public function indexFree(Request $request, FreelanceRepository $FreelanceRepo, EntityManagerInterface $entityManager): Response
     {
-        $freelances = $entityManager
-            ->getRepository(Freelance::class)
-            ->findAll();
+        $this->executePythonScript();
+        $data = new SearchData();
+        $data->page = $request->query->getInt('page', 1);
+        // Get categories from Freelance entity
+        $categories = $FreelanceRepo->findCategories();
+
+        $form = $this->createForm(SearchForm::class, $data, [
+            'categories' => $categories,
+        ]);
+
+        $form->handleRequest($request);
+        //dd($data);
+        $freelances = $FreelanceRepo->findSearch($data);
+
+        if ($form->isSubmitted()) {
+            $resultIds = array();
+            foreach ($freelances as $freelance) {
+                $resultIds[] = $freelance->getIdfreelance();
+            }
+
+            $searchQuery = $request->query->get('q');
+
+            $searchHistory = new Historysearch();
+            $searchHistory->setSearchdate(new DateTime());
+
+            $searchHistory->setIdUser(20);
+            $searchHistory->etSearchs($searchQuery);
+            //->setSearch($searchQuery);
+            $searchHistory->setResultCount(count($freelances));
+            $searchHistory->setResultIds(implode(',', $resultIds));
+
+            $entityManager->persist($searchHistory);
+            $entityManager->flush();
+        }
 
         return $this->render('freelance/indexFree.html.twig', [
             'freelances' => $freelances,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -161,5 +210,41 @@ public function index(EntityManagerInterface $entityManager, PaginatorInterface 
         return $this->render('freelance/searchIndex.html.twig', [
             'freelances' => $freelances,
         ]);
+    }
+    #[Route('RecommendedForYou/py', name: 'app_freelance_recommend', methods: ['GET'])]
+    public function recommendation(FreelanceRepository $FreelanceRepo, Request $request)
+    {
+        $data = new SearchData();
+        $data->page = $request->query->getInt('page', 1);
+        // Get categories from Freelance entity
+        $categories = $FreelanceRepo->findCategories();
+
+        $form = $this->createForm(SearchForm::class, $data, [
+            'categories' => $categories,
+        ]);
+
+        $filePath = 'C:/Users/emnaa/Desktop/Recommendation.txt';
+        $id = intval(file_get_contents($filePath));
+        $freelances = $FreelanceRepo->findBy(['idfreelance' => $id]);
+
+        return $this->render('freelance/indexFree.html.twig', [
+            'freelances' => $freelances,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    private function executePythonScript()
+    {
+        $pythonScriptPath = 'recommendOffer.py';
+
+        $process = new Process(['python', $pythonScriptPath]);
+        $process->setWorkingDirectory('C:/Users/emnaa/Desktop/PIWEB/pipipi');
+
+        try {
+            $process->run();
+            echo $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            echo $exception->getMessage();
+        }
     }
 }
