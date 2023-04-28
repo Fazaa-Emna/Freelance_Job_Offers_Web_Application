@@ -35,9 +35,16 @@
                 <th>Registration deadline</th>
                 <td>{{ hackathon.event.registrationdeadline ? hackathon.event.registrationdeadline|date('Y-m-d') : '' }}</td>
             </tr>
+            <tr>
+                <th>QR Code</th>
+                <td><img src="{{ qrCode }}" alt="QR Code"></td>
+            </tr>
         </tbody>
     </table>
 
-    <button  class="btn"><a href="{{ path('app_hackathon_index') }}">Back</a></button>
+    <div class="header-btn d-none f-right d-lg-block">
+        <a href="{{ path('app_hackathon_index') }}">back to list</a>
+        <a href="{{ path('app_hacakthon_edit', {'eventId': hackathon.event.eventId}) }}">edit</a>
+    </div>
 
 {% endblock %}

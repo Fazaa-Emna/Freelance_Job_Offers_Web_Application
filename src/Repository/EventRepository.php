@@ -51,7 +51,16 @@ class EventRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
 
     }
+    public function search( string $eventName): array
+    {
+        $qb = $this->createQueryBuilder('e')
 
+            ->where('e.eventName LIKE :eventName')
+            ->setParameter('eventName','%'.$eventName.'%');
+
+
+        return $qb->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Rate[] Returns an array of Rate objects

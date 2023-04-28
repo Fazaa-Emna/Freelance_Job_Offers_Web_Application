@@ -3,11 +3,25 @@
 {% block title %}Edit Hackathon{% endblock %}
 
 {% block body %}
-    <h1>Edit Hackathon</h1>
+    <h1>Edit Event</h1>
+    <div class="process-ion">
+        {{ form_start(form) }}
 
-    {{ include('hackathon/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ form_row(form.event.eventName) }}
+        {{ form_row(form.event.description) }}
+        {{ form_row(form.event.location) }}
+        {{ form_row(form.event.maxAttendees) }}
+        <div class="row">
+            {{ form_row(form.event.startDate) }}
+            {{ form_row(form.event.endDate) }}
+            {{ form_row(form.event.registrationdeadline) }}
+            {{ form_row(form.event.submissionDeadline) }}
+            {{ form_row(form.event.prizes) }}</div >
 
-    <a href="{{ path('app_hackathon_index') }}">back to list</a>
 
-    {{ include('hackathon/_delete_form.html.twig') }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_hackathon_index') }}">back to list</a>
+    </div>
 {% endblock %}

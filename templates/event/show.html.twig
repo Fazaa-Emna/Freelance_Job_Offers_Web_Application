@@ -39,12 +39,18 @@
                 <th>Registrationdeadline</th>
                 <td>{{ event.registrationdeadline ? event.registrationdeadline|date('Y-m-d') : '' }}</td>
             </tr>
+            <tr>
+                <th>QR Code</th>
+                <td><img src="{{ qrCode }}" alt="QR Code"></td>
+            </tr>
         </tbody>
+
     </table>
 
-    <a href="{{ path('app_event_index') }}">back to list</a>
 
-    <a href="{{ path('app_event_edit', {'eventId': event.eventId}) }}">edit</a>
-
+    <div class="header-btn d-none f-right d-lg-block">
+        <a href="{{ path('app_event_index') }}">back to list</a>
+        <a href="{{ path('app_event_edit', {'eventId': event.eventId}) }}">edit</a>
+    </div>
 
 {% endblock %}

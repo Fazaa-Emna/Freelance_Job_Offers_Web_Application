@@ -35,6 +35,10 @@
             <th>Registration deadline</th>
             <td>{{ workshop.event.registrationdeadline ? workshop.event.registrationdeadline|date('Y-m-d') : '' }}</td>
         </tr>
+        <tr>
+            <th>QR Code</th>
+            <td><img src="{{ qrCode }}" alt="QR Code"></td>
+        </tr>
         </tbody>
     </table>
 

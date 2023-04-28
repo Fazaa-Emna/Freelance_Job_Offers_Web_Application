@@ -3,9 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\EventFilterType;
 use App\Form\EventType;
+use App\Repository\EventRepository;
+use App\Services\MailerService;
+use App\Services\QRCodeService;
+use ContainerGFh4RKO\getEventFilterTypeService;
 use Doctrine\ORM\EntityManagerInterface;
+use Endroid\QrCode\Builder\BuilderInterface;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,14 +23,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/', name: 'app_event_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,Request $request,EventRepository $eventRepository): Response
     {
-        $events = $entityManager
+        /*$events = $entityManager
             ->getRepository(Event::class)
-            ->findAll();
+            ->findAll();*/
+        $form = $this->createForm(EventFilterType::class);
+        $queries = $request->query->all();
 
+        $eventName = $queries['inputName'] ?? '';
+
+        $events = $eventRepository->search($eventName);
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'data' => $this->renderView('event/table_content.html.twig', [
+                    'events' => $events
+                ])
+            ]);
+        }
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'form' => $form->createView()
         ]);
     }
 
@@ -63,13 +86,17 @@ class EventController extends AbstractController
         ]);
     }
     #[Route('/new', name: 'app_event_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,MailerService $mailerService): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $mailerService->send("a new Event has been added","nassim.benali@esprit.tn","mehdi.fathallah69@gmail.com","hackathon/email.html.twig",[
+                "name" => $event->getEventName(),
+                "location" => $event->getLocation()
+            ]);
             $entityManager->persist($event);
             $entityManager->flush();
 
@@ -83,10 +110,25 @@ class EventController extends AbstractController
     }
 
     #[Route('/{eventId}', name: 'app_event_show', methods: ['GET'])]
-    public function show(Event $event): Response
+    public function show(Event $event, QRCodeService $qrCodeService,BuilderInterface $qrBuilder): Response
     {
+        $path = dirname(__DIR__, 2).'/public/uploads/';
+       $data ='Event name: '.$event->getEventName()."\n\n".'description:'.$event->getDescription()."\n"."\n". 'Location: '.$event->getLocation();
+        $qrResult = $qrBuilder
+            ->size(300)
+            ->margin(10)
+            ->encoding(new Encoding('UTF-8'))
+            ->data($data)
+            ->logoPath($path.'logo.png')
+            ->logoResizeToWidth('100')
+            ->logoResizeToHeight('100')
+            ->backgroundColor(new Color(223, 242, 255))
+            ->build();
+
+        $base64Data = $qrResult->getDataUri();
         return $this->render('event/show.html.twig', [
             'event' => $event,
+            'qrCode'=>$base64Data,
         ]);
     }
 
@@ -117,5 +159,14 @@ class EventController extends AbstractController
         }
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
+    }
+    public function searchOrdonnance(Request $request, EventRepository $eventRepository)
+    {
+        $query = $request->query->get('query');
+
+        $events = $eventRepository->search($query);
+
+        // Return the search results as a JSON response
+        return $this->json(['data' => $events]);
     }
 }

@@ -1,3 +1,6 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+search_users:
+    path: /search-users
+    controller: App\Controller\EventController::searchOrdonnance
