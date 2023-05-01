@@ -36,7 +36,13 @@ class ServiceController extends AbstractController
             } else {
                 $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
             }
-    
+            $sort = $request->query->get('sort');
+            if ($sort === 'prix') {
+                // Sort the services based on their price attribute
+                usort($services, function (Service $a, Service $b) {
+                    return $a->getPrix() <=> $b->getPrix();
+                });
+            }
             $data = [];
            
     

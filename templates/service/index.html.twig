@@ -36,12 +36,9 @@
                         <div class="job-post-details">
                             <div class="post-details1 mb-50">
  
-  <form method="get">
-        <input type="text" name="query" placeholder="Service Name"  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-       onblur="this.placeholder = ' Service Name '" value="{{ query }}">
-        <button type="submit" class="genric-btn primary small">Search</button>
-    </form>
-    <table class="table">
+
+    <input type="text" value="" class="form-control" placeholder="Search for..." id="myInput">
+    <table class="table" id="t">
         <thead>
             <tr>
                 <th>Id</th>
@@ -55,7 +52,7 @@
                
             </tr>
         </thead>
-        <tbody>
+        <tbody id ="myTable">
         {% for service in services %}
             <tr>
                 <td>{{ service.id }}</td>
@@ -136,6 +133,17 @@
                     }]
                 }
             }
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                    $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         });
     </script>
 
