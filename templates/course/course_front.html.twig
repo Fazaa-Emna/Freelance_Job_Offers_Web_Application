@@ -46,13 +46,15 @@
                                                 </select>
                                             </div>
                                              <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Categories</option>
-                                        <option value="">Mathematics</option>
-                                        <option value="">Marketing</option>
-                                        <option value="">Bussiness</option>
-                                        <option value="">Development</option>
+                                            
+                                    <select name="select" id="select">
+                                        <option value="All Categories"></option>
+                                        <option value="Mathematics"></option>
+                                        <option value="Marketing"></option>
+                                        <option value="Bussiness"></option>
+                                        <option value="Development"></option>
                                     </select>
+                                    
                                 </div>
                                 
                                             <!--  Select job items End-->
@@ -61,8 +63,8 @@
                                 </div>
                                 <!-- Count of Job list End -->
                                 <!-- single-job-content -->
-                                 {% for course in courses %}
-                                <div class="single-job-items mb-30">
+                                  {% for course in pagination %}
+               <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
                                      
@@ -88,7 +90,10 @@
                                 
                   </div>
                   </section>
-                   
+                    <div class="text-center">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
                     </div>
                 </div>
             </div>

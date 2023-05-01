@@ -1,0 +1,30 @@
+  {% for course in pagination %}
+ <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                     
+                                            <a href="#"><img src= "{{ asset('assets/img/' ~ course.photo) }}" alt="" width="300" height="150"> </a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a  href="{{ path('app_course_show', {'cid': course.cid}) }}" >
+                                                <h4>{{ course.title }} </h4>
+                                            </a>
+                                            <ul>
+                                                <li>{{course.category}}</li>
+                                                <li>{{ course.price }}$</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                 {% else %}
+                          <tr>
+                        <td colspan="7">no records found</td>
+                      </tr>
+                    {% endfor %}
+                                
+                  </div>
+                  </section>
+                    <div class="text-center">
+    {{ knp_pagination_render(pagination) }}
+</div>

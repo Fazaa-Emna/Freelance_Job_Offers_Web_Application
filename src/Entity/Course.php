@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Course
  *
  * @ORM\Table(name="course")
  * @ORM\Entity(repositoryClass="App\Repository\CourseRepository")
+
  */
 class Course
 {
@@ -23,6 +26,8 @@ class Course
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $cid;
+ 
+   
  /**
      * @ORM\OneToMany(targetEntity="Lesson", mappedBy="course")
      */
@@ -103,6 +108,7 @@ class Course
      * @ORM\Column(name="photo", type="string", length=999, nullable=false)
      */
     private $photo;
+   
 
     public function getCid(): ?int
     {
@@ -168,6 +174,6 @@ class Course
 
         return $this;
     }
+ 
+    }
 
-
-}

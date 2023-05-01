@@ -10,6 +10,7 @@ return [
     'app_course_edit' => [['cid'], ['_controller' => 'App\\Controller\\CourseController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'cid', true], ['text', '/course']], [], [], []],
     'app_course_delete' => [['cid'], ['_controller' => 'App\\Controller\\CourseController::delete'], [], [['variable', '/', '[^/]++', 'cid', true], ['text', '/course']], [], [], []],
     'search' => [[], ['_controller' => 'App\\Controller\\CourseController::search'], [], [['text', '/course/search']], [], [], []],
+    'filter' => [[], ['_controller' => 'App\\Controller\\CourseController::filter'], [], [['text', '/course/filter']], [], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/home']], [], [], []],
     'app_lesson_index' => [[], ['_controller' => 'App\\Controller\\LessonController::index'], [], [['text', '/lesson/']], [], [], []],
     'app_lesson_new' => [[], ['_controller' => 'App\\Controller\\LessonController::new'], [], [['text', '/lesson/new']], [], [], []],
@@ -32,4 +33,5 @@ return [
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'search_courses' => [[], [], [], [['text', '/courses/search']], [], [], []],
+    'pdf' => [[], ['_controller' => 'App\\Controller\\CourseController::pdf'], [], [['text', '/pdf']], [], [], []],
 ];

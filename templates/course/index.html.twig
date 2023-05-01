@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
-
-
-       
+ 
 {% block body %}
-      
-   <a href="{{ path('app_course_new') }}" class="genric-btn info circle"> New course</a>
+    
 
+
+   <a href="{{ path('app_course_new') }}" class="genric-btn info circle"> New course</a>
+<a href="{{ path('pdf') }}" class="genric-btn info circle"> PDF</a>
 <div>
 <form id="search-form" action="{{ path('app_course_index') }}" method="post">
     <input type="text" name="searchTerm" placeholder="Search for courses">

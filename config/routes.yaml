@@ -4,3 +4,6 @@ home:
 search_courses:
     path: /courses/search
     methods: [POST]
+pdf:
+    path: /pdf
+    controller: App\Controller\CourseController::pdf

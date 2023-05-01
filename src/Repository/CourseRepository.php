@@ -48,6 +48,16 @@ class CourseRepository extends ServiceEntityRepository
     
         return $qb->getResult();
     }
+    
+    public function filterByCat(string $query)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.category LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery();
+    
+        return $qb->getResult();
+    }
   
 //    /**
 //     * @return Course[] Returns an array of Course objects

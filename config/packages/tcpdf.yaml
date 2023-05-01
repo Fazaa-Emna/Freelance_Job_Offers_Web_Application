@@ -1,0 +1,4 @@
+services:
+    TCPDF:
+        class: TCPDF
+        arguments: [TCPDF::PAGE_ORIENTATION_PORTRAIT, TCPDF::UNIT_MM, TCPDF::PAGE_FORMAT_A4, true, 'UTF-8', false]

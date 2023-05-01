@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Form;
+use Blackknight467\StarRatingBundle\Form\StarRatingType;
+use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\NumberFilterType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Course;
 use Symfony\Component\Form\AbstractType;
@@ -28,7 +30,13 @@ class CourseType extends AbstractType
                     'Bussiness' => 'Bussiness',
                     'Development' => 'Development'
                 ],
-            ]);
+            ])
+            ->add('rating', StarRatingType::class, [
+                'label' => 'Rating',
+                'required' => true,
+            ])
+        
+            ;
           
     }
  

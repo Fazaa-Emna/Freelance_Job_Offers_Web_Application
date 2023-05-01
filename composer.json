@@ -1,19 +1,30 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "beberlei/doctrineextensions": "*",
+        "blackknight467/star-rating-bundle": "*",
+        "brokoskokoli/star-rating-bundle": "*",
+        "cocur/slugify": "^4.3",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.9",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
+        "gedmo/doctrine-extensions": "^3.11",
+        "knplabs/knp-components": "*",
+        "knplabs/knp-paginator-bundle": "^5.9",
+        "knplabs/knp-time-bundle": "^1.20",
+        "lexik/form-filter-bundle": "^7.0",
+        "liip/imagine-bundle": "^2.10",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.18",
         "sensio/framework-extra-bundle": "^6.1",
+        "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/asset": "5.4.*",
         "symfony/console": "5.4.*",
         "symfony/doctrine-messenger": "5.4.*",
@@ -40,6 +51,7 @@
         "symfony/validator": "5.4.*",
         "symfony/web-link": "5.4.*",
         "symfony/yaml": "5.4.*",
+        "tecnickcom/tcpdf": "^6.6",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
@@ -48,7 +60,7 @@
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.48",
         "symfony/phpunit-bridge": "^6.2",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"
@@ -68,6 +80,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/"
+           
         }
     },
     "autoload-dev": {
@@ -101,4 +114,5 @@
             "require": "5.4.*"
         }
     }
+   
 }

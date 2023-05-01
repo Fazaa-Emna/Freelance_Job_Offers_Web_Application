@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
+use TCPDF;
 
 use App\Entity\Course;
 use App\Form\CourseType;
-
+use Knp\Component\Pager\PaginatorInterface;
 use App\Form\SearchForm;
 use App\Repository\CourseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,8 +16,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/course')]
 class CourseController extends AbstractController
 {
+   
     #[Route('/', name: 'app_course_index', methods: ['GET','POST'])]
-    public function index(Request $request,CourseRepository $courseRepository): Response
+    public function index(Request $request,CourseRepository $courseRepository ): Response
     {
     
         $searchTerm = $request->request->get('searchTerm');
@@ -36,17 +38,27 @@ class CourseController extends AbstractController
     return $this->render('course/index.html.twig', array(
         'courses' => $courses
     ));
-        
+   
     
     }
+   
     #[Route('/courses', name: 'app_course_front', methods: ['GET'])]
-    public function indexFront(CourseRepository $courseRepository): Response
+    public function indexFront(CourseRepository $courseRepository,Request $request,PaginatorInterface $paginator): Response
     {
-      
+       
+        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $pagination = $paginator->paginate(
+            $courses, // query results
+            $request->query->getInt('page', 1), // page number
+            1 // number of items per page
+        );
+
             // Get all courses if the search form was not submitted
-            $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+          
             return $this->render('course/course_front.html.twig', [
                 'courses' => $courseRepository->findAll(),
+                'pagination' => $pagination
+
             ]);
     
       
@@ -79,12 +91,15 @@ class CourseController extends AbstractController
             'form' => $form,
         ]);
     }
+   
 
     #[Route('/{cid}', name: 'app_course_show', methods: ['GET'])]
     public function show(Course $course): Response
     {
+      
         return $this->render('course/show.html.twig', [
             'course' => $course,
+           
         ]);
     }
 
@@ -125,5 +140,40 @@ class CourseController extends AbstractController
     $retour=json_encode($jsonContent);
     return new Response($retour);
     }
+    #[Route('/filter', name: 'filter')]
+    public function filter(Request $request,NormalizerInterface $Normalizer)
+    {
+    $repository = $this->getDoctrine()->getRepository(Student::class);
+    $requestString=$request->get('searchValue');
+    $students = $repository->findStudentByNsc($requestString);
+    $jsonContent = $Normalizer->normalize($students, 'json',['groups'=>'courses']);
+    $retour=json_encode($jsonContent);
+    return new Response($retour);
+    }
+    /**
+     * @Route("/pdf", name="pdf")
+     */
+    public function pdf(): Response
+    {
+        $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetHeaderMargin(0);
+        $pdf->SetFooterMargin(0);
+        $pdf->SetHeaderFont(Array('helvetica', '', 10));
+        $pdf->SetFooterFont(Array('helvetica', '', 8));
+        $pdf->SetDefaultMonospacedFont('courier');
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetAutoPageBreak(TRUE, 10);
+        $pdf->setImageScale(1);
+        $pdf->AddPage();
+        
+        // Add the icon to the PDF
+        $pdf->Image('assets/img/logo/m.png', 10, 10, '', '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
+     
+        $pdf->SetFont('times', 'BI', 20);
+        $pdf->Cell(0, 10, 'Hello, world!', 0, 1);
+        $pdf->Output('hello_world.pdf', 'D');
+    
+    }
+    
   
 }
