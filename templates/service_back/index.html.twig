@@ -1,0 +1,107 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+   <body>
+   
+
+     <main>
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('{{ asset('./assets/img/hero/ny.jpg') }}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Your Services </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- job post company Start -->
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <!-- Left Content -->
+                    <div class="col-xl-7 col-lg-8">
+                        <!-- job single -->
+                       
+                          <!-- job single End -->
+                       
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+ 
+
+    <input type="text" value="" class="form-control" placeholder="Search for..." id="myInput">
+    <table class="table" id="t">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>actions</th>
+               
+               
+            </tr>
+        </thead>
+        <tbody id ="myTable">
+        {% for service in services %}
+            <tr>
+                <td>{{ service.id }}</td>
+                <td>{{ service.name }}</td>
+                <td>{{ service.descr }}</td>
+                <td>{{ service.prix }}  $ </td>
+                <td>{{ service.file }}</td>
+                <td>{{ service.cat }}</td>
+               
+                <td>
+                    <a href="{{ path('app_service_delete', {'id': service.id}) }}" class="genric-btn primary radius">delete</a>
+                    
+                </td>
+             
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no service found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+     <div class="post-details2  mb-50">
+      
+                                 <!-- Small Section Tittle -->
+ 
+                              
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- job post company End -->
+
+    </main>
+
+
+   
+   
+    </body>
+</html>
+
+{% endblock %}
