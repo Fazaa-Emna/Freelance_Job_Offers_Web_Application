@@ -62,6 +62,10 @@ return [[
 '[C]Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%23addLink' => 1,
 'Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%24container' => 0,
 '[C]Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%24container' => 1,
+'App%5CController%5CCourseBackController' => 0,
+'[C]App%5CController%5CCourseBackController' => 1,
+'App%5CController%5CCourseBackController%23index' => 0,
+'[C]App%5CController%5CCourseBackController%23index' => 1,
 'App%5CController%5CCourseController' => 0,
 '[C]App%5CController%5CCourseController' => 1,
 'App%5CController%5CCourseController%23index' => 0,
@@ -1268,7 +1272,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1682951609,
+1 => 1682955674,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [

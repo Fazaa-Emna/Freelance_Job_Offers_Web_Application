@@ -34,4 +34,5 @@ return [
     'home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'search_courses' => [[], [], [], [['text', '/courses/search']], [], [], []],
     'pdf' => [[], ['_controller' => 'App\\Controller\\CourseController::pdf'], [], [['text', '/pdf']], [], [], []],
+    'back' => [[], ['_controller' => 'App\\Controller\\CourseBackController::index'], [], [['text', '/courses/back']], [], [], []],
 ];

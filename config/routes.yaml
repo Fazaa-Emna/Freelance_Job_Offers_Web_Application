@@ -7,3 +7,7 @@ search_courses:
 pdf:
     path: /pdf
     controller: App\Controller\CourseController::pdf
+back:
+    path: /courses/back
+    controller: App\Controller\CourseBackController::index
+

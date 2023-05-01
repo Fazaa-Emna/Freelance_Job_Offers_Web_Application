@@ -41,7 +41,7 @@ class CourseController extends AbstractController
    
     
     }
-   
+
     #[Route('/courses', name: 'app_course_front', methods: ['GET'])]
     public function indexFront(CourseRepository $courseRepository,Request $request,PaginatorInterface $paginator): Response
     {
@@ -155,24 +155,24 @@ class CourseController extends AbstractController
      */
     public function pdf(): Response
     {
-        $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetHeaderMargin(0);
-        $pdf->SetFooterMargin(0);
-        $pdf->SetHeaderFont(Array('helvetica', '', 10));
-        $pdf->SetFooterFont(Array('helvetica', '', 8));
-        $pdf->SetDefaultMonospacedFont('courier');
-        $pdf->SetMargins(10, 10, 10);
-        $pdf->SetAutoPageBreak(TRUE, 10);
-        $pdf->setImageScale(1);
-        $pdf->AddPage();
-        
-        // Add the icon to the PDF
-        $pdf->Image('assets/img/logo/m.png', 10, 10, '', '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
      
-        $pdf->SetFont('times', 'BI', 20);
-        $pdf->Cell(0, 10, 'Hello, world!', 0, 1);
-        $pdf->Output('hello_world.pdf', 'D');
-    
+        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle('Courses');
+        $pdf->SetSubject('Courses List');
+        $pdf->SetKeywords('Courses, PDF');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->setImageScale(5);
+        $pdf->AddPage();
+        $i=10;
+        foreach ($courses as $course) {
+           
+            $photo=$course->getPhoto();
+           $pdf->Image( "assets/img/$photo",10,$i, '', '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
+            $pdf->Cell(0, 10, $course->getTitle(), 0, 1);
+            $i+=40;
+        }
+        $pdf->Output('courses.pdf', 'D');
     }
     
   

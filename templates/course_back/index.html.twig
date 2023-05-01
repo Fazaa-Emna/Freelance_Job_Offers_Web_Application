@@ -1,0 +1,42 @@
+{% extends 'back.html.twig' %}
+ 
+{% block body %}
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cid</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+   <tbody id="all">
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.cid }}</td>
+                <td>{{ course.title }}</td>
+                <td>{{ course.description }}</td>
+                <td>{{ course.price }}</td>
+                <td>{{ course.category }}</td>
+                <td>{{ course.photo }}</td>
+                <td>
+                
+                    <a href="{{ path('app_course_delete', {'cid': course.cid}) }}" class="genric-btn info circle">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    
+    </table>
+
+{% endblock %}
+

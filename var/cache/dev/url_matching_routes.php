@@ -22,6 +22,7 @@ return [
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/courses/search' => [[['_route' => 'search_courses'], null, ['POST' => 0], null, false, false, null]],
         '/pdf' => [[['_route' => 'pdf', '_controller' => 'App\\Controller\\CourseController::pdf'], null, null, null, false, false, null]],
+        '/courses/back' => [[['_route' => 'back', '_controller' => 'App\\Controller\\CourseBackController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
