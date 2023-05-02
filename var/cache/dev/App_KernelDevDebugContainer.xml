@@ -21,6 +21,11 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
+      <parameter key="NelmioAliceBundle">Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle</parameter>
+      <parameter key="FidryAliceDataFixturesBundle">Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle</parameter>
+      <parameter key="HautelookAliceBundle">Hautelook\AliceBundle\HautelookAliceBundle</parameter>
+      <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -70,6 +75,26 @@
       <parameter key="KnpPaginatorBundle" type="collection">
         <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\knplabs\knp-paginator-bundle</parameter>
         <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineFixturesBundle" type="collection">
+        <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\doctrine\doctrine-fixtures-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="NelmioAliceBundle" type="collection">
+        <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\nelmio\alice\src\Bridge\Symfony</parameter>
+        <parameter key="namespace">Nelmio\Alice\Bridge\Symfony</parameter>
+      </parameter>
+      <parameter key="FidryAliceDataFixturesBundle" type="collection">
+        <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\theofidry\alice-data-fixtures\src\Bridge\Symfony</parameter>
+        <parameter key="namespace">Fidry\AliceDataFixtures\Bridge\Symfony</parameter>
+      </parameter>
+      <parameter key="HautelookAliceBundle" type="collection">
+        <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\hautelook\alice-bundle\src</parameter>
+        <parameter key="namespace">Hautelook\AliceBundle</parameter>
+      </parameter>
+      <parameter key="WebpackEncoreBundle" type="collection">
+        <parameter key="path">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\webpack-encore-bundle\src</parameter>
+        <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -242,11 +267,31 @@
         </parameter>
       </parameter>
     </parameter>
-    <parameter key="knp_paginator.template.pagination">@KnpPaginator/Pagination/sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.pagination">@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig</parameter>
     <parameter key="knp_paginator.template.filtration">@KnpPaginator/Pagination/filtration.html.twig</parameter>
-    <parameter key="knp_paginator.template.sortable">@KnpPaginator/Pagination/sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">@KnpPaginator/Pagination/semantic_ui_sortable_link.html.twig</parameter>
     <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="knp_paginator.page_limit">null</parameter>
+    <parameter key="nelmio_alice.functions_blacklist" type="collection">
+      <parameter>current</parameter>
+      <parameter>shuffle</parameter>
+      <parameter>date</parameter>
+      <parameter>time</parameter>
+      <parameter>file</parameter>
+      <parameter>md5</parameter>
+      <parameter>sha1</parameter>
+    </parameter>
+    <parameter key="nelmio_alice.locale">en_US</parameter>
+    <parameter key="nelmio_alice.seed">1</parameter>
+    <parameter key="nelmio_alice.loading_limit">5</parameter>
+    <parameter key="nelmio_alice.max_unique_values_retry">150</parameter>
+    <parameter key="fidry_alice_data_fixtures.default_purge_mode">delete</parameter>
+    <parameter key="hautelook_alice.fixtures_path" type="collection">
+      <parameter>fixtures</parameter>
+    </parameter>
+    <parameter key="hautelook_alice.root_dirs" type="collection">
+      <parameter>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web</parameter>
+    </parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -349,12 +394,26 @@
       <argument>UTF-8</argument>
       <argument>false</argument>
     </service>
+    <service id="App\Controller\ApplicationController" class="App\Controller\ApplicationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\ApplicationController"/>
+      </call>
+    </service>
     <service id="App\Controller\CourseController" class="App\Controller\CourseController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="knp_paginator"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\CourseController"/>
+      </call>
+    </service>
+    <service id="App\Controller\FreelanceController" class="App\Controller\FreelanceController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\FreelanceController"/>
       </call>
     </service>
     <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
@@ -385,7 +444,17 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\ServiceController"/>
       </call>
     </service>
+    <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\Data\SearchData" class="App\Data\SearchData" autowire="true" autoconfigure="true"/>
+    <service id="App\Form\ApplicationType" class="App\Form\ApplicationType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\CourseType" class="App\Form\CourseType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\FreelanceType" class="App\Form\FreelanceType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\LessonType" class="App\Form\LessonType" autowire="true" autoconfigure="true">
@@ -400,9 +469,18 @@
     <service id="App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\ApplicationRepository" class="App\Repository\ApplicationRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\FreelanceRepository" class="App\Repository\FreelanceRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="knp_paginator"/>
     </service>
     <service id="App\Repository\LessonRepository" class="App\Repository\LessonRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -546,6 +624,9 @@
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
         <argument key=".debug.http_client" type="service" id=".debug.http_client" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
@@ -620,6 +701,15 @@
           <argument>reset</argument>
         </argument>
         <argument key="monolog.handler.console" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.tag_renderer" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.webpack_encore" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key=".debug.http_client" type="collection">
@@ -764,6 +854,7 @@
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:clear</argument>
@@ -799,6 +890,7 @@
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:delete</argument>
@@ -822,6 +914,7 @@
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:list</argument>
@@ -1193,7 +1286,9 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\ApplicationType</argument>
         <argument>App\Form\CourseType</argument>
+        <argument>App\Form\FreelanceType</argument>
         <argument>App\Form\LessonType</argument>
         <argument>App\Form\PackagType</argument>
         <argument>App\Form\SearchForm</argument>
@@ -1471,6 +1566,7 @@
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.global_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1487,6 +1583,7 @@
         <argument key="cache.doctrine.orm.default.result" type="service" id="cache.doctrine.orm.default.result" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="identity_translator" class="Symfony\Component\Translation\IdentityTranslator"/>
@@ -1535,9 +1632,14 @@
       <argument type="service" id=".debug.http_client"/>
       <deprecated package="symfony/framework-bundle" version="5.3">The "%service_id%" service is deprecated, use "assets.json_manifest_version_strategy" instead.</deprecated>
     </service>
+    <service id="assets._version__default" class="Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy">
+      <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web/public/build/manifest.json</argument>
+      <argument type="service" id=".debug.http_client" on-invalid="null"/>
+      <argument>false</argument>
+    </service>
     <service id="assets._default_package" class="Symfony\Component\Asset\PathPackage">
       <argument></argument>
-      <argument type="service" id="assets.empty_version_strategy"/>
+      <argument type="service" id="assets._version__default"/>
       <argument type="service" id="assets.context"/>
     </service>
     <service id="http_client.abstract_retry_strategy" class="Symfony\Component\HttpClient\Retry\GenericRetryStrategy" abstract="true">
@@ -1983,6 +2085,11 @@
           <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\monolog-bundle/translations</argument>
           <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\maker-bundle\src/translations</argument>
           <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\sensio\framework-extra-bundle\src/translations</argument>
+          <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
+          <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\nelmio\alice\src\Bridge\Symfony/translations</argument>
+          <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\theofidry\alice-data-fixtures\src\Bridge\Symfony/translations</argument>
+          <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\hautelook\alice-bundle\src/translations</argument>
+          <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\webpack-encore-bundle\src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2002,6 +2109,11 @@
             <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\monolog-bundle/translations</argument>
             <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\maker-bundle\src/translations</argument>
             <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\sensio\framework-extra-bundle\src/translations</argument>
+            <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
+            <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\nelmio\alice\src\Bridge\Symfony/translations</argument>
+            <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\theofidry\alice-data-fixtures\src\Bridge\Symfony/translations</argument>
+            <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\hautelook\alice-bundle\src/translations</argument>
+            <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\vendor\symfony\webpack-encore-bundle\src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -2279,6 +2391,14 @@
         <argument type="collection">
           <argument type="service_closure" id="knp_paginator.subscriber.sliding_pagination"/>
           <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="webpack_encore.exception_listener"/>
+          <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2833,6 +2953,14 @@
           <argument>pagination</argument>
         </argument>
         <argument>1</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.finish_request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener"/>
+          <argument>resetAssets</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
@@ -3425,7 +3553,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.OcawLpv"/>
+      <argument type="service" id=".service_locator.DYkYZjr"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4058,6 +4186,10 @@
         <argument>cache.security_expression_language</argument>
         <argument type="service" id="cache.security_expression_language"/>
       </call>
+      <call method="addInstance">
+        <argument>cache.webpack_encore</argument>
+        <argument type="service" id="cache.webpack_encore"/>
+      </call>
     </service>
     <service id="cache_pool_clearer.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\CachePoolClearerCacheWarmer">
       <tag name="kernel.cache_warmer" priority="64"/>
@@ -4314,7 +4446,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.cbkTU6v"/>
+      <argument type="service" id=".service_locator.2ytyp3h"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4935,6 +5067,12 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -6311,8 +6449,8 @@
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
       <tag name="container.hot_path"/>
       <argument type="collection">
-        <argument key="defaultPaginationTemplate">@KnpPaginator/Pagination/sliding.html.twig</argument>
-        <argument key="defaultSortableTemplate">@KnpPaginator/Pagination/sortable_link.html.twig</argument>
+        <argument key="defaultPaginationTemplate">@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig</argument>
+        <argument key="defaultSortableTemplate">@KnpPaginator/Pagination/semantic_ui_sortable_link.html.twig</argument>
         <argument key="defaultFiltrationTemplate">@KnpPaginator/Pagination/filtration.html.twig</argument>
         <argument key="defaultPageRange">5</argument>
         <argument key="defaultPageLimit">null</argument>
@@ -6326,9 +6464,667 @@
       <tag name="twig.extension"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
+    <service id="doctrine.fixtures_load_command" class="Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand">
+      <tag name="console.command" command="doctrine:fixtures:load"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="doctrine.fixtures.loader"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="collection">
+        <argument key="default" type="service" id="doctrine.fixtures.purger.orm_purger_factory"/>
+      </argument>
+      <call method="setName">
+        <argument>doctrine:fixtures:load</argument>
+      </call>
+    </service>
+    <service id="doctrine.fixtures.loader" class="Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader">
+      <argument type="service" id="service_container"/>
+      <call method="addFixtures">
+        <argument type="collection">
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+        </argument>
+      </call>
+    </service>
+    <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
+      <tag name="doctrine.fixtures.purger_factory" alias="default"/>
+    </service>
+    <service id="nelmio_alice.faker.generator" class="Faker\Generator">
+      <argument>en_US</argument>
+      <call method="seed">
+        <argument>1</argument>
+      </call>
+      <call method="addProvider">
+        <argument type="service" id="nelmio_alice.faker.provider.alice"/>
+      </call>
+      <factory class="Faker\Factory" method="create"/>
+    </service>
+    <service id="nelmio_alice.faker.provider.alice" class="Nelmio\Alice\Faker\Provider\AliceProvider">
+      <tag name="nelmio_alice.faker.provider"/>
+    </service>
+    <service id="nelmio_alice.file_locator.default" class="Nelmio\Alice\FileLocator\DefaultFileLocator"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SimpleFixtureBagDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\TolerantFixtureDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.registry_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.registry_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\FixtureDenormalizerRegistry">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_list"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.reference_range_name"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_range"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\NullListNameDenormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixture">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_list"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_list" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleCollectionDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_list"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\NullRangeNameDenormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.reference_range_name" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\ReferenceRangeNameDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\CollectionDenormalizerWithTemporaryFixture">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.null_range"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple_range" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleCollectionDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.temporary_range"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.chainable.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\Chainable\SimpleDenormalizer">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_fixture_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.specs.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\SimpleSpecificationsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\LegacyConstructorDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.constructor_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.factory_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.factory_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\FactoryDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.constructor_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Constructor\ConstructorDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Arguments\SimpleArgumentsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Value\UniqueValueDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.simple_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.simple_value_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Value\SimpleValueDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Property\SimplePropertyDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\CallsWithFlagsDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.function_denormalizer"/>
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.configurator_flag_handler"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.optional_flag_handler"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.function_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\FunctionDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.configurator_flag_handler" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\MethodFlagHandler\ConfiguratorFlagHandler">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_method_flag_handler"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.method_flag_handler.optional_flag_handler" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Fixture\SpecificationBagDenormalizer\Calls\MethodFlagHandler\OptionalFlagHandler">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_method_flag_handler"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.element" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\ElementFlagParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.registry"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.registry" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\FlagParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.configurator"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.extend"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.optional"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.template"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.unique"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.configurator" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\ConfiguratorFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.extend" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\ExtendFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.optional" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\OptionalFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.template" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\TemplateFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser.chainable.unique" class="Nelmio\Alice\FixtureBuilder\Denormalizer\FlagParser\Chainable\UniqueFlagParser">
+      <tag name="nelmio_alice.fixture_builder.denormalizer.chainable_flag_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\EmptyValueLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.reference_escaper_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.reference_escaper_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\ReferenceEscaperLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.globals_patterns_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.globals_patterns_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\GlobalPatternsLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.function_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.function_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\FunctionLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.string_then_reference_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.string_then_reference_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\StringThenReferenceLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.sub_patterns_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.sub_patterns_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\SubPatternsLexer">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.reference_lexer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer.reference_lexer" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Lexer\ReferenceLexer"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\FunctionFixtureReferenceParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.string_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.string_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\StringMergerParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.simple_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.simple_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\SimpleParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\TokenParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.dynamic_array_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.escaped_value_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_list_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_method_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_range_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.method_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.optional_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.parameter_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.property_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.simple_reference_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_array_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.tolerant_function_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_token_parser"/>
+        <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.wildcard_reference_token_parser"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\ArgumentEscaper"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.dynamic_array_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\DynamicArrayTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.escaped_value_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\EscapedValueTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_list_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureListReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_method_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureMethodReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.fixture_range_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FixtureRangeReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.method_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\MethodReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.optional_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\OptionalTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.parameter_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\ParameterTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.property_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\PropertyReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\VariableReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.simple_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\SimpleReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_array_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\StringArrayTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.string_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\StringTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.tolerant_function_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\TolerantFunctionTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.identity_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.identity_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\IdentityTokenParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.function_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.function_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\FunctionTokenParser">
+      <argument type="service" id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.argument_escaper"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.variable_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\VariableTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser.chainable.wildcard_reference_token_parser" class="Nelmio\Alice\FixtureBuilder\ExpressionLanguage\Parser\TokenParser\Chainable\WildcardReferenceTokenParser">
+      <tag name="nelmio_alice.fixture_builder.expression_language.chainable_token_parser"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.simple" class="Nelmio\Alice\FixtureBuilder\SimpleBuilder">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.simple"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.simple" class="Nelmio\Alice\FixtureBuilder\Denormalizer\SimpleDenormalizer">
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer"/>
+      <argument type="service" id="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer"/>
+    </service>
+    <service id="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer" class="Nelmio\Alice\FixtureBuilder\Denormalizer\Parameter\SimpleParameterBagDenormalizer"/>
+    <service id="nelmio_alice.generator.caller.simple" class="Nelmio\Alice\Generator\Caller\SimpleCaller">
+      <argument type="service" id="nelmio_alice.generator.caller.registry"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.registry"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.registry" class="Nelmio\Alice\Generator\Caller\CallProcessorRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.configurator_method_call"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.method_call_with_reference"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.optional_method_call"/>
+        <argument type="service" id="nelmio_alice.generator.caller.chainable.simple_call"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.configurator_method_call" class="Nelmio\Alice\Generator\Caller\Chainable\ConfiguratorMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.method_call_with_reference" class="Nelmio\Alice\Generator\Caller\Chainable\MethodCallWithReferenceProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.optional_method_call" class="Nelmio\Alice\Generator\Caller\Chainable\OptionalMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.caller.chainable.simple_call" class="Nelmio\Alice\Generator\Caller\Chainable\SimpleMethodCallProcessor">
+      <tag name="nelmio_alice.generator.caller.chainable_call_processor"/>
+    </service>
+    <service id="nelmio_alice.generator.hydrator.simple" class="Nelmio\Alice\Generator\Hydrator\SimpleHydrator">
+      <argument type="service" id="nelmio_alice.generator.hydrator.property.symfony_property_access"/>
+    </service>
+    <service id="nelmio_alice.generator.hydrator.property.symfony_property_access" class="Nelmio\Alice\Generator\Hydrator\Property\SymfonyPropertyAccessorHydrator">
+      <argument type="service" id="nelmio_alice.property_accessor.std"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.existing_instance" class="Nelmio\Alice\Generator\Instantiator\ExistingInstanceInstantiator">
+      <argument type="service" id="nelmio_alice.generator.instantiator.resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.resolver" class="Nelmio\Alice\Generator\Instantiator\InstantiatorResolver">
+      <argument type="service" id="nelmio_alice.generator.instantiator.registry"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.registry" class="Nelmio\Alice\Generator\Instantiator\InstantiatorRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.no_caller_method_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.null_constructor_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.no_method_call_instantiator"/>
+        <argument type="service" id="nelmio_alice.generator.instantiator.chainable.static_factory_instantiator"/>
+        <argument type="service" id="hautelook_alice.alice.generator.instantiator.chainable.instantiated_reference_instantiator"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.no_caller_method_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NoCallerMethodCallInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.null_constructor_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NullConstructorInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.no_method_call_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\NoMethodCallInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+    </service>
+    <service id="nelmio_alice.generator.instantiator.chainable.static_factory_instantiator" class="Nelmio\Alice\Generator\Instantiator\Chainable\StaticFactoryInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <argument type="service" id="nelmio_alice.generator.named_arguments_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.double_pass" class="Nelmio\Alice\Generator\DoublePassGenerator">
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects"/>
+      <argument type="service" id="nelmio_alice.generator.object_generator.complete"/>
+    </service>
+    <service id="nelmio_alice.generator.object_generator.complete" class="Nelmio\Alice\Generator\ObjectGenerator\CompleteObjectGenerator">
+      <argument type="service" id="nelmio_alice.generator.object_generator.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.object_generator.simple" class="Nelmio\Alice\Generator\ObjectGenerator\SimpleObjectGenerator">
+      <argument type="service" id="nelmio_alice.generator.resolver.value.registry"/>
+      <argument type="service" id="nelmio_alice.generator.instantiator.existing_instance"/>
+      <argument type="service" id="nelmio_alice.generator.hydrator.simple"/>
+      <argument type="service" id="nelmio_alice.generator.caller.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.fixture_bag.template_bag" class="Nelmio\Alice\Generator\Resolver\Fixture\TemplateFixtureBagResolver"/>
+    <service id="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects" class="Nelmio\Alice\Generator\Resolver\FixtureSet\RemoveConflictingObjectsResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_set.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.fixture_set.simple" class="Nelmio\Alice\Generator\Resolver\FixtureSet\SimpleFixtureSetResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.fixture_bag.template_bag"/>
+    </service>
+    <service id="nelmio_alice.generator.named_arguments_resolver" class="Nelmio\Alice\Generator\NamedArgumentsResolver"/>
+    <service id="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters" class="Nelmio\Alice\Generator\Resolver\Parameter\RemoveConflictingParametersParameterBagResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter_bag.simple"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter_bag.simple" class="Nelmio\Alice\Generator\Resolver\Parameter\SimpleParameterBagResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter.registry"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.registry" class="Nelmio\Alice\Generator\Resolver\Parameter\ParameterResolverRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.static_parameter_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.array_parameter_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.recursive_parameter_resolver"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.static_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\StaticParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.array_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\ArrayParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.recursive_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\RecursiveParameterResolver">
+      <tag name="nelmio_alice.generator.resolver.parameter.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.parameter.chainable.string_parameter_resolver"/>
+      <argument>5</argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.parameter.chainable.string_parameter_resolver" class="Nelmio\Alice\Generator\Resolver\Parameter\Chainable\StringParameterResolver"/>
+    <service id="nelmio_alice.generator.resolver.value.registry" class="Nelmio\Alice\Generator\Resolver\Value\ValueResolverRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.array_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.dynamic_array_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.evaluated_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.function_argument_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_property_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_method_call_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.unresolved_fixture_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_wildcard_reference_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.list_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.optional_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.parameter_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.unique_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.value_for_current_value_resolver"/>
+        <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.variable_value_resolver"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.unique_values_pool" class="Nelmio\Alice\Generator\Resolver\UniqueValuesPool"/>
+    <service id="nelmio_alice.generator.resolver.value.chainable.array_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ArrayValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.dynamic_array_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\DynamicArrayValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.evaluated_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\EvaluatedValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.faker_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FakerFunctionCallValueResolver">
+      <argument type="service" id="nelmio_alice.faker.generator"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.php_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\PhpFunctionCallValueResolver">
+      <argument>%nelmio_alice.functions_blacklist%</argument>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.faker_value_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.function_argument_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FunctionCallArgumentResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.php_value_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_property_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixturePropertyReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.property_accessor.std"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_method_call_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureMethodCallReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureReferenceResolver"/>
+    <service id="nelmio_alice.generator.resolver.value.chainable.self_fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\SelfFixtureReferenceResolver">
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.fixture_reference_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.unresolved_fixture_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\UnresolvedFixtureReferenceIdResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.chainable.self_fixture_reference_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.fixture_wildcard_reference_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\FixtureWildcardReferenceResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.list_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ListValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.optional_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\OptionalValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.parameter_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ParameterValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.unique_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\UniqueValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+      <argument type="service" id="nelmio_alice.generator.resolver.value.unique_values_pool"/>
+      <argument>null</argument>
+      <argument>150</argument>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.value_for_current_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\ValueForCurrentValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.generator.resolver.value.chainable.variable_value_resolver" class="Nelmio\Alice\Generator\Resolver\Value\Chainable\VariableValueResolver">
+      <tag name="nelmio_alice.generator.resolver.value.chainable_resolver"/>
+    </service>
+    <service id="nelmio_alice.data_loader.simple" class="Nelmio\Alice\Loader\SimpleDataLoader">
+      <argument type="service" id="nelmio_alice.fixture_builder.simple"/>
+      <argument type="service" id="nelmio_alice.generator.double_pass"/>
+    </service>
+    <service id="nelmio_alice.file_loader.simple" class="Nelmio\Alice\Loader\SimpleFileLoader">
+      <argument type="service" id="nelmio_alice.file_parser.runtime_cache"/>
+      <argument type="service" id="nelmio_alice.data_loader.simple"/>
+    </service>
+    <service id="nelmio_alice.files_loader.simple" class="Nelmio\Alice\Loader\SimpleFilesLoader">
+      <argument type="service" id="nelmio_alice.file_parser.runtime_cache"/>
+      <argument type="service" id="nelmio_alice.data_loader.simple"/>
+    </service>
+    <service id="nelmio_alice.file_parser.runtime_cache" class="Nelmio\Alice\Parser\RuntimeCacheParser">
+      <argument type="service" id="nelmio_alice.file_parser.registry"/>
+      <argument type="service" id="hautelook_alice.alice.file_locator.kernel"/>
+      <argument type="service" id="nelmio_alice.file_parser.default_include_processor"/>
+    </service>
+    <service id="nelmio_alice.file_parser.symfony_yaml" class="Symfony\Component\Yaml\Parser"/>
+    <service id="nelmio_alice.file_parser.default_include_processor" class="Nelmio\Alice\Parser\IncludeProcessor\DefaultIncludeProcessor">
+      <argument type="service" id="hautelook_alice.alice.file_locator.kernel"/>
+    </service>
+    <service id="nelmio_alice.file_parser.registry" class="Nelmio\Alice\Parser\ParserRegistry">
+      <argument type="collection">
+        <argument type="service" id="nelmio_alice.file_parser.chainable.yaml"/>
+        <argument type="service" id="nelmio_alice.file_parser.chainable.php"/>
+        <argument type="service" id="nelmio_alice.file_parser.chainable.json"/>
+      </argument>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.yaml" class="Nelmio\Alice\Parser\Chainable\YamlParser">
+      <tag name="nelmio_alice.file_parser"/>
+      <argument type="service" id="nelmio_alice.file_parser.symfony_yaml"/>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.php" class="Nelmio\Alice\Parser\Chainable\PhpParser">
+      <tag name="nelmio_alice.file_parser"/>
+    </service>
+    <service id="nelmio_alice.file_parser.chainable.json" class="Nelmio\Alice\Parser\Chainable\JsonParser">
+      <tag name="nelmio_alice.file_parser"/>
+    </service>
+    <service id="nelmio_alice.property_accessor.std" class="Nelmio\Alice\PropertyAccess\StdPropertyAccessor">
+      <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.loader.multipass_file" class="Fidry\AliceDataFixtures\Loader\MultiPassLoader" lazy="true">
+      <argument type="service" id="nelmio_alice.file_loader.simple"/>
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service "%service_id%" is deprecated and will be removed in future versions.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.loader.simple" class="Fidry\AliceDataFixtures\Loader\SimpleLoader" lazy="true">
+      <argument type="service" id="nelmio_alice.files_loader.simple"/>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.doctrine.purger_loader" class="Fidry\AliceDataFixtures\Loader\PurgerLoader" lazy="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.persister_loader"/>
+      <argument type="service" id="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory"/>
+      <argument>delete</argument>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.doctrine.persister_loader" class="Fidry\AliceDataFixtures\Loader\PersisterLoader" lazy="true">
+      <argument type="service" id="fidry_alice_data_fixtures.loader.simple"/>
+      <argument type="service" id="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister"/>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+      <argument type="collection"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" class="Fidry\AliceDataFixtures\Bridge\Doctrine\Purger\Purger" lazy="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.purger_modepurger_mode" class="Fidry\AliceDataFixtures\Persistence\PurgeMode">
+      <factory class="Fidry\AliceDataFixtures\Persistence\PurgeMode" method="createDeleteMode"/>
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service "%service_id%" is deprecated and will be removed in future versions.Inject the purger or purger factory directly instead.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister" class="Fidry\AliceDataFixtures\Bridge\Doctrine\Persister\ObjectManagerPersister" lazy="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="hautelook_alice.alice.generator.instantiator.chainable.instantiated_reference_instantiator" class="Hautelook\AliceBundle\Alice\Generator\Instantiator\Chainable\InstantiatedReferenceInstantiator">
+      <tag name="nelmio_alice.generator.instantiator.chainable_instantiator"/>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="hautelook_alice.alice.file_locator.kernel" class="Hautelook\AliceBundle\Alice\FileLocator\KernelFileLocator">
+      <argument type="service" id="nelmio_alice.file_locator.default"/>
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command" class="Hautelook\AliceBundle\Console\Command\Doctrine\DoctrineOrmLoadDataFixturesCommand" public="true">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument>hautelook:fixtures:load</argument>
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="hautelook_alice.loader.doctrine_orm_loader"/>
+      <call method="setName">
+        <argument>hautelook:fixtures:load</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Load data fixtures to your database.</argument>
+      </call>
+    </service>
+    <service id="hautelook_alice.data_fixtures.loader.file_resolver_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.data_fixtures.purge_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader" public="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.data_fixtures.append_loader" class="Fidry\AliceDataFixtures\Loader\FileResolverLoader" public="true">
+      <argument type="service" id="fidry_alice_data_fixtures.doctrine.persister_loader"/>
+      <argument type="service" id="hautelook_alice.resolver.file.kernel_file_resolver"/>
+    </service>
+    <service id="hautelook_alice.loader.doctrine_orm_loader" class="Hautelook\AliceBundle\Loader\DoctrineOrmLoader">
+      <argument type="service" id="hautelook_alice.resolver.bundle.no_bundle_resolver"/>
+      <argument type="service" id="hautelook_alice.locator.environmentless"/>
+      <argument type="service" id="hautelook_alice.data_fixtures.purge_loader"/>
+      <argument type="service" id="hautelook_alice.data_fixtures.append_loader"/>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="hautelook_alice.locator.env_directory" class="Hautelook\AliceBundle\Locator\EnvDirectoryLocator">
+      <argument>%hautelook_alice.fixtures_path%</argument>
+      <argument>%hautelook_alice.root_dirs%</argument>
+    </service>
+    <service id="hautelook_alice.locator.environmentless" class="Hautelook\AliceBundle\Locator\EnvironmentlessFilesLocator">
+      <argument type="service" id="hautelook_alice.locator.env_directory"/>
+    </service>
+    <service id="hautelook_alice.resolver.bundle.simple_resolver" class="Hautelook\AliceBundle\Resolver\Bundle\SimpleBundleResolver">
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="hautelook_alice.resolver.bundle.no_bundle_resolver" class="Hautelook\AliceBundle\Resolver\Bundle\NoBundleResolver">
+      <argument type="service" id="hautelook_alice.resolver.bundle.simple_resolver"/>
+    </service>
+    <service id="hautelook_alice.resolver.file.kernel_file_resolver" class="Hautelook\AliceBundle\Resolver\File\KernelFileResolver">
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id=".1_ServiceLocator~U48khFC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="webpack_encore.entrypoint_lookup_collection" type="service_closure" id="webpack_encore.entrypoint_lookup_collection"/>
+        <argument key="webpack_encore.tag_renderer" type="service_closure" id="webpack_encore.tag_renderer"/>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection">
+      <argument type="service" id=".service_locator.Yi4Ff.p"/>
+      <argument>_default</argument>
+    </service>
+    <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer">
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="service" id="assets.packages"/>
+      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="defer">true</argument>
+      </argument>
+      <argument type="collection"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id=".1_ServiceLocator~U48khFC"/>
+    </service>
+    <service id="webpack_encore.twig_stimulus_extension" class="Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
+      <tag name="kernel.cache_warmer"/>
+      <argument type="collection">
+        <argument key="_default">C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web/public/build/entrypoints.json</argument>
+      </argument>
+      <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\var\cache\dev/webpack_encore.cache.php</argument>
+    </service>
+    <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
+      <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\var\cache\dev/webpack_encore.cache.php</argument>
+      <argument type="service" id="cache.webpack_encore"/>
+      <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
+    </service>
+    <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.webpack_encore.recorder_inner"/>
+    </service>
+    <service id="webpack_encore.exception_listener" class="Symfony\WebpackEncoreBundle\EventListener\ExceptionListener">
+      <tag name="kernel.event_listener" event="kernel.exception"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener" class="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
+      <tag name="kernel.reset" method="reset"/>
+      <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web/public/build/entrypoints.json</argument>
+      <argument>null</argument>
+      <argument>_default</argument>
+      <argument>true</argument>
+    </service>
+    <service id=".service_locator.Yi4Ff.p" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="_default" type="service_closure" id="webpack_encore.entrypoint_lookup[_default]"/>
+      </argument>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CourseController" class="App\Controller\CourseController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CourseController" class="App\Controller\CourseController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CourseController" class="App\Controller\CourseController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FreelanceController" class="App\Controller\FreelanceController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FreelanceController" class="App\Controller\FreelanceController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\FreelanceController" class="App\Controller\FreelanceController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6341,8 +7137,14 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ServiceController" class="App\Controller\ServiceController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ServiceController" class="App\Controller\ServiceController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ServiceController" class="App\Controller\ServiceController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ApplicationType" class="App\Form\ApplicationType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ApplicationType" class="App\Form\ApplicationType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CourseType" class="App\Form\CourseType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CourseType" class="App\Form\CourseType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\FreelanceType" class="App\Form\FreelanceType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\FreelanceType" class="App\Form\FreelanceType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\LessonType" class="App\Form\LessonType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\LessonType" class="App\Form\LessonType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PackagType" class="App\Form\PackagType" autowire="true" abstract="true"/>
@@ -6351,8 +7153,12 @@
     <service id=".abstract.instanceof.App\Form\SearchForm" class="App\Form\SearchForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ServiceType" class="App\Form\ServiceType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ApplicationRepository" class="App\Repository\ApplicationRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ApplicationRepository" class="App\Repository\ApplicationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CourseRepository" class="App\Repository\CourseRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FreelanceRepository" class="App\Repository\FreelanceRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\FreelanceRepository" class="App\Repository\FreelanceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LessonRepository" class="App\Repository\LessonRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LessonRepository" class="App\Repository\LessonRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PackagRepository" class="App\Repository\PackagRepository" autowire="true" abstract="true"/>
@@ -6694,6 +7500,41 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.aKM6MDa" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Hgca79T" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="FreelanceRepo" type="service_closure" id="App\Repository\FreelanceRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.oyqrvAp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="AppRepo" type="service_closure" id="App\Repository\ApplicationRepository"/>
+        <argument key="FreelanceRepo" type="service_closure" id="App\Repository\FreelanceRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.VFMGo3i" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="application" type="service_closure" id=".errored..service_locator.VFMGo3i.App\Entity\Application"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Ocu2hW_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="AppRepo" type="service_closure" id="App\Repository\ApplicationRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.w07iIQI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6733,6 +7574,26 @@
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
+    <service id=".service_locator.aceqt7e" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="FreelanceRepo" type="service_closure" id="App\Repository\FreelanceRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
+      </argument>
+    </service>
+    <service id=".service_locator.0uZrOyD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="FreelanceRepo" type="service_closure" id="App\Repository\FreelanceRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.D7KxMcm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="freelanceRepository" type="service_closure" id="App\Repository\FreelanceRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.5EKs91d" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6750,12 +7611,6 @@
       <argument type="collection">
         <argument key="lesson" type="service_closure" id=".errored..service_locator.FvkWU6g.App\Entity\Lesson"/>
         <argument key="lessonRepository" type="service_closure" id="App\Repository\LessonRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.aKM6MDa" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.Q.Pau6g" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6791,9 +7646,15 @@
         <argument key="service" type="service_closure" id=".errored..service_locator.srbsFuk.App\Entity\Service"/>
       </argument>
     </service>
-    <service id=".service_locator.4adKqjN" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.lkRtSqL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\ApplicationController::delete" type="service_closure" id=".service_locator.VFMGo3i"/>
+        <argument key="App\Controller\ApplicationController::edit" type="service_closure" id=".service_locator.VFMGo3i"/>
+        <argument key="App\Controller\ApplicationController::index" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\ApplicationController::new" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\ApplicationController::select" type="service_closure" id=".service_locator.Ocu2hW_"/>
+        <argument key="App\Controller\ApplicationController::show" type="service_closure" id=".service_locator.oyqrvAp"/>
         <argument key="App\Controller\CourseController::TriASC" type="service_closure" id=".service_locator..eHqkeB"/>
         <argument key="App\Controller\CourseController::delete" type="service_closure" id=".service_locator.TCOXoT8"/>
         <argument key="App\Controller\CourseController::edit" type="service_closure" id=".service_locator.TCOXoT8"/>
@@ -6804,6 +7665,17 @@
         <argument key="App\Controller\CourseController::search" type="service_closure" id=".service_locator.fWv9bx5"/>
         <argument key="App\Controller\CourseController::show" type="service_closure" id=".service_locator.lShnJV_"/>
         <argument key="App\Controller\CourseController::triDESC" type="service_closure" id=".service_locator..eHqkeB"/>
+        <argument key="App\Controller\FreelanceController::delete" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController::edit" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController::index" type="service_closure" id=".service_locator.aceqt7e"/>
+        <argument key="App\Controller\FreelanceController::indexFree" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController::myOffers" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController::new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\FreelanceController::recommendation" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController::searchByDate" type="service_closure" id=".service_locator.D7KxMcm"/>
+        <argument key="App\Controller\FreelanceController::searchCategory" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController::show" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController::showFree" type="service_closure" id=".service_locator.0uZrOyD"/>
         <argument key="App\Controller\LessonController::delete" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController::edit" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController::index" type="service_closure" id=".service_locator.5EKs91d"/>
@@ -6824,6 +7696,12 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
+        <argument key="App\Controller\ApplicationController:delete" type="service_closure" id=".service_locator.VFMGo3i"/>
+        <argument key="App\Controller\ApplicationController:edit" type="service_closure" id=".service_locator.VFMGo3i"/>
+        <argument key="App\Controller\ApplicationController:index" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\ApplicationController:new" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\ApplicationController:select" type="service_closure" id=".service_locator.Ocu2hW_"/>
+        <argument key="App\Controller\ApplicationController:show" type="service_closure" id=".service_locator.oyqrvAp"/>
         <argument key="App\Controller\CourseController:TriASC" type="service_closure" id=".service_locator..eHqkeB"/>
         <argument key="App\Controller\CourseController:delete" type="service_closure" id=".service_locator.TCOXoT8"/>
         <argument key="App\Controller\CourseController:edit" type="service_closure" id=".service_locator.TCOXoT8"/>
@@ -6834,6 +7712,17 @@
         <argument key="App\Controller\CourseController:search" type="service_closure" id=".service_locator.fWv9bx5"/>
         <argument key="App\Controller\CourseController:show" type="service_closure" id=".service_locator.lShnJV_"/>
         <argument key="App\Controller\CourseController:triDESC" type="service_closure" id=".service_locator..eHqkeB"/>
+        <argument key="App\Controller\FreelanceController:delete" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController:edit" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController:index" type="service_closure" id=".service_locator.aceqt7e"/>
+        <argument key="App\Controller\FreelanceController:indexFree" type="service_closure" id=".service_locator.Hgca79T"/>
+        <argument key="App\Controller\FreelanceController:myOffers" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController:new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\FreelanceController:recommendation" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController:searchByDate" type="service_closure" id=".service_locator.D7KxMcm"/>
+        <argument key="App\Controller\FreelanceController:searchCategory" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController:show" type="service_closure" id=".service_locator.0uZrOyD"/>
+        <argument key="App\Controller\FreelanceController:showFree" type="service_closure" id=".service_locator.0uZrOyD"/>
         <argument key="App\Controller\LessonController:delete" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController:edit" type="service_closure" id=".service_locator.FvkWU6g"/>
         <argument key="App\Controller\LessonController:index" type="service_closure" id=".service_locator.5EKs91d"/>
@@ -6913,10 +7802,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.OcawLpv" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.DYkYZjr" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\ApplicationType" type="service_closure" id="App\Form\ApplicationType"/>
         <argument key="App\Form\CourseType" type="service_closure" id="App\Form\CourseType"/>
+        <argument key="App\Form\FreelanceType" type="service_closure" id="App\Form\FreelanceType"/>
         <argument key="App\Form\LessonType" type="service_closure" id="App\Form\LessonType"/>
         <argument key="App\Form\PackagType" type="service_closure" id="App\Form\PackagType"/>
         <argument key="App\Form\SearchForm" type="service_closure" id="App\Form\SearchForm"/>
@@ -7006,10 +7897,12 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.cbkTU6v" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2ytyp3h" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\ApplicationRepository" type="service_closure" id="App\Repository\ApplicationRepository"/>
         <argument key="App\Repository\CourseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
+        <argument key="App\Repository\FreelanceRepository" type="service_closure" id="App\Repository\FreelanceRepository"/>
         <argument key="App\Repository\LessonRepository" type="service_closure" id="App\Repository\LessonRepository"/>
         <argument key="App\Repository\PackagRepository" type="service_closure" id="App\Repository\PackagRepository"/>
         <argument key="App\Repository\ServiceRepository" type="service_closure" id="App\Repository\ServiceRepository"/>
@@ -7281,9 +8174,21 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\ApplicationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ApplicationController"/>
+      <argument>App\Controller\ApplicationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
     <service id=".service_locator.mx0UMmY.App\Controller\CourseController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\CourseController"/>
       <argument>App\Controller\CourseController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\FreelanceController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\FreelanceController"/>
+      <argument>App\Controller\FreelanceController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mx0UMmY" method="withContext"/>
     </service>
@@ -7493,12 +8398,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.4adKqjN"/>
+      <argument type="service" id=".service_locator.lkRtSqL"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.4adKqjN"/>
+      <argument type="service" id=".service_locator.lkRtSqL"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7518,6 +8423,7 @@
       </call>
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
+    <service id=".errored..service_locator.VFMGo3i.App\Entity\Application" class="App\Entity\Application"/>
     <service id=".errored..service_locator.lShnJV_.App\Entity\Course" class="App\Entity\Course"/>
     <service id=".errored..service_locator.TCOXoT8.App\Entity\Course" class="App\Entity\Course"/>
     <service id=".errored..service_locator.7BmVW2x.App\Entity\Lesson" class="App\Entity\Lesson"/>
@@ -7843,6 +8749,13 @@
       <argument>false</argument>
       <argument type="service_closure" id="security.command.user_password_hash"/>
     </service>
+    <service id=".hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>hautelook:fixtures:load</argument>
+      <argument type="collection"/>
+      <argument>Load data fixtures to your database.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command"/>
+    </service>
     <service id=".maker.auto_command.make_auth.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>make:auth</argument>
       <argument type="collection"/>
@@ -8009,7 +8922,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.ttQ2U29"/>
+      <argument type="service" id=".service_locator.2JRa56j"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -8089,6 +9002,8 @@
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:encode-password">security.command.user_password_encoder</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
+        <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
+        <argument key="hautelook:fixtures:load">hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -8116,7 +9031,7 @@
         <argument key="make:stimulus-controller">maker.auto_command.make_stimulus_controller</argument>
       </argument>
     </service>
-    <service id=".service_locator.ttQ2U29" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2JRa56j" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -8196,6 +9111,8 @@
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_encoder" type="service_closure" id=".security.command.user_password_encoder.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
+        <argument key="doctrine.fixtures_load_command" type="service_closure" id="doctrine.fixtures_load_command"/>
+        <argument key="hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command" type="service_closure" id=".hautelook_alice.console.command.doctrine.doctrine_orm_load_data_fixtures_command.lazy"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -8291,6 +9208,14 @@
     <service id="cache.doctrine.orm.default.query.recorder_inner" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
     <service id="cache.security_expression_language.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>b5TWgHGPRo</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\var\cache\dev/pools/system</argument>
+      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
+    </service>
+    <service id="cache.webpack_encore.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
+      <argument>b7+lVBmf2Z</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web\var\cache\dev/pools/system</argument>
@@ -8469,9 +9394,55 @@
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
+    <service id="Faker\Generator" alias="nelmio_alice.faker.generator" public="true"/>
+    <service id="nelmio_alice.file_locator" alias="hautelook_alice.alice.file_locator.kernel"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture_bag" alias="nelmio_alice.fixture_builder.denormalizer.fixture.simple_fixture_bag_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture" alias="nelmio_alice.fixture_builder.denormalizer.fixture.tolerant_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.specs" alias="nelmio_alice.fixture_builder.denormalizer.specs.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.constructor.legacy_constructor_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.arguments.simple_arguments_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.value.unique_value_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.property.simple_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls" alias="nelmio_alice.fixture_builder.denormalizer.fixture.specs.calls.simple_denormalizer"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.flag_parser" alias="nelmio_alice.fixture_builder.denormalizer.flag_parser.element"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.lexer" alias="nelmio_alice.fixture_builder.expression_language.lexer.empty_value_lexer"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser" alias="nelmio_alice.fixture_builder.expression_language.parser.function_fixture_reference_parser"/>
+    <service id="nelmio_alice.fixture_builder.expression_language.parser.token_parser" alias="nelmio_alice.fixture_builder.expression_language.parser.token_parser.registry"/>
+    <service id="nelmio_alice.fixture_builder" alias="nelmio_alice.fixture_builder.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer" alias="nelmio_alice.fixture_builder.denormalizer.simple"/>
+    <service id="nelmio_alice.fixture_builder.denormalizer.parameter_bag" alias="nelmio_alice.fixture_builder.denormalizer.parameter.simple_parameter_bag_denormalizer"/>
+    <service id="nelmio_alice.generator.caller" alias="nelmio_alice.generator.caller.simple"/>
+    <service id="nelmio_alice.generator.hydrator" alias="nelmio_alice.generator.hydrator.simple"/>
+    <service id="nelmio_alice.generator.hydrator.property" alias="nelmio_alice.generator.hydrator.property.symfony_property_access"/>
+    <service id="nelmio_alice.generator.instantiator" alias="nelmio_alice.generator.instantiator.existing_instance"/>
+    <service id="nelmio_alice.generator" alias="nelmio_alice.generator.double_pass"/>
+    <service id="nelmio_alice.generator.object_generator" alias="nelmio_alice.generator.object_generator.complete"/>
+    <service id="nelmio_alice.generator.resolver.fixture_bag" alias="nelmio_alice.generator.resolver.fixture_bag.template_bag"/>
+    <service id="nelmio_alice.generator.resolver.fixture_set" alias="nelmio_alice.generator.resolver.fixture_set.remove_conflicting_objects"/>
+    <service id="nelmio_alice.generator.resolver.parameter_bag" alias="nelmio_alice.generator.resolver.parameter_bag.remove_conflicting_parameters"/>
+    <service id="nelmio_alice.generator.resolver.value" alias="nelmio_alice.generator.resolver.value.registry"/>
+    <service id="nelmio_alice.generator.resolver.value.property_accessor" alias="property_accessor"/>
+    <service id="nelmio_alice.data_loader" alias="nelmio_alice.data_loader.simple" public="true"/>
+    <service id="nelmio_alice.file_loader" alias="nelmio_alice.file_loader.simple" public="true"/>
+    <service id="nelmio_alice.files_loader" alias="nelmio_alice.files_loader.simple" public="true"/>
+    <service id="nelmio_alice.file_parser" alias="nelmio_alice.file_parser.runtime_cache"/>
+    <service id="nelmio_alice.property_accessor" alias="nelmio_alice.property_accessor.std"/>
+    <service id="fidry_alice_data_fixtures.loader.doctrine" alias="fidry_alice_data_fixtures.doctrine.purger_loader" public="true"/>
+    <service id="fidry_alice_data_fixtures.doctrine.loader" alias="fidry_alice_data_fixtures.doctrine.purger_loader"/>
+    <service id="fidry_alice_data_fixtures.persistence.purger_factory.doctrine" alias="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" public="true"/>
+    <service id="fidry_alice_data_fixtures.persistence.purger.doctrine.orm_purger" alias="fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory">
+      <deprecated package="theofidry/alice-data-fixtures" version="1.0">The service alias "%alias_id%" is deprecated and will be removed in future versions.Use "fidry_alice_data_fixtures.persistence.doctrine.purger.purger_factory" instead.</deprecated>
+    </service>
+    <service id="fidry_alice_data_fixtures.persistence.persister.doctrine" alias="fidry_alice_data_fixtures.persistence.persister.doctrine.object_manager_persister" public="true"/>
+    <service id="hautelook_alice.loader" alias="hautelook_alice.loader.doctrine_orm_loader" public="true"/>
+    <service id="hautelook_alice.locator" alias="hautelook_alice.locator.environmentless" public="true"/>
+    <service id="hautelook_alice.resolver.bundle" alias="hautelook_alice.resolver.bundle.no_bundle_resolver" public="true"/>
+    <service id="hautelook_alice.resolver.file" alias="hautelook_alice.resolver.file.kernel_file_resolver" public="true"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.4adKqjN"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.lkRtSqL"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8494,12 +9465,13 @@
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
+    <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~U48khFC"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.Shc5lEJ" alias=".service_locator.BHpfYe."/>
     <service id=".service_locator.Ev8b9Et" alias=".service_locator.srbsFuk"/>
-    <service id=".service_locator.gBhe1Cj" alias=".service_locator.4adKqjN"/>
+    <service id=".service_locator.LMsrYeC" alias=".service_locator.lkRtSqL"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.TB.h0tI" alias=".service_locator.OcawLpv"/>
+    <service id=".service_locator.xuQbSv5" alias=".service_locator.DYkYZjr"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.0ghLsew" alias=".service_locator.mx0UMmY"/>
@@ -8525,15 +9497,22 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
+    <service id=".service_locator.bInR.ll" alias=".service_locator.aKM6MDa"/>
+    <service id=".service_locator.rkFKx0D" alias=".service_locator.Hgca79T"/>
+    <service id=".service_locator.an24Vod" alias=".service_locator.oyqrvAp"/>
+    <service id=".service_locator.PJmgMdI" alias=".service_locator.VFMGo3i"/>
+    <service id=".service_locator.CPRUImt" alias=".service_locator.Ocu2hW_"/>
     <service id=".service_locator._cIqA2G" alias=".service_locator.w07iIQI"/>
     <service id=".service_locator.pK16ZEc" alias=".service_locator.WNxi9GT"/>
     <service id=".service_locator.i0nZGgd" alias=".service_locator.lShnJV_"/>
     <service id=".service_locator.Va2AdKB" alias=".service_locator.TCOXoT8"/>
     <service id=".service_locator.g4lI9Zm" alias=".service_locator..eHqkeB"/>
+    <service id=".service_locator.0k58_kT" alias=".service_locator.aceqt7e"/>
+    <service id=".service_locator.GrFZSQG" alias=".service_locator.0uZrOyD"/>
+    <service id=".service_locator.zjmedMz" alias=".service_locator.D7KxMcm"/>
     <service id=".service_locator.KAJm2XO" alias=".service_locator.5EKs91d"/>
     <service id=".service_locator.lw2POtX" alias=".service_locator.7BmVW2x"/>
     <service id=".service_locator.x4XmGYX" alias=".service_locator.FvkWU6g"/>
-    <service id=".service_locator.bInR.ll" alias=".service_locator.aKM6MDa"/>
     <service id=".service_locator.uEsjOsK" alias=".service_locator.Q.Pau6g"/>
     <service id=".service_locator.g91bvPZ" alias=".service_locator.BHpfYe."/>
     <service id=".service_locator.i87CtER" alias=".service_locator.Zhsi5nT"/>

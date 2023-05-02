@@ -1,51 +1,3 @@
-<<<<<<< HEAD
-
-<!doctype html>
-<html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> {% block title %}Instalance{% endblock %} </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-		<!-- CSS here -->
-        {% block css%}
-        
-          <link rel="stylesheet" href= {{asset('assets/css/header.css')}}>
-            <link rel="stylesheet" href= {{asset('assets/css/bootstrap.min.css')}}>
-            <link rel="stylesheet" href={{asset("assets/css/owl.carousel.min.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/flaticon.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/price_rangs.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/slicknav.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/animate.min.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/magnific-popup.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/fontawesome-all.min.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/themify-icons.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/slick.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/nice-select.css")}}>
-            <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
-            <link rel="stylesheet" href={{ asset("assets/css/pagination.css") }}>
-
-            {% endblock %}
-   </head>
-{% block header %}
-   <header>
-        <!-- Header Start -->
-       <div class="header-area header-transparrent">
-           <div class="header-top header-sticky">
-                <div class="container-md">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-5">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="{{ path('home') }}"> <img src={{asset('assets/img/logo/m.jpg')}} width="190" height="45" alt=""></a>
-                            </div>  
-                        </div>
-                        <div class="col-lg-9 col-md-20">
-=======
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,11 +14,14 @@
             <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
-            <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+         
             <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+                 <link rel="stylesheet" href={{asset('assets/css/pagination.css')}}>
+          <link rel="stylesheet" href= {{asset('assets/css/header.css')}}>
+           
             {{encore_entry_link_tags('app') }}
         {% endblock %}
 
@@ -105,24 +60,27 @@
         <!-- Header Start -->
        <div class="header-area header-transparrent">
            <div class="headder-top header-sticky">
-                <div class="container">
+               <div class="container-md">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
+                      <div class="col-lg-3 col-md-5">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="{{asset('assets/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{ path('home') }}"> <img src={{asset('assets/img/logo/m.png')}} width="190" height="45" alt=""></a>
                             </div>  
                         </div>
-                        <div class="col-lg-9 col-md-9">
->>>>>>> origin/freelance
+                        <div class="col-lg-9 col-md-20">
                             <div class="menu-wrapper">
                                 <!-- Main-menu -->
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-<<<<<<< HEAD
                                             <li><a href="{{ path('home') }}"><font size="+1">Home</font></a></li>
-                                            <li><a href="#"><font size="+1">Job offers </font></a></li>
+                                         <li><a href="#">Job Offers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{{ path('app_freelance_index') }}">All Offers</a></li>
+                                                    <li><a href="{{ path('app_freelance_myOffersBO', {'idBO': 20}) }}">My Offers</a></li>
+                                                </ul>
+                                            </li>
                                             <li><a href="#"><font size="+1">Services</font></a>
                                             
                                             <ul class="submenu">
@@ -140,35 +98,12 @@
                                                
                                             </li>
                                           
-=======
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="#">Job Offers</a>
-                                                <ul class="submenu">
-                                                    <li><a href="{{ path('app_freelance_index') }}">All Offers</a></li>
-                                                    <li><a href="{{ path('app_freelance_myOffersBO', {'idBO': 20}) }}">My Offers</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="about.html">Services</a></li>
-                                            <li><a href="#">Courses</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Events</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Blog</a></li>
->>>>>>> origin/freelance
                                         </ul>
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-<<<<<<< HEAD
                                     <a href="#" class="btn head-btn4">Register</b></a>
-=======
-                                    <a href="#" class="btn head-btn1">Register</a>
->>>>>>> origin/freelance
                                     <a href="#" class="btn head-btn2">Login</a>
                                 </div>
                             </div>
@@ -182,7 +117,6 @@
            </div>
        </div>
         <!-- Header End -->
-<<<<<<< HEAD
     </header>
 {% endblock %}
    <body>
@@ -465,21 +399,10 @@
 
  
    
-
+{% endblock %}
     </body>
     <footer>
     {% block footer %}
-=======
-        </header>
-        {% endblock %}
-        
-        {% block body %}
-        
-        {% endblock %}
-
-        {% block footer %}
-<footer>
->>>>>>> origin/freelance
         <!-- Footer Start-->
         <div class="footer-area footer-bg footer-padding">
             <div class="container">
@@ -544,11 +467,7 @@
                                          onblur="this.placeholder = ' Email Address '">
                                          <div class="form-icon">
                                              <button type="submit" name="submit" id="newsletter-submit"
-<<<<<<< HEAD
-                                             class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
-=======
                                              class="email_icon newsletter-submit button-contactForm"><img src="{{asset('assets/img/icon/form.png') }}" alt=""></button>
->>>>>>> origin/freelance
                                          </div>
                                          <div class="mt-10 info"></div>
                                      </form>
@@ -563,11 +482,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <!-- logo -->
                         <div class="footer-logo mb-20">
-<<<<<<< HEAD
-                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-=======
                         <a href="index.html"><img src="{{asset('assets/img/logo/logo2_footer.png') }}" alt=""></a>
->>>>>>> origin/freelance
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
@@ -618,7 +533,6 @@
         </div>
         <!-- Footer End-->
     </footer>
-<<<<<<< HEAD
       {% endblock %}
 {% block js %}
   <!-- JS here -->
@@ -671,11 +585,4 @@
       
     </body>
 </html>
-           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        {% endblock %}
-      
-=======
-        {% endblock %}
->>>>>>> origin/freelance
-    </body>
-</html>
+       

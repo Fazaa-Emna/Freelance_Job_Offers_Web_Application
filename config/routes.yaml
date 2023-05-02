@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 home:
     path: /
     controller: App\Controller\HomeController::index
@@ -18,8 +17,3 @@ backend:
     path: /services/back
     controller: App\Controller\ServiceBackController::index
 
-=======
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
->>>>>>> origin/freelance
