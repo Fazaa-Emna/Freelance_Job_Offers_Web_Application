@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .breadcam_bg{
     background-image: url(../img/banner/bradcam.png);
 }
@@ -8,6 +9,21 @@
     background-image: url(../img/banner/bradcam3.png);
 }
 .bradcam_area{
+=======
+.breadcam_bg {
+    background-image: url(../img/banner/bradcam.png);
+}
+
+.breadcam_bg_1 {
+    background-image: url(../img/banner/bradcam2.png);
+}
+
+.breadcam_bg_2 {
+    background-image: url(../img/banner/bradcam3.png);
+}
+
+.bradcam_area {
+>>>>>>> origin/freelance
     background-size: cover;
     background-position: center center;
     padding: 160px 0;
@@ -19,7 +35,11 @@
     @media #{$tablet_device} {
         padding: 150px 0;
     }
+<<<<<<< HEAD
     h3{
+=======
+    h3 {
+>>>>>>> origin/freelance
         font-size: 50px;
         color: #fff;
         font-weight: 900;
@@ -35,7 +55,11 @@
     }
 }
 
+<<<<<<< HEAD
 .popup_box{
+=======
+.popup_box {
+>>>>>>> origin/freelance
     // position: absolute;
     // left: 50%;
     // top: 50%;
@@ -53,14 +77,22 @@
         width: 420px !important;
         padding: 45px 30px;
     }
+<<<<<<< HEAD
     
     h3{
+=======
+    h3 {
+>>>>>>> origin/freelance
         text-align: center;
         font-size: 22px;
         color: #1F1F1F;
         margin-bottom: 46px;
     }
+<<<<<<< HEAD
     .boxed-btn3{
+=======
+    .boxed-btn3 {
+>>>>>>> origin/freelance
         width: 100%;
         text-transform: capitalize;
     }
@@ -128,6 +160,52 @@
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+>>>>>>> origin/freelance
 #test-form {
     display: inline-block;
     margin: auto;
@@ -135,8 +213,13 @@
     position: absolute;
     left: 50%;
     top: 50%;
+<<<<<<< HEAD
     @include transform (translate(-50%,-50%));
     @media #{$mobile_device}{
+=======
+    @include transform (translate(-50%, -50%));
+    @media #{$mobile_device} {
+>>>>>>> origin/freelance
         top: 0;
         left: 0;
         width: 100%;
@@ -147,8 +230,13 @@
         color: #333;
         display: none !important;
     }
+<<<<<<< HEAD
     button{
         &.mfp-close{
+=======
+    button {
+        &.mfp-close {
+>>>>>>> origin/freelance
             display: none !important;
             @media #{$mobile_device} {
                 display: block !important;
@@ -164,7 +252,10 @@
         cursor: pointer;
         background: transparent;
         border: 0;
+<<<<<<< HEAD
         -webkit-appearance: none;
+=======
+>>>>>>> origin/freelance
         display: block;
         outline: none;
         padding: 0;
@@ -187,6 +278,7 @@
 }
 
 .mfp-bg {
+<<<<<<< HEAD
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -196,6 +288,17 @@
 	position: fixed;
 	background: #4A3600;
 	opacity: 0.6;
+=======
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1042;
+    overflow: hidden;
+    position: fixed;
+    background: #4A3600;
+    opacity: 0.6;
+>>>>>>> origin/freelance
 }
 
 .gj-picker.gj-picker-md.datepicker.gj-unselectable {
@@ -203,15 +306,25 @@
         // width: 320px;
         // left: 0 !important;
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+
+>>>>>>> origin/freelance
 .gj-picker.gj-picker-md.timepicker {
     @media #{$mobile_device} {
         width: 310px;
         left: 6px !important;
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+
+>>>>>>> origin/freelance
 .gj-picker.gj-picker-md.datepicker.gj-unselectable {
     @media #{$mobile_device} {
         width: 320px;

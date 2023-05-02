@@ -1,0 +1,29 @@
+<div class="select-Categories pb-50">
+	<div class="small-section-tittle2">
+		<h4>Posted Within</h4>
+	</div>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_index') }}">Any</a><input type="checkbox" checked="checked active"/>
+		<span class="checkmark"></span>
+	</label>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_searchDate', { date: 'today' }) }}">Today</a><input type="checkbox"/>
+		<span class="checkmark"></span>
+	</label>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_searchDate', { date: '2_days' }) }}">Last 2 days</a><input type="checkbox"/>
+		<span class="checkmark"></span>
+	</label>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_searchDate', { date: '3_days' }) }}">Last 3 days</a><input type="checkbox"/>
+		<span class="checkmark"></span>
+	</label>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_searchDate', { date: '5_days' }) }}">Last 5 days</a><input type="checkbox"/>
+		<span class="checkmark"></span>
+	</label>
+	<label class="container items-link items-link2 f-right">
+		<a href="{{ path('app_freelance_searchDate', { date: '10_days' }) }}">Last 10 days</a><input type="checkbox"/>
+		<span class="checkmark"></span>
+	</label>
+</div>

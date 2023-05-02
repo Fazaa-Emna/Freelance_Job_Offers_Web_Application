@@ -1,0 +1,38 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+{% block body %}
+    <div class="display: flex;align-items: center;justify-content: center">
+						<h3 class="mb-30">Quick Application</h3>
+						{{ form_start(form) }}
+							<div class="mt-10">
+								{{ form_widget(form.idfreelancer, { 'attr': {'class': 'single-input', 'placeholder': 'Your ID'} }) }}							
+								{{ form_errors(form.idfreelancer) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.fnFreelancer, { 'attr': {'class': 'single-input', 'placeholder': 'First Name'} }) }}
+								{{ form_errors(form.fnFreelancer) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.lnFreelancer, { 'attr': {'class': 'single-input', 'placeholder': 'Last Name'} }) }}
+								{{ form_errors(form.lnFreelancer) }}
+							</div>
+							<div class="input-group-icon mt-10">
+								<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+								{{ form_widget(form.emailfreelancer, { 'attr': {'class': 'single-input', 'placeholder': 'Email address', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'Email address'"} }) }}
+								{{ form_errors(form.emailfreelancer) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.urlCv, { 'attr': {'class': 'single-input', 'placeholder': 'Email address', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'Insert Your CV'"} }) }}
+								{{ form_errors(form.urlCv) }}
+							</div>
+							<div class="mt-10 genric-btn primary circle" style="display: flex; justify-content: center;">
+								<button class="btn">{{ button_label|default('Submit') }}</button>
+								{#<a href="{{ path('app_application_new', {'idOffer': idfreelance}) }}" class="genric-btn primary circle">Submit</a>#}
+							</div>
+						{{ form_end(form) }}
+						</br>
+					</div>
+{% endblock %}
+

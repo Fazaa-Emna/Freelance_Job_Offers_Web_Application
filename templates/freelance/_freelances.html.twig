@@ -1,0 +1,47 @@
+{% for freelance in freelances %}
+	<div class="single-job-items mb-30">
+		<div class="job-items">
+			<div class="company-img">
+				<a href="#"><img src="{{ asset('assets/img/icon/job-list4.png') }}" alt=""/></a>
+			</div>
+			<div class="job-tittle job-tittle2">
+				<a href="{{ path('app_freelance_show', { idfreelance: freelance.idfreelance, idBO: 20 }) }}">
+					<h4>{{ freelance.categoryF }}</h4>
+				</a>
+				<ul>
+					<li>{{ freelance.emailbo }}</li>
+					<li>
+						<i class="fas fa-map-marker-alt"></i>
+						Tunisia, Tunis
+					</li>
+					<li>{{ freelance.budget }}
+						TND</li>
+				</ul>
+			</div>
+		</div>
+		{% set currentDate = 'now'|date('d-m-Y') %}
+		{% set add = freelance.adddate|date('d-m-Y') %}
+		{% set diff = date(currentDate).diff(date(add)) %}
+		{% if currentDate == add %}
+			<div class="items-link items-link2 f-right">
+				<a href="#">
+					{{ freelance.nbapplicants|default('0') }}
+					applicants
+				</a>
+				<span>New</span>
+			</div>
+		{% else %}
+			<div class="items-link items-link2 f-right">
+				<a href="#">
+					{{ freelance.nbapplicants|default('0') }}
+					applicants
+				</a>
+				<span>{{ diff.format('%d days ago') }}</span>
+			</div>
+		{% endif %}
+	</div>
+{% else %}
+	<div class="col-12">
+		<p>No offers found.</p>
+	</div>
+{% endfor %}

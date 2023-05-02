@@ -1,10 +1,13 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+<<<<<<< HEAD
 
 
     form_themes: ['bootstrap_5_horizontal_layout.html.twig']
 
+=======
+>>>>>>> origin/freelance
 when@test:
     twig:
         strict_variables: true

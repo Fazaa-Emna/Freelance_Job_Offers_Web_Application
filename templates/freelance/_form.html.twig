@@ -1,0 +1,41 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}#}
+{% block body %}
+    <div class="display: flex;align-items: center;justify-content: center">
+						<h3 class="mb-30">Freelance Job Offer</h3>
+						{{ form_start(form) }}
+							<div class="mt-10">
+								{{ form_widget(form.idbo, { 'attr': {'class': 'single-input', 'placeholder': 'Your ID'} }) }}							
+								{{ form_errors(form.idbo) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.emailbo, { 'attr': {'class': 'single-input', 'placeholder': 'Email @'} }) }}
+								{{ form_errors(form.emailbo) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.categoryF, { 'attr': {'class': 'single-input', 'placeholder': 'Offer s Category'} }) }}
+								{{ form_errors(form.categoryF) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.description, { 'attr': {'class': 'single-input', 'placeholder': 'Offer s Description', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'Offer s Description'"} }) }}
+								{{ form_errors(form.description) }}
+							</div>
+							<div class="mt-10">
+								{{ form_widget(form.budget, { 'attr': {'class': 'single-input', 'placeholder': 'Expected Budget Salary', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'Expected Budget Salary'"} }) }}
+								{{ form_errors(form.budget) }}
+							</div>
+                            <div class="mt-10">
+								{{ form_widget(form.logo, { 'attr': {'class': 'single-input', 'placeholder': 'Company s Logo', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'Company s Logo'"} }) }}
+								{{ form_errors(form.logo) }}
+							</div>
+                            </br>
+						    <div class="mt-10" style="display: flex; justify-content: center;">
+                                <button class="btn">{{ button_label|default('Save') }}</button>
+    						    {#<a href="{{ path('app_freelance_new')}}" class="genric-btn primary circle">Submit</a>#}
+						    </div>
+						{{ form_end(form) }}	
+					</div>
+{% endblock %}
+

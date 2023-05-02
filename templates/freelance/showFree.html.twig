@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image: url('{{ asset('assets/img/hero/about.jpg') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Offer's Details</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Hero Area End -->
+    <!-- job post company Start -->
+    <div class="job-post-company pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-between">
+                <!-- Left Content -->
+                <div class="col-xl-7 col-lg-8">
+                    <!-- job single -->
+                    <div class="single-job-items mb-50">
+                        <div class="job-items">
+                            <div class="company-img company-img-details">
+                                <a href="#"><img src="{{asset('assets/img/icon/job-list1.png')}}" alt=""></a>
+                            </div>
+                            <div class="job-tittle">
+                                <a href="#">
+                                    <h4>{{freelance.categoryF }}</h4>
+                                </a>
+                                <ul>
+                                    <li>{{freelance.emailbo}}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>Tunisia, Tunis</li>
+                                    <li>{{freelance.budget}} TND</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                      <!-- job single End -->
+                   
+                    <div class="job-post-details">
+                        <div class="post-details1 mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Offer's Description</h4>
+                            </div>
+                            <p>{{freelance.description }}</p>
+                        </div>
+                        <div class="post-details2  mb-50">
+                             <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>We offer a good work experience.</h4>
+                            </div>
+                           <ul>
+                               <li>Please submit your CV if interrested.</li>
+                           </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Right Content -->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="post-details3  mb-50">
+                        <!-- Small Section Tittle -->
+                       <div class="small-section-tittle">
+                           <h4>Job Overview</h4>
+                       </div>
+                      <ul>
+                          <li>Posted date : <span>{{freelance.adddate ? freelance.adddate|date('Y-m-d H:i:s')}}</span></li>
+                          <li>Location : <span>Tunisia, Tunis</span></li>
+                          <li>Job nature : <span>Freelance</span></li>
+                          <li>Salary :  <span>{{ freelance.budget }}</span></li>
+                          <li>Number applicants : <span>{{freelance.nbapplicants}} applicants</span></li>
+                      </ul>
+                      <div class="apply-btn2">
+                            <a href="{{ path('app_application_new', {'idOffer': freelance.idfreelance}) }}" class="btn">Apply Now</a>
+                      </div>  
+                   </div>
+                    <div class="post-details4  mb-50">
+                        <!-- Small Section Tittle -->
+                       <div class="small-section-tittle">
+                           <h4>Meet the hiring team</h4>
+                       </div>
+                          <p>Feel free to reach out for further information.</p>
+                        <ul>
+                            <li>Email: <span>{{freelance.emailbo}} </span></li>
+                        </ul>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job post company End -->
+{% endblock %}
