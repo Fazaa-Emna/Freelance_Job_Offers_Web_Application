@@ -4,18 +4,12 @@
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-<<<<<<< HEAD
             "version": "1.0",
             "ref": "a2759dd6123694c8d901d0ec80006e044c2e6457"
         },
         "files": [
             "./config/routes/annotations.yaml"
         ]
-=======
-            "version": "1.10",
-            "ref": "64d8583af5ea57b7afa4aba4b159907f3a148b05"
-        }
->>>>>>> origin/Event
     },
     "doctrine/doctrine-bundle": {
         "version": "2.9",
@@ -31,7 +25,6 @@
             "./src/Repository/.gitignore"
         ]
     },
-<<<<<<< HEAD
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.4",
         "recipe": {
@@ -44,8 +37,6 @@
             "./src/DataFixtures/AppFixtures.php"
         ]
     },
-=======
->>>>>>> origin/Event
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.2",
         "recipe": {
@@ -59,7 +50,9 @@
             "./migrations/.gitignore"
         ]
     },
-<<<<<<< HEAD
+    "endroid/qr-code-bundle": {
+        "version": "4.3.1"
+    },
     "hautelook/alice-bundle": {
         "version": "2.12",
         "recipe": {
@@ -87,10 +80,6 @@
         "files": [
             "./config/packages/nelmio_alice.yaml"
         ]
-=======
-    "endroid/qr-code-bundle": {
-        "version": "4.3.1"
->>>>>>> origin/Event
     },
     "phpunit/phpunit": {
         "version": "9.6",
@@ -119,11 +108,7 @@
         ]
     },
     "symfony/console": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -135,11 +120,7 @@
         ]
     },
     "symfony/debug-bundle": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -163,11 +144,7 @@
         ]
     },
     "symfony/framework-bundle": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -185,10 +162,6 @@
             "./src/Kernel.php"
         ]
     },
-<<<<<<< HEAD
-    "symfony/mailer": {
-        "version": "5.4",
-=======
     "symfony/google-mailer": {
         "version": "6.1",
         "recipe": {
@@ -199,8 +172,7 @@
         }
     },
     "symfony/mailer": {
-        "version": "6.1",
->>>>>>> origin/Event
+        "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -221,21 +193,12 @@
         }
     },
     "symfony/messenger": {
-<<<<<<< HEAD
         "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.4",
             "ref": "8bd5f27013fb1d7217191c548e340f0bdb11912c"
-=======
-        "version": "6.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.0",
-            "ref": "ba1ac4e919baba5644d31b57a3284d6ba12d52ee"
->>>>>>> origin/Event
         },
         "files": [
             "./config/packages/messenger.yaml"
@@ -254,11 +217,7 @@
         ]
     },
     "symfony/notifier": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -285,21 +244,12 @@
         ]
     },
     "symfony/routing": {
-<<<<<<< HEAD
         "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.3",
             "ref": "85de1d8ae45b284c3c84b668171d2615049e698f"
-=======
-        "version": "6.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.1",
-            "ref": "a44010c0d06989bd4f154aa07d2542d47caf5b83"
->>>>>>> origin/Event
         },
         "files": [
             "./config/packages/routing.yaml",
@@ -307,32 +257,19 @@
         ]
     },
     "symfony/security-bundle": {
-<<<<<<< HEAD
         "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.3",
             "ref": "98f1f2b0d635908c2b40f3675da2d23b1a069d30"
-=======
-        "version": "6.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.0",
-            "ref": "8a5b112826f7d3d5b07027f93786ae11a1c7de48"
->>>>>>> origin/Event
         },
         "files": [
             "./config/packages/security.yaml"
         ]
     },
     "symfony/translation": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -345,11 +282,7 @@
         ]
     },
     "symfony/twig-bundle": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -362,11 +295,7 @@
         ]
     },
     "symfony/validator": {
-<<<<<<< HEAD
         "version": "5.4",
-=======
-        "version": "6.1",
->>>>>>> origin/Event
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -378,21 +307,12 @@
         ]
     },
     "symfony/web-profiler-bundle": {
-<<<<<<< HEAD
         "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.3",
             "ref": "24bbc3d84ef2f427f82104f766014e799eefcc3e"
-=======
-        "version": "6.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "6.1",
-            "ref": "e42b3f0177df239add25373083a564e5ead4e13a"
->>>>>>> origin/Event
         },
         "files": [
             "./config/packages/web_profiler.yaml",
@@ -411,7 +331,6 @@
             "./config/packages/messenger.yaml"
         ]
     },
-<<<<<<< HEAD
     "symfony/webpack-encore-bundle": {
         "version": "1.16",
         "recipe": {
@@ -440,8 +359,6 @@
             "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
         }
     },
-=======
->>>>>>> origin/Event
     "twig/extra-bundle": {
         "version": "v3.5.1"
     }

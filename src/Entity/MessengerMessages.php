@@ -8,11 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MessengerMessages
  *
-<<<<<<< HEAD
  * @ORM\Table(name="messenger_messages", indexes={@ORM\Index(name="IDX_75EA56E0E3BD61CE", columns={"available_at"}), @ORM\Index(name="IDX_75EA56E016BA31DB", columns={"delivered_at"}), @ORM\Index(name="IDX_75EA56E0FB7336F0", columns={"queue_name"})})
-=======
- * @ORM\Table(name="messenger_messages", indexes={@ORM\Index(name="IDX_75EA56E016BA31DB", columns={"delivered_at"}), @ORM\Index(name="IDX_75EA56E0FB7336F0", columns={"queue_name"}), @ORM\Index(name="IDX_75EA56E0E3BD61CE", columns={"available_at"})})
->>>>>>> origin/Event
  * @ORM\Entity
  */
 class MessengerMessages
@@ -64,15 +60,9 @@ class MessengerMessages
     /**
      * @var \DateTime|null
      *
-<<<<<<< HEAD
      * @ORM\Column(name="delivered_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $deliveredAt = 'NULL';
-=======
-     * @ORM\Column(name="delivered_at", type="datetime", nullable=true)
-     */
-    private $deliveredAt;
->>>>>>> origin/Event
 
     public function getId(): ?string
     {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 home:
     path: /
     controller: App\Controller\HomeController::index
@@ -18,19 +17,12 @@ backend:
     path: /services/back
     controller: App\Controller\ServiceBackController::index
 
-=======
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+#controllers:
+   # resource: ../src/Controller/
+   # type: attribute
 search_users:
     path: /search-users
     controller: App\Controller\EventController::searchOrdonnance
-<<<<<<< HEAD
->>>>>>> origin/Event
-=======
-home:
-    path: /
-    controller: App\Controller\HomeController::index
 
-    # config/routes.yaml
->>>>>>> origin/Event
+
+

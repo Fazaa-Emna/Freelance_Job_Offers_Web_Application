@@ -2,21 +2,14 @@
 
 namespace App\Entity;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/Event
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Application
  *
-<<<<<<< HEAD
  * @ORM\Table(name="application", indexes={@ORM\Index(name="idFreelance", columns={"idFreelance"})})
-=======
- * @ORM\Table(name="application")
->>>>>>> origin/Event
  * @ORM\Entity
  */
 class Application
@@ -33,16 +26,6 @@ class Application
     /**
      * @var int
      *
-<<<<<<< HEAD
-=======
-     * @ORM\Column(name="idFreelance", type="integer", nullable=false)
-     */
-    private $idfreelance;
-
-    /**
-     * @var int
-     *
->>>>>>> origin/Event
      * @ORM\Column(name="idFreelancer", type="integer", nullable=false)
      */
     private $idfreelancer;
@@ -80,11 +63,7 @@ class Application
      *
      * @ORM\Column(name="ApplicationDate", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-<<<<<<< HEAD
     private $applicationDate;
-=======
-    private $applicationdate = 'CURRENT_TIMESTAMP';
->>>>>>> origin/Event
 
     /**
      * @var string
@@ -107,7 +86,6 @@ class Application
      */
     private $notification;
 
-<<<<<<< HEAD
     /**
      * @var \App\Entity\Freelance
      *
@@ -118,28 +96,11 @@ class Application
      */
     private $idfreelance;
 
-=======
->>>>>>> origin/Event
     public function getIdapp(): ?int
     {
         return $this->idapp;
     }
 
-<<<<<<< HEAD
-=======
-    public function getIdfreelance(): ?int
-    {
-        return $this->idfreelance;
-    }
-
-    public function setIdfreelance(int $idfreelance): self
-    {
-        $this->idfreelance = $idfreelance;
-
-        return $this;
-    }
-
->>>>>>> origin/Event
     public function getIdfreelancer(): ?int
     {
         return $this->idfreelancer;
@@ -200,7 +161,6 @@ class Application
         return $this;
     }
 
-<<<<<<< HEAD
     public function getApplicationDate(): ?\DateTimeInterface
     {
         return $this->applicationDate;
@@ -209,16 +169,6 @@ class Application
     public function setApplicationDate(\DateTimeInterface $applicationDate): self
     {
         $this->applicationDate = $applicationDate;
-=======
-    public function getApplicationdate(): ?\DateTimeInterface
-    {
-        return $this->applicationdate;
-    }
-
-    public function setApplicationdate(\DateTimeInterface $applicationdate): self
-    {
-        $this->applicationdate = $applicationdate;
->>>>>>> origin/Event
 
         return $this;
     }
@@ -259,7 +209,6 @@ class Application
         return $this;
     }
 
-<<<<<<< HEAD
     public function getIdfreelance(): ?Freelance
     {
         return $this->idfreelance;
@@ -271,7 +220,4 @@ class Application
 
         return $this;
     }
-=======
-
->>>>>>> origin/Event
 }

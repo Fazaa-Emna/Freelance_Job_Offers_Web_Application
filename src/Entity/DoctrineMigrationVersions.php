@@ -25,28 +25,16 @@ class DoctrineMigrationVersions
     /**
      * @var \DateTime|null
      *
-<<<<<<< HEAD
      * @ORM\Column(name="executed_at", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $executedAt = 'NULL';
-=======
-     * @ORM\Column(name="executed_at", type="datetime", nullable=true)
-     */
-    private $executedAt;
->>>>>>> origin/Event
 
     /**
      * @var int|null
      *
-<<<<<<< HEAD
      * @ORM\Column(name="execution_time", type="integer", nullable=true, options={"default"="NULL"})
      */
     private $executionTime = NULL;
-=======
-     * @ORM\Column(name="execution_time", type="integer", nullable=true)
-     */
-    private $executionTime;
->>>>>>> origin/Event
 
     public function getVersion(): ?string
     {

@@ -2,10 +2,6 @@
 
 namespace App\Entity;
 
-<<<<<<< HEAD
-=======
-use Doctrine\DBAL\Types\Types;
->>>>>>> origin/Event
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,11 +31,7 @@ class Service
     /**
      * @var string
      *
-<<<<<<< HEAD
      * @ORM\Column(name="descr", type="string", length=255, nullable=false)
-=======
-     * @ORM\Column(name="descr", type="text", length=65535, nullable=false)
->>>>>>> origin/Event
      */
     private $descr;
 
