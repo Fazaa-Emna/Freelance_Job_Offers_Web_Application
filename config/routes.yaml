@@ -1,6 +1,7 @@
 home:
     path: /
     controller: App\Controller\HomeController::index
+<<<<<<< HEAD
 
     # config/routes.yaml
 statistics:
@@ -8,3 +9,8 @@ statistics:
     controller: App\Controller\ServiceController::index
 
 
+=======
+search_courses:
+    path: /courses/search
+    methods: [POST]
+>>>>>>> origin/Course

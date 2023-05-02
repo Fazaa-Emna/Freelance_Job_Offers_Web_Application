@@ -38,9 +38,12 @@
             "./migrations/.gitignore"
         ]
     },
+<<<<<<< HEAD
     "knplabs/knp-paginator-bundle": {
         "version": "v5.9.0"
     },
+=======
+>>>>>>> origin/Course
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+
+       
+{% block body %}
+      
+   <a href="{{ path('app_course_new') }}" class="genric-btn info circle"> New course</a>
+
+<div>
+<form id="search-form" action="{{ path('app_course_index') }}" method="post">
+    <input type="text" name="searchTerm" placeholder="Search for courses">
+    <button type="submit" class="genric-btn info circle">Search</button>
+    <div id="course-list">
+    {% include 'course/_course_list.html.twig' with {'courses': courses} %}
+</div>
+</form>
+   
+
+  </div>
+
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+$(document).on('submit', '#search-form', function(e) {
+    e.preventDefault();
+    var form = $(this);
+    var url = form.attr('action');
+    var method = form.attr('method');
+    var data = form.serialize();
+    
+    $.ajax({
+        url: url,
+        type: method,
+        data: data,
+        dataType: 'html',
+        success: function(response) {
+            $('#course-list').html(response);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', error);
+        }
+    });
+});
+</script>
+{% endblock %}
+

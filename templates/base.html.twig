@@ -26,8 +26,11 @@
             <link rel="stylesheet" href={{asset("assets/css/slick.css")}}>
             <link rel="stylesheet" href={{asset("assets/css/nice-select.css")}}>
             <link rel="stylesheet" href={{asset("assets/css/style.css")}}>
+<<<<<<< HEAD
             <link rel="stylesheet" href={{ asset("assets/css/pagination.css") }}>
 
+=======
+>>>>>>> origin/Course
             {% endblock %}
    </head>
 {% block header %}
@@ -40,7 +43,11 @@
                         <div class="col-lg-3 col-md-5">
                             <!-- Logo -->
                             <div class="logo">
+<<<<<<< HEAD
                                 <a href="{{ path('home') }}"> <img src={{asset('assets/img/logo/m.jpg')}} width="190" height="45" alt=""></a>
+=======
+                                <a href="{{ path('home') }}"> <img src={{asset('assets/img/logo/m.png')}} width="190" height="45" alt=""></a>
+>>>>>>> origin/Course
                             </div>  
                         </div>
                         <div class="col-lg-9 col-md-20">
@@ -51,6 +58,7 @@
                                         <ul id="navigation">
                                             <li><a href="{{ path('home') }}"><font size="+1">Home</font></a></li>
                                             <li><a href="#"><font size="+1">Job offers </font></a></li>
+<<<<<<< HEAD
                                             <li><a href="#"><font size="+1">Services</font></a>
                                             
                                             <ul class="submenu">
@@ -62,6 +70,13 @@
                                             <ul class="submenu">
                                                     <li><a href="blog.html">Consult courses</a></li>
                                                     <li><a href="single-blog.html">My courses</a></li>
+=======
+                                            <li><a href="#"><font size="+1">Services</font></a></li>
+                                            <li><a href="#"><font size="+1">Courses</font></a>
+                                            <ul class="submenu">
+                                                 <li><a href="{{ path('app_course_front') }}">Consult courses</a></li>
+                                                    <li><a href="{{ path('app_course_index') }}">My courses</a></li>
+>>>>>>> origin/Course
                                                 </ul>
                                               <li><a href="#"><font size="+1">Events</font></a>
                                                <li><a href="#"><font size="+1">Blog</font></a>
@@ -91,6 +106,7 @@
 {% endblock %}
    <body>
      
+<<<<<<< HEAD
    {% block body %}
   
 
@@ -279,15 +295,105 @@
                                 <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
                                 </ul>
                             </nav>
+=======
+ 
+  
+ {% block body %}
+    
+    <main>
+
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="slider-active">
+                <div class="single-slider slider-height d-flex align-items-center" >
+               
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-9 col-md-10">
+                                <div class="hero__caption">
+                                    <h1>Find the most exciting startup jobs</h1>
+                                    
+                                </div>
+                                 
+                            </div>
+                             <img src="assets/img/hero/slider-img.png" ></img>
+                        </div>
+                       
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- Blog Area Start -->
+        <div class="home-blog-area blog-h-padding">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <span>Our latest blog</span>
+                            <h2>Our recent news</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class="home-blog-single mb-30">
+                            <div class="blog-img-cap">
+                                <div class="blog-img">
+                                    <img src="assets/img/blog/home-blog1.jpg" alt="">
+                                    <!-- Blog date -->
+                                    <div class="blog-date text-center">
+                                        <span>24</span>
+                                        <p>Now</p>
+                                    </div>
+                                </div>
+                                <div class="blog-cap">
+                                    <p>|   Properties</p>
+                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                    <a href="#" class="more-btn">Read more »</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class="home-blog-single mb-30">
+                            <div class="blog-img-cap">
+                                <div class="blog-img">
+                                    <img src="assets/img/blog/home-blog2.jpg" alt="">
+                                    <!-- Blog date -->
+                                    <div class="blog-date text-center">
+                                        <span>24</span>
+                                        <p>Now</p>
+                                    </div>
+                                </div>
+                                <div class="blog-cap">
+                                    <p>|   Properties</p>
+                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                    <a href="#" class="more-btn">Read more »</a>
+                                </div>
+                            </div>
+>>>>>>> origin/Course
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <!--Pagination End  -->
         
    
  {% endblock %}
+=======
+        <!-- Blog Area End -->
+ {% endblock %}
+    
+        
+   
+
+>>>>>>> origin/Course
     </body>
     <footer>
     {% block footer %}
@@ -461,13 +567,26 @@
              <script src={{asset('assets/js/mail-script.js')}}></script>
           <script src={{asset('assets/js/jquery.ajaxchimp.min.js')}}></script>
      
+<<<<<<< HEAD
         
+=======
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+>>>>>>> origin/Course
 		<!-- Jquery Plugins, main Jquery -->	
             <script src={{asset('assets/js/plugins.js')}}></script>
           <script src={{asset('assets/js/main.js')}}></script>
      
+<<<<<<< HEAD
         
         {% endblock %}
       
     </body>
 </html>
+=======
+           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% endblock %}
+      
+    </body>
+</html>
+>>>>>>> origin/Course
