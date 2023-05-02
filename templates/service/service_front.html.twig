@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+
+       
+{% block body %}
+ <main>   
+<!-- Hero Area Start-->
+        <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('{{ asset('./assets/img/hero/ny.jpg') }}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Our Services </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+ 
+                                
+                                
+                                
+                                 <form method="get">
+        <input type="text" name="query" placeholder="Service Name"  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+       onblur="this.placeholder = ' Service Name '" value="{{ query }}">
+        <button type="submit" class="genric-btn primary small">Search</button>
+    </form>
+
+
+                                {% for service in pagination %}
+
+
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                     
+                                            <a href="#"><img src= "{{ asset('assets/img/' ~ service.file) }}" alt="" width="300" height="150"></a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a  href="{{ path('app_service_show', {'id': service.id}) }}" >
+                                              
+                                                <h2>{{ service.name }}</h2>
+
+                                            </a>
+                                            <ul>
+                                                <li>{{service.cat}}</li>
+                                                <li>{{service.descr}}</li>
+                                                <li>{{ service.prix }}$</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                 {% else %}
+                          <tr>
+                        <td colspan="7">no records found</td>
+                      </tr>
+                     {% endfor %}
+
+                      
+                                
+                   <div class="post-details2  mb-50">
+                                 <!-- Small Section Tittle -->
+ 
+                              
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    <!-- Right Content -->
+                    
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- job post company End -->
+  <div class="text-center">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+
+    </main>
+
+{% endblock %}
