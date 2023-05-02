@@ -88,9 +88,10 @@
 
                                 </div>
                                 <div class="row">
-                                    {{ form_row(form.startDate) }}
-                                    {{ form_row(form.endDate) }}
-                                    {{ form_row(form.registrationdeadline) }} </div >
+                                    <div class="col">{{ form_row(form.startDate) }}</div>
+                                    <div class="col">{{ form_row(form.endDate) }}</div>
+                                    <div class="col">{{ form_row(form.registrationdeadline) }}</div>
+                                </div>
 
 
                                 <button class="btn">{{ button_label|default('Save') }}</button>

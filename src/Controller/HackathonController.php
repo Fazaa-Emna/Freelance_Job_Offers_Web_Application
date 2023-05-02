@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Hackathon;
 use App\Entity\Event;
+use App\Form\EventType;
 use App\Form\HackathonFilterType;
 use App\Form\HackathonType;
 use App\Repository\HackathonRepository;
@@ -73,28 +74,40 @@ class HackathonController extends AbstractController
         ]);
     }
     #[Route('/new', name: 'app_hackathon_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,MailerService $mailerService): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerService $mailerService): Response
     {
+        $event = new Event();
         $hackathon = new Hackathon();
+        $forma = $this->createForm(EventType::class, $event);
         $form = $this->createForm(HackathonType::class, $hackathon);
+        $forma->handleRequest($request);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mailerService->send("Hackathon has changed","nassim.benali@esprit.tn","mehdi.fathallah69@gmail.com","hackathon/email.html.twig",[
+            $event=$hackathon->getEvent();
+            $entityManager->persist($event);
+
+            $mailerService->send("Hackathon has changed", "nassim.benali@esprit.tn", "mehdi.fathallah69@gmail.com", "hackathon/email.html.twig", [
                 "name" => $hackathon->getEvent()->getEventName(),
                 "location" => $hackathon->getEvent()->getLocation()
             ]);
+
+            //$hackathon->setEvent($event);
             $entityManager->persist($hackathon);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_hackathon_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('hackathon/new.html.twig', [
+            'event' => $event,
             'hackathon' => $hackathon,
             'form' => $form,
         ]);
     }
+
+
 
     #[Route('/{hackathon}', name: 'app_hackathon_show', methods: ['GET'])]
     public function show(Hackathon $hackathon, QRCodeService $qrCodeService,BuilderInterface $qrBuilder ): Response
