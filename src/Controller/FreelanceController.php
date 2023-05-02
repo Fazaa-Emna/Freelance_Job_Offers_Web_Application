@@ -223,7 +223,7 @@ class FreelanceController extends AbstractController
             'categories' => $categories,
         ]);
 
-        $filePath = 'C:/Users/emnaa/Desktop/Recommendation.txt';
+        $filePath = 'assets\Recommendation.txt';
         $id = intval(file_get_contents($filePath));
         $freelances = $FreelanceRepo->findBy(['idfreelance' => $id]);
 
@@ -238,7 +238,7 @@ class FreelanceController extends AbstractController
         $pythonScriptPath = 'recommendOffer.py';
 
         $process = new Process(['python', $pythonScriptPath]);
-        $process->setWorkingDirectory('C:/Users/emnaa/Desktop/PIWEB/pipipi');
+        $process->setWorkingDirectory('C:\Users\Zahra\OneDrive\Bureau\integrate\Instalance-Web');
 
         try {
             $process->run();
