@@ -69,7 +69,11 @@ class Freelance
      *
      * @ORM\Column(name="AddDate", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
+<<<<<<< HEAD
     private $adddate;
+=======
+    private $adddate = 'CURRENT_TIMESTAMP';
+>>>>>>> origin/Event
 
     /**
      * @var string

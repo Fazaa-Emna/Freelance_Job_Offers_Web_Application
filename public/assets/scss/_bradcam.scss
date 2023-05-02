@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Event
 .breadcam_bg{
     background-image: url(../img/banner/bradcam.png);
 }
@@ -9,6 +12,7 @@
     background-image: url(../img/banner/bradcam3.png);
 }
 .bradcam_area{
+<<<<<<< HEAD
 =======
 .breadcam_bg {
     background-image: url(../img/banner/bradcam.png);
@@ -24,6 +28,8 @@
 
 .bradcam_area {
 >>>>>>> origin/freelance
+=======
+>>>>>>> origin/Event
     background-size: cover;
     background-position: center center;
     padding: 160px 0;
@@ -36,10 +42,14 @@
         padding: 150px 0;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     h3{
 =======
     h3 {
 >>>>>>> origin/freelance
+=======
+    h3{
+>>>>>>> origin/Event
         font-size: 50px;
         color: #fff;
         font-weight: 900;
@@ -56,10 +66,14 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .popup_box{
 =======
 .popup_box {
 >>>>>>> origin/freelance
+=======
+.popup_box{
+>>>>>>> origin/Event
     // position: absolute;
     // left: 50%;
     // top: 50%;
@@ -78,21 +92,30 @@
         padding: 45px 30px;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     h3{
 =======
     h3 {
 >>>>>>> origin/freelance
+=======
+    
+    h3{
+>>>>>>> origin/Event
         text-align: center;
         font-size: 22px;
         color: #1F1F1F;
         margin-bottom: 46px;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     .boxed-btn3{
 =======
     .boxed-btn3 {
 >>>>>>> origin/freelance
+=======
+    .boxed-btn3{
+>>>>>>> origin/Event
         width: 100%;
         text-transform: capitalize;
     }
@@ -161,6 +184,7 @@
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 .dropbtn {
@@ -206,6 +230,8 @@
 }
 
 >>>>>>> origin/freelance
+=======
+>>>>>>> origin/Event
 #test-form {
     display: inline-block;
     margin: auto;
@@ -214,12 +240,17 @@
     left: 50%;
     top: 50%;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @include transform (translate(-50%,-50%));
     @media #{$mobile_device}{
 =======
     @include transform (translate(-50%, -50%));
     @media #{$mobile_device} {
 >>>>>>> origin/freelance
+=======
+    @include transform (translate(-50%,-50%));
+    @media #{$mobile_device}{
+>>>>>>> origin/Event
         top: 0;
         left: 0;
         width: 100%;
@@ -231,12 +262,17 @@
         display: none !important;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     button{
         &.mfp-close{
 =======
     button {
         &.mfp-close {
 >>>>>>> origin/freelance
+=======
+    button{
+        &.mfp-close{
+>>>>>>> origin/Event
             display: none !important;
             @media #{$mobile_device} {
                 display: block !important;
@@ -253,9 +289,13 @@
         background: transparent;
         border: 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
         -webkit-appearance: none;
 =======
 >>>>>>> origin/freelance
+=======
+        -webkit-appearance: none;
+>>>>>>> origin/Event
         display: block;
         outline: none;
         padding: 0;
@@ -279,6 +319,9 @@
 
 .mfp-bg {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Event
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -288,6 +331,7 @@
 	position: fixed;
 	background: #4A3600;
 	opacity: 0.6;
+<<<<<<< HEAD
 =======
     top: 0;
     left: 0;
@@ -299,6 +343,8 @@
     background: #4A3600;
     opacity: 0.6;
 >>>>>>> origin/freelance
+=======
+>>>>>>> origin/Event
 }
 
 .gj-picker.gj-picker-md.datepicker.gj-unselectable {
@@ -307,17 +353,6 @@
         // left: 0 !important;
     }
 <<<<<<< HEAD
-
-}
-=======
-}
-
->>>>>>> origin/freelance
-.gj-picker.gj-picker-md.timepicker {
-    @media #{$mobile_device} {
-        width: 310px;
-        left: 6px !important;
-    }
 <<<<<<< HEAD
 
 }
@@ -325,6 +360,27 @@
 }
 
 >>>>>>> origin/freelance
+=======
+
+}
+>>>>>>> origin/Event
+.gj-picker.gj-picker-md.timepicker {
+    @media #{$mobile_device} {
+        width: 310px;
+        left: 6px !important;
+    }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+}
+=======
+}
+
+>>>>>>> origin/freelance
+=======
+
+}
+>>>>>>> origin/Event
 .gj-picker.gj-picker-md.datepicker.gj-unselectable {
     @media #{$mobile_device} {
         width: 320px;

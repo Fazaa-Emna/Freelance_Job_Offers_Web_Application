@@ -7,7 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Packag
  *
+<<<<<<< HEAD
  * @ORM\Table(name="packag", indexes={@ORM\Index(name="sid", columns={"sid"})})
+=======
+ * @ORM\Table(name="packag", indexes={@ORM\Index(name="fksid", columns={"sid"})})
+>>>>>>> origin/Event
  * @ORM\Entity
  */
 class Packag
@@ -22,6 +26,16 @@ class Packag
     private $idP;
 
     /**
+<<<<<<< HEAD
+=======
+     * @var int
+     *
+     * @ORM\Column(name="sid", type="integer", nullable=false)
+     */
+    private $sid;
+
+    /**
+>>>>>>> origin/Event
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
@@ -35,6 +49,7 @@ class Packag
      */
     private $price;
 
+<<<<<<< HEAD
     /**
      * @var \Service
      *
@@ -45,11 +60,28 @@ class Packag
      */
     private $sid;
 
+=======
+>>>>>>> origin/Event
     public function getIdP(): ?int
     {
         return $this->idP;
     }
 
+<<<<<<< HEAD
+=======
+    public function getSid(): ?int
+    {
+        return $this->sid;
+    }
+
+    public function setSid(int $sid): self
+    {
+        $this->sid = $sid;
+
+        return $this;
+    }
+
+>>>>>>> origin/Event
     public function getType(): ?string
     {
         return $this->type;
@@ -74,6 +106,7 @@ class Packag
         return $this;
     }
 
+<<<<<<< HEAD
     public function getSid(): ?Service
     {
         return $this->sid;
@@ -86,5 +119,7 @@ class Packag
         return $this;
     }
 
+=======
+>>>>>>> origin/Event
 
 }

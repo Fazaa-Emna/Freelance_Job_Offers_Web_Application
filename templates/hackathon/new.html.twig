@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Hackathon{% endblock %}
+
+{% block body %}
+
+    <body style="background-image: url({{ asset('assets/img/FrontForm2.jpg') }}) ;  background-size: cover; background-position: center; " >
+    <div class="container d-flex flex-column " style="padding-top: 60px;">
+        <div class="row min-vh-100">
+            <div class="col-sm-10 col-md-6 col-lg-8 mx-auto d-table h-25">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4">
+                        <h1 style="color: white;">Create new Hackathon</h1>
+                        <p class="lead" style="color: white;">
+                            Start creating the best Event With Instalance.
+                        </p>
+                    </div>
+
+                    {{ form_start(form , {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-sm-5">
+
+
+                                <div class="mb-3">
+
+
+
+                                    {{  form_label ( form.event.eventName,'Hackathon Name' ,{ 'attr': {'class': 'text-info'}}) }}
+
+                                    {% if form_errors(form.event.eventName) is not empty  %}
+                                        {% for error in form.event.eventName.vars['errors'] %}
+                                            <p class="text-danger">{{ error.message }}</p>
+                                        {% endfor %}
+
+
+                                    {% endif %}
+
+                                    {{  form_widget ( form.event.eventName ,{ 'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+
+                                <div class="mb-3">
+                                    {#        {{ form_row(form.description) }}#}
+                                    {{  form_label ( form.event.description,'Description' ,{ 'attr': {'class': 'text-info'}}) }}
+                                    {% if form_errors(form.event.description) is not empty  %}
+                                        {% for error in form.event.description.vars['errors'] %}
+                                            <p class="text-danger">{{ error.message }}</p>
+                                        {% endfor %}
+
+
+                                    {% endif %}
+
+                                    {{  form_widget ( form.description ,{ 'attr': {'class': 'form-control'}}) }}
+                                </div>
+
+                                <div class="mb-3">
+                                    {#        {{ form_row(form.location) }}#}
+
+                                    {{  form_label ( form.event.location,'Location' ,{ 'attr': {'class': 'text-info'}}) }}
+                                    {% if form_errors(form.event.location) is not empty  %}
+                                        {% for error in form.event.location.vars['errors'] %}
+                                            <p class="text-danger">{{ error.message }}</p>
+                                        {% endfor %}
+
+
+                                    {% endif %}
+
+                                    {{  form_widget ( form.event.location ,{ 'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+
+                                <div class="mb-3">
+                                    {#        {{ form_row(form.maxAttendees) }}#}
+
+                                    {{  form_label ( form.event.maxAttendees,'max Attendees' ,{ 'attr': {'class': 'text-info'}}) }}
+                                    {% if form_errors(form.event.maxAttendees) is  empty  %}
+                                        {% for error in form.event.maxAttendees.vars['errors'] %}
+                                            <p class="text-danger">{{ error.message }}</p>
+                                        {% endfor %}
+
+
+                                    {% endif %}
+
+                                    {{  form_widget ( form.event.maxAttendees ,{ 'attr': {'class': 'form-control'}}) }}
+
+
+                                </div>
+                                <div class="row">
+                                    {{ form_row(form.event.startDate) }}
+                                    {{ form_row(form.event.endDate) }}
+                                    {{ form_row(form.event.registrationdeadline) }} </div >
+
+
+                                <button class="btn">{{ button_label|default('Save') }}</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('app_hackathon_index') }}">back to list</a>
+    </body>
+
+{% endblock %}

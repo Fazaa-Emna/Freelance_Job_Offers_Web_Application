@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hackathon index{% endblock %}
+
+{% block body %}
+    <h1>Hackathon index</h1>
+    <div class="">
+        <a href="{{ path('app_event_index') }}" class="btn head-btn2">Event Space</a>
+        <a href="{{ path('app_workshop_index') }}" class="btn head-btn2">Workshop Space</a>
+    </div>
+    <div class="find-doctor-area">
+        <div class="container-fluid">
+            {{ form_start(form, {'attr':{'class':'find-doctors','style':'padding: 20px 20px; border-radius: 10px;'}}) }}
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>SEARCH BY:</label>
+                    <div class="form-group" >
+                        {{ form_widget(form.inputName) }}
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <button type="button" id="submit-search-btn" class="default-btn" style="background-color: #4e8712; border-color: #4e8712;">
+                        Search
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <a type="button" href="{{ path('app_hackathon_index') }}" class="default-btn" style="background-color: #c43535; border-color: #c43535;">
+                        Reset
+                    </a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div id="response-content">
+        {% include 'hackathon/table_content.html.twig' %}
+    </div>
+    <button  class="btn"><a href="{{ path('app_hackathon_new') }}">Create new hackathon</a></button>
+
+
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script>
+    const route = "{{ path('app_hackathon_index')|escape('js') }}"
+    const inputName = $('#inputName');
+
+    $('#submit-search-btn').on('click', function(){
+        let searchName = inputName.val()
+
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('inputName',searchName)
+
+        $.ajax({
+            url: route + '?' + urlSearchParams.toString(),
+            type: 'GET',
+            success: function(response) {
+                $('#response-content').html(response)
+            }
+        })
+
+    });
+
+   /* $(document).ready(function() {
+        console.log(route)
+        $('#search-form').submit(function(event) {
+            event.preventDefault();
+
+            var query = $('#query').val();
+
+            $.ajax({
+                url: "",
+                data: { query: query },
+                success: function(data) {
+
+                    $('#search-results').html(results);
+
+                }
+            });
+        });*/
+</script>
+{% endblock %}
+

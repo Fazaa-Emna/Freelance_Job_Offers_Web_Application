@@ -79,7 +79,11 @@ class Historysearch
         return $this->search;
     }
 
+<<<<<<< HEAD
     public function etSearchs(string $search): self
+=======
+    public function setSearch(string $search): self
+>>>>>>> origin/Event
     {
         $this->search = $search;
 
