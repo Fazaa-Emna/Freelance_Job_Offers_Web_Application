@@ -42,5 +42,6 @@
         </tbody>
     </table>
 
-    <button  class="btn"><a href="{{ path('app_workshop_index') }}">Back</a></button>
+    <a href="{{ path('app_workshop_edit', {'workshop': workshop.event.eventId}) }}" class="btn head-btn4">edit</a>
+    <td> {{ include('workshop/_delete_form.html.twig') }} </td>
 {% endblock %}

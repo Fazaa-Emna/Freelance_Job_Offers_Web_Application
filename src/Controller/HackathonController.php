@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Hackathon;
 use App\Entity\Event;
+use App\Form\EventType;
 use App\Form\HackathonFilterType;
 use App\Form\HackathonType;
 use App\Repository\HackathonRepository;
@@ -47,34 +48,71 @@ class HackathonController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_hackathon_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,MailerService $mailerService): Response
+    #[Route('/Hackathon', name: 'app_hackathon_hackathon_front', methods: ['GET'])]
+    public function indexFront(EntityManagerInterface $entityManager,Request $request): Response
     {
+        $services = $entityManager
+            ->getRepository(Hackathon::class)
+            ->findAll();
+        $query = $request->query->get('query');
+        $hackathons = [];
+
+        if ($query) {
+            $services = $this->getDoctrine()->getRepository(Hackathon::class)
+                ->createQueryBuilder('h')
+                ->where('h.event.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
+        }
+
+        return $this->render('hackathon/hackathon_front.html.twig', [
+            'hackathons' => $hackathons,
+            'query' => $query,
+        ]);
+    }
+    #[Route('/new', name: 'app_hackathon_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerService $mailerService): Response
+    {
+        $event = new Event();
         $hackathon = new Hackathon();
+        $forma = $this->createForm(EventType::class, $event);
         $form = $this->createForm(HackathonType::class, $hackathon);
+        $forma->handleRequest($request);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $mailerService->send("Hackathon has changed","nassim.benali@esprit.tn","mehdi.fathallah69@gmail.com","hackathon/email.html.twig",[
+            $event=$hackathon->getEvent();
+            $entityManager->persist($event);
+
+            $mailerService->send("Hackathon has changed", "nassim.benali@esprit.tn", "mehdi.fathallah69@gmail.com", "hackathon/email.html.twig", [
                 "name" => $hackathon->getEvent()->getEventName(),
                 "location" => $hackathon->getEvent()->getLocation()
             ]);
+
+            //$hackathon->setEvent($event);
             $entityManager->persist($hackathon);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_hackathon_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('hackathon/new.html.twig', [
+            'event' => $event,
             'hackathon' => $hackathon,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{eventId}', name: 'app_hackathon_show', methods: ['GET'])]
+
+
+    #[Route('/{hackathon}', name: 'app_hackathon_show', methods: ['GET'])]
     public function show(Hackathon $hackathon, QRCodeService $qrCodeService,BuilderInterface $qrBuilder ): Response
     {
-
+        //dd($hackathon);
         $path = dirname(__DIR__, 2).'/public/uploads/';
 
         $data ='Hackathon name: '.$hackathon->getEvent()->getEventName()."\n\n".'description:'.$hackathon->getEvent()->getDescription()."\n"."\n". 'Location: '.$hackathon->getEvent()->getLocation();
@@ -96,7 +134,7 @@ class HackathonController extends AbstractController
         ]);
     }
 
-    #[Route('/{eventId}/edit', name: 'app_hackathon_edit', methods: ['GET', 'POST'])]
+    #[Route('/hackathon/{hackathon}/edit', name: 'app_hackathon_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Hackathon $hackathon, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HackathonType::class, $hackathon);

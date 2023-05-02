@@ -4,17 +4,24 @@ namespace App\Form;
 
 use App\Entity\Workshop;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WorkshopType extends AbstractType
+class WorkshopFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('agenda')
-            ->add('event', EventType::class, [
-            ]);
+            ->add('inputName', TextType::class, [
+                'label' => 'Nom Event',
+                'attr' => [
+                    'class' => 'form-control src',
+                    'placeholder' => 'Nom Hackathon',
+                    'data' => 'inputName'
+                ]
+            ])
+            ->setMethod('GET')
         ;
     }
 

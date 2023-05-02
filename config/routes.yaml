@@ -25,4 +25,12 @@ controllers:
 search_users:
     path: /search-users
     controller: App\Controller\EventController::searchOrdonnance
+<<<<<<< HEAD
+>>>>>>> origin/Event
+=======
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+    # config/routes.yaml
 >>>>>>> origin/Event

@@ -16,3 +16,9 @@ class HomeController extends AbstractController
         ]);
     }
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/Event
