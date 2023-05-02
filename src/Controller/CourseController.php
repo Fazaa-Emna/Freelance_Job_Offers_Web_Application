@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
+use TCPDF;
 
 use App\Entity\Course;
 use App\Form\CourseType;
-
+use Knp\Component\Pager\PaginatorInterface;
 use App\Form\SearchForm;
 use App\Repository\CourseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,8 +16,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/course')]
 class CourseController extends AbstractController
 {
+   
     #[Route('/', name: 'app_course_index', methods: ['GET','POST'])]
-    public function index(Request $request,CourseRepository $courseRepository): Response
+    public function index(Request $request,CourseRepository $courseRepository ): Response
     {
     
         $searchTerm = $request->request->get('searchTerm');
@@ -36,17 +38,27 @@ class CourseController extends AbstractController
     return $this->render('course/index.html.twig', array(
         'courses' => $courses
     ));
-        
+   
     
     }
+
     #[Route('/courses', name: 'app_course_front', methods: ['GET'])]
-    public function indexFront(CourseRepository $courseRepository): Response
+    public function indexFront(CourseRepository $courseRepository,Request $request,PaginatorInterface $paginator): Response
     {
-      
+       
+        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $pagination = $paginator->paginate(
+            $courses, // query results
+            $request->query->getInt('page', 1), // page number
+            1 // number of items per page
+        );
+
             // Get all courses if the search form was not submitted
-            $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+          
             return $this->render('course/course_front.html.twig', [
                 'courses' => $courseRepository->findAll(),
+                'pagination' => $pagination
+
             ]);
     
       
@@ -79,12 +91,15 @@ class CourseController extends AbstractController
             'form' => $form,
         ]);
     }
+   
 
     #[Route('/{cid}', name: 'app_course_show', methods: ['GET'])]
     public function show(Course $course): Response
     {
+      
         return $this->render('course/show.html.twig', [
             'course' => $course,
+           
         ]);
     }
 
@@ -125,5 +140,114 @@ class CourseController extends AbstractController
     $retour=json_encode($jsonContent);
     return new Response($retour);
     }
-  
+   
+    /**
+     * @Route("/pdf", name="pdf")
+     */
+    public function pdf(): Response
+    {
+     
+        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle('Courses');
+        $pdf->SetSubject('Courses List');
+        $pdf->SetKeywords('Courses, PDF');
+        $pdf->SetFont('helvetica', '', 11);
+        $pdf->setImageScale(5);
+        $pdf->AddPage();
+        $i=10;
+        foreach ($courses as $course) {
+           
+            $photo=$course->getPhoto();
+           $pdf->Image( "assets/img/$photo",10,$i, '', '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
+            $pdf->Cell(0, 10, $course->getTitle(), 0, 1);
+            $i+=40;
+        }
+        $pdf->Output('courses.pdf', 'D');
+    }
+    private $paginator;
+
+    public function __construct(PaginatorInterface $paginator)
+    {
+        $this->paginator = $paginator;
+    }
+     /**
+     * @Route("/course/triASC", name="/course/triASC")
+     */
+    public function TriASC(Request $request,PaginatorInterface $paginator)
+    {
+        $query = $this->getDoctrine()
+        ->getRepository(Course::class)
+        ->createQueryBuilder('a')
+        ->orderBy('a.price', 'ASC');
+    
+    $pagination = $this->paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1),
+        1
+    );
+    
+    return $this->render(
+            'course/course_front.html.twig', 
+        array( 'pagination' => $pagination)
+    );
+    
+    }
+    /**
+     * @Route("/course/triDESC", name="/course/triDESC")
+     */
+    public function triDESC(Request $request,PaginatorInterface $paginator)
+    {
+        $query = $this->getDoctrine()
+        ->getRepository(Course::class)
+        ->createQueryBuilder('a')
+        ->orderBy('a.price', 'DESC');
+    
+    $pagination = $this->paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1),
+        1
+    );
+    
+    return $this->render(
+            'course/course_front.html.twig', 
+        array( 'pagination' => $pagination)
+    );
+    
+    }
+    #[Route('/{cat}', name: 'app_course_filter', methods: ['POST'])]
+    public function filter(Request $request,PaginatorInterface $paginator)
+    {
+        $query = $this->getDoctrine()
+        ->getRepository(Course::class)
+        ->createQueryBuilder('a')
+        ->orderBy('a.price', 'DESC');
+   
+    
+    return $this->render(
+            'course/course_front.html.twig', 
+        array( 'pagination' => $pagination)
+    );
+    
+    }
+    /**
+ * @Route("/course/{category}", name="course_filter")
+ */
+public function filterCoursesByCategory(Request $request, $category)
+{
+    // Get courses filtered by category
+    $courses = $this->getDoctrine()
+        ->getRepository(Course::class)
+        ->findBy(['category' => $category]);
+ 
+        $pagination = $this->paginator->paginate(
+            $courses,
+            $request->query->getInt('page', 1),
+            1
+        );
+    // Render filtered courses
+    return $this->render('course/course_front.html.twig', [
+        'pagination' => $pagination,
+    ]);
+}
 }

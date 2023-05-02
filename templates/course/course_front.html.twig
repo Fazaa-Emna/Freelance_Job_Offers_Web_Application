@@ -4,7 +4,6 @@
        
 {% block body %}
    
-  
      <div class="job-listing-area pt-120 pb-120">
             <div class="container">
                 <div class="row">
@@ -38,21 +37,64 @@
                                           
                                             <!-- Select job items start -->
                                             <div class="select-job-items">
-                                                <span>Sort by</span>
-                                                <select name="select">
-                                                    <option value="">title</option>
-                                                    <option value="">price</option>
-                                                   
-                                                </select>
+                                                <span>Sort Price</span>
+                                              
+                                                <div>
+									<form role="search" id="nav-search-form" method="post" action="{{ path('/course/triASC') }}">
+										<div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+											<div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+												<button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+													 Asc
+												</button>
+											</div>
+										</div>
+
+									</form>
+									</div>
+   <div>
+									<form role="search" id="nav-search-form" method="post" action="{{ path('/course/triDESC') }}">
+										<div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+											<div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+												<button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+													 Desc
+												</button>
+											</div>
+										</div>
+
+									</form>
+									</div>
                                             </div>
-                                             <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Categories</option>
-                                        <option value="">Mathematics</option>
-                                        <option value="">Marketing</option>
-                                        <option value="">Bussiness</option>
-                                        <option value="">Development</option>
-                                    </select>
+                                           
+                                            
+                                   <div>
+                                  <form action="" method="get" id="my-form">
+  <select name="category" id="my-select">
+    <option value="">All Categories</option>
+    <option value="mathematics">Mathematics</option>
+    <option value="marketing">Marketing</option>
+    <option value="business">Business</option>
+    <option value="development">Development</option>
+  </select>
+  <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+											<div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+												<button type="submit" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+													 Filter
+												</button>
+											</div>
+  
+</form>
+        </div>
+<script>
+  const myForm = document.querySelector('#my-form');
+  const mySelect = document.querySelector('#my-select');
+  myForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent default form submission
+    const selectedValue = mySelect.value; // get the selected value
+    const newAction = `{{ path('course_filter', {'category': '__value__'}) }}`.replace('__value__', selectedValue);
+    myForm.action = newAction; // update the form action
+    myForm.submit(); // submit the form
+  });
+</script>
                                 </div>
                                 
                                             <!--  Select job items End-->
@@ -61,8 +103,8 @@
                                 </div>
                                 <!-- Count of Job list End -->
                                 <!-- single-job-content -->
-                                 {% for course in courses %}
-                                <div class="single-job-items mb-30">
+                                  {% for course in pagination %}
+               <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
                                      
@@ -88,7 +130,10 @@
                                 
                   </div>
                   </section>
-                   
+                    <div class="text-center">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
                     </div>
                 </div>
             </div>

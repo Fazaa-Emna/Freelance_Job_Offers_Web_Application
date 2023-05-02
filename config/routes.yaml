@@ -1,16 +1,19 @@
 home:
     path: /
     controller: App\Controller\HomeController::index
-<<<<<<< HEAD
-
-    # config/routes.yaml
-statistics:
-    path: /statistics
-    controller: App\Controller\ServiceController::index
-
-
-=======
 search_courses:
     path: /courses/search
     methods: [POST]
->>>>>>> origin/Course
+pdf:
+    path: /pdf
+    controller: App\Controller\CourseController::pdf
+back:
+    path: /courses/back
+    controller: App\Controller\CourseBackController::index
+statistics:
+    path: /statistics
+    controller: App\Controller\ServiceController::index
+backend:
+    path: /services/back
+    controller: App\Controller\ServiceBackController::index
+
