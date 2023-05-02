@@ -4,3 +4,8 @@ controllers:
 search_users:
     path: /search-users
     controller: App\Controller\EventController::searchOrdonnance
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+    # config/routes.yaml

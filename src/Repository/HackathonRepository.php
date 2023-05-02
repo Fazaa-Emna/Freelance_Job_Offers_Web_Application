@@ -45,7 +45,7 @@ class HackathonRepository extends ServiceEntityRepository
             ->where('h.event.eventId = :idc')
             ->setParameter('idc', $id)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult() ;
     }
 
     public function search(string $eventName): array
@@ -57,5 +57,6 @@ class HackathonRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 
 }

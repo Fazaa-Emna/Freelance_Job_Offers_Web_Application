@@ -47,6 +47,31 @@ class HackathonController extends AbstractController
         ]);
     }
 
+    #[Route('/Hackathon', name: 'app_hackathon_hackathon_front', methods: ['GET'])]
+    public function indexFront(EntityManagerInterface $entityManager,Request $request): Response
+    {
+        $services = $entityManager
+            ->getRepository(Hackathon::class)
+            ->findAll();
+        $query = $request->query->get('query');
+        $hackathons = [];
+
+        if ($query) {
+            $services = $this->getDoctrine()->getRepository(Hackathon::class)
+                ->createQueryBuilder('h')
+                ->where('h.event.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
+        }
+
+        return $this->render('hackathon/hackathon_front.html.twig', [
+            'hackathons' => $hackathons,
+            'query' => $query,
+        ]);
+    }
     #[Route('/new', name: 'app_hackathon_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager,MailerService $mailerService): Response
     {
@@ -71,10 +96,10 @@ class HackathonController extends AbstractController
         ]);
     }
 
-    #[Route('/{eventId}', name: 'app_hackathon_show', methods: ['GET'])]
+    #[Route('/{hackathon}', name: 'app_hackathon_show', methods: ['GET'])]
     public function show(Hackathon $hackathon, QRCodeService $qrCodeService,BuilderInterface $qrBuilder ): Response
     {
-
+        //dd($hackathon);
         $path = dirname(__DIR__, 2).'/public/uploads/';
 
         $data ='Hackathon name: '.$hackathon->getEvent()->getEventName()."\n\n".'description:'.$hackathon->getEvent()->getDescription()."\n"."\n". 'Location: '.$hackathon->getEvent()->getLocation();
@@ -96,7 +121,7 @@ class HackathonController extends AbstractController
         ]);
     }
 
-    #[Route('/{eventId}/edit', name: 'app_hackathon_edit', methods: ['GET', 'POST'])]
+    #[Route('/hackathon/{hackathon}/edit', name: 'app_hackathon_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Hackathon $hackathon, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HackathonType::class, $hackathon);
