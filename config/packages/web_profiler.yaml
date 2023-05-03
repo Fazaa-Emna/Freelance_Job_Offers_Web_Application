@@ -4,13 +4,9 @@ when@dev:
         intercept_redirects: false
 
     framework:
-<<<<<<< HEAD
         profiler:
             only_exceptions: false
 
-=======
-        profiler: { only_exceptions: false }
->>>>>>> origin/blog1
 
 when@test:
     web_profiler:

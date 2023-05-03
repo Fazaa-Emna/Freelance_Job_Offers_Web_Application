@@ -1,7 +1,4 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
-<<<<<<< HEAD
         message_bus: false
-=======
->>>>>>> origin/blog1

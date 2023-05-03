@@ -23,15 +23,17 @@ use Joli\JoliNotif\NotifierFactory;
 class BlogController extends AbstractController
 {
     #[Route("/", name:"display_blog")]
-public function index(Request $request, BlogRepository $repository): Response
+public function index(Request $request, BlogRepository $repository,ManagerRegistry $doctrine): Response
 {
+    $repoC = $doctrine->getRepository(Blog::class);
+ 
     $currentSort = $request->query->get('sort', 'ASC');
     
     if ($currentSort == 'ASC') {
-        $blogs = $repository->findBy([], ['title' => 'ASC']);
+        $blogs = $repoC->findBy([], ['title' => 'ASC']);
         $nextSort = 'DESC';
     } else {
-        $blogs = $repository->findBy([], ['title' => 'DESC']);
+        $blogs = $repoC->findBy([], ['title' => 'DESC']);
         $nextSort = 'ASC';
     }
     

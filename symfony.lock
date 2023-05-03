@@ -1,10 +1,8 @@
 {
     "doctrine/annotations": {
-<<<<<<< HEAD
+
         "version": "2.0",
-=======
-        "version": "1.14",
->>>>>>> origin/blog1
+
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -16,11 +14,9 @@
         ]
     },
     "doctrine/doctrine-bundle": {
-<<<<<<< HEAD
-        "version": "2.9",
-=======
+
         "version": "2.8",
->>>>>>> origin/blog1
+
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -33,7 +29,7 @@
             "./src/Repository/.gitignore"
         ]
     },
-<<<<<<< HEAD
+
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.4",
         "recipe": {
@@ -46,8 +42,7 @@
             "./src/DataFixtures/AppFixtures.php"
         ]
     },
-=======
->>>>>>> origin/blog1
+
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.2",
         "recipe": {
@@ -61,7 +56,6 @@
             "./migrations/.gitignore"
         ]
     },
-<<<<<<< HEAD
     "endroid/qr-code-bundle": {
         "version": "4.3.1"
     },
@@ -95,10 +89,7 @@
     },
     "phpunit/phpunit": {
         "version": "9.6",
-=======
-    "phpunit/phpunit": {
-        "version": "9.5",
->>>>>>> origin/blog1
+
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -178,7 +169,7 @@
             "./src/Kernel.php"
         ]
     },
-<<<<<<< HEAD
+
     "symfony/google-mailer": {
         "version": "6.1",
         "recipe": {
@@ -188,8 +179,7 @@
             "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
         }
     },
-=======
->>>>>>> origin/blog1
+
     "symfony/mailer": {
         "version": "5.4",
         "recipe": {
@@ -217,11 +207,9 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.4",
-<<<<<<< HEAD
+
             "ref": "8bd5f27013fb1d7217191c548e340f0bdb11912c"
-=======
-            "ref": "dfe610928a5c61619bdfc830cd7fa7f091368023"
->>>>>>> origin/blog1
+
         },
         "files": [
             "./config/packages/messenger.yaml"
@@ -348,17 +336,15 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "1.0",
-<<<<<<< HEAD
+
             "ref": "aece95c8a188f6e6d04f01ccb8678d1764fd2642"
-=======
-            "ref": "2fb3513dbc139884fc5b7c751242b66f9f10f0c3"
->>>>>>> origin/blog1
+
         },
         "files": [
             "./config/packages/messenger.yaml"
         ]
     },
-<<<<<<< HEAD
+
     "symfony/webpack-encore-bundle": {
         "version": "1.16",
         "recipe": {
@@ -389,9 +375,6 @@
     },
     "twig/extra-bundle": {
         "version": "v3.5.1"
-=======
-    "twig/extra-bundle": {
-        "version": "v3.5.0"
->>>>>>> origin/blog1
+
     }
 }
