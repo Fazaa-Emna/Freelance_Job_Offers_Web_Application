@@ -235,10 +235,16 @@ class CourseController extends AbstractController
  */
 public function filterCoursesByCategory(Request $request, $category)
 {
-    // Get courses filtered by category
-    $courses = $this->getDoctrine()
+    
+    if ($category=="all") {
+        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+      
+    } else {
+        $courses = $this->getDoctrine()
         ->getRepository(Course::class)
         ->findBy(['category' => $category]);
+    }
+   
  
         $pagination = $this->paginator->paginate(
             $courses,
