@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 home:
     path: /
     controller: App\Controller\HomeController::index
@@ -26,3 +27,8 @@ search_users:
 
 
 
+=======
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+>>>>>>> origin/blog1

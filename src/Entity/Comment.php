@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+<<<<<<< HEAD
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,6 +40,30 @@ class Comment
     public function getIdComment(): ?int
     {
         return $this->idComment;
+=======
+
+use App\Repository\CommentRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: CommentRepository::class)]
+class Comment
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $body = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Blog $blog = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+>>>>>>> origin/blog1
     }
 
     public function getBody(): ?string
@@ -53,6 +78,7 @@ class Comment
         return $this;
     }
 
+<<<<<<< HEAD
     public function getIdBlog(): ?int
     {
         return $this->idBlog;
@@ -66,4 +92,18 @@ class Comment
     }
 
 
+=======
+    public function getBlog(): ?Blog
+    {
+        return $this->blog;
+    }
+
+    public function setBlog(?Blog $blog): self
+    {
+        $this->blog = $blog;
+
+        return $this;
+    }
+   
+>>>>>>> origin/blog1
 }
