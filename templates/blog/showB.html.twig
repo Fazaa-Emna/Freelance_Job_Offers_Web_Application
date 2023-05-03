@@ -1,0 +1,166 @@
+{% extends 'front.html.twig'%}
+{% block body %}
+
+<div style= "display: flex; align-items: center;justify-content:center; margin-top:100px;padding:10px;">
+
+      <div class="card">
+        <div class="card-body">
+        <a class='btn btn-primary' href="{{path ('display_blog') }}">return </a>
+          <h5 class="card-title">Blog</h5>
+
+          <!-- General Form Elements -->
+          <div class="row mb-10 col-sm-10">
+            <label for="inputText" class="col-sm-6 col-form-label"> </label>
+                  <h5 class="card-title">{{ blog.title }}</h5>
+            </div>
+
+                <div class="row mb-10 col-sm-10">
+            <label for="inputText" class="col-sm-6 col-form-label"> </label>
+              <h5 class="card-title">{{ blog.body }}</h5>
+            
+                    
+              </div>
+              <div class="card-footer">
+    <a href="{{ path('modif_blog', {'id': blog.id}) }}" class="btn btn-primary">Modifier</a>
+    <a href="{{ path('supp_blog', {'id': blog.id}) }}" class="btn btn-danger">Supprimer</a>
+  </div>
+            </div>
+
+
+                  
+          <div class="col-sm-10" style="display:flex; align-items:center; justify-content:center">
+              
+            
+             
+          </div>
+
+
+      </div>
+    </div>
+
+  </div> 
+
+<table class="table">
+            <h2 class="col-sm-4">Table de comment</h2>
+            <thead>           
+                <th scope="col"> Comment </th>
+                <th scope="col"> Modification</th>
+                <th scope="col"> suppression</th>
+            </thead>
+            <tbody>
+
+                {% for comment in comments %}                    
+                    <tr>
+                        
+                        <td > {{comment.body}} </td>
+                        <td >
+                            <a class = 'btn btn-success' href="{{path ('modif_comment',{'id':comment.id}) }}">Modifier </a>
+                        
+                        
+                        <td>
+                            <a class = 'btn btn-danger' href="{{path ('supp_comment',{'id':comment.id}) }}">Supprimer </a>
+                        </td>
+
+                         
+                       
+                    </tr>    
+                {% endfor %}
+                
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br> 
+    
+        <a class='btn btn-primary' href="{{path ('add_comment') }}">ajouter </a>
+        <br>
+        <br>
+        <br>
+        <a class='btn btn-primary' href="{{path ('display_blog') }}">return </a>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"></script>          
+<style>
+            #stars
+            {
+                width:200px;
+                height:200px;
+                margin:50px auto;   
+            }
+            lt
+            {
+                display:inline-block;
+                {# font-size:20px; #}
+                padding:1px;
+                color:#ccc;
+            }
+            .hovered-stars
+            {
+                color:#FFCC36;
+            }
+            .clicked-stars
+            {
+                color:sandybrown;
+            }
+</style>
+<script>
+var data;
+    $(document).ready(function(){
+        $("lt").mouseover(function(){
+            var current = $(this);
+            $("lt").each(function(index){
+                $(this).addClass("hovered-stars");
+                if(index == current.index())
+                {
+                    return false;
+                }
+            })
+        })
+        $("lt").mouseleave(function(){
+            $("lt").removeClass("hovered-stars");
+        });
+        $("lt i").click(function(){
+            $("lt").removeClass("clicked-stars");
+            $(".hovered-stars").addClass("clicked-stars");
+            var val=$(".clicked-stars").length;
+            
+            console.log(val);
+            
+        
+        $.ajax({
+            type: "POST",
+            url: "{{path('star',{id:blog.getId()})}}",
+            data: {value:val},
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                $("#msg").html((response.toFixed(2))+"/5");
+            },
+            error: function(jqXHR, status, error) {
+            console.log(error);
+            
+        }
+        });
+        
+        });
+    
+    })
+</script>
+
+
+
+<div id="stars">
+                            <ul>
+                                <lt><i value="1" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="2" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="3" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="4" class="fa fa-star fa-fw"></i></lt>
+                                <lt><i value="5" class="fa fa-star fa-fw"></i></lt>
+                                <div id="msg">{{blog.note | number_format(2) }}/5</div>
+                            </ul>
+                        </div>
+       {% endblock %}

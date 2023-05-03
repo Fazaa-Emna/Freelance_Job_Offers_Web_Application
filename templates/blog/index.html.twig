@@ -1,0 +1,70 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Ici Ton blog{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+
+<div class="example-wrapper">
+<br></br><br></br>
+    <div style="display:flex;align-items: center; justify-content:center">
+    <div class="input-group no-border">
+
+    <input type="text" value="" class="form-control" placeholder="Search for..." id="myInput">
+    <div>
+    <form action="{{ path('display_blog') }}" method="get">
+    <input type="hidden" name="sort" value="{{ nextSort }}">
+    <button type="submit" class="btn btn-primary">
+        Sort by title ({{ nextSort }})
+    </button>
+</form>
+
+</div>
+</div>
+</div>
+    <table border="5" id="t">
+        <thead>           
+            <th>Title</th>
+        </thead>
+        <tbody id="myTable">
+        {% for blog in b %}
+        <tr>
+             <td>
+                <a href="{{path ('showBlog',{'id':blog.id}) }}" style="color: black;">{{blog.title}}</a>
+            </td>   
+        </tr>              
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    </div>
+    
+        <a class='btn btn-primary' href="{{path ('addBlog') }}">ajouter </a>
+                <a class='btn btn-primary' href="{{path ('app_bot') }}">chatbot </a>
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+     
+     <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+     </script>
+</div>
+
+
+{% endblock %}

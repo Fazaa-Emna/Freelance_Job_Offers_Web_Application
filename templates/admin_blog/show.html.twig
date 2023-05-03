@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+    <h1>Blog</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ blog.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ blog.title }}</td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ blog.body }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_blog_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_blog_edit', {'id': blog.id}) }}">edit</a>
+
+    {{ include('admin_blog/_delete_form.html.twig') }}
+
+
+
+<table>
+            <h2>Table de comment</h2>
+            <thead>           
+                <th> Comment Id </th>
+                <th> Body </th>
+                <th> Modification</th>
+                <th> suppression</th>
+                <th> Affichage</th>
+            </thead>
+            <tbody>
+
+
+                {% for comment in comments %}                    
+                    <tr>
+                        
+                        <td > {{comment.id}}</td>
+                        <td > {{comment.body}} </td>
+                        <td >
+                            <a  href="{{path ('app_admin_comment_edit',{'id':comment.id}) }}">Modifier </a>
+                        
+                        
+                        <td>
+                            <a href="{{path ('app_admin_comment_delete',{'id':comment.id}) }}">Supprimer </a>
+                        </td>
+                        <td>
+                            <a href="{{path ('app_admin_comment_show',{'id':comment.id}) }}">Afficher </a>
+                        </td>
+                    </tr>    
+                {% endfor %}
+
+                 </tbody>
+        </table>
+        <a href="{{path ('app_admin_comment_new') }}">ajouter </a>
+            
+{% endblock %}
