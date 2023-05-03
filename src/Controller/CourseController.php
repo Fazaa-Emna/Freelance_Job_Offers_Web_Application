@@ -83,9 +83,9 @@ class CourseController extends AbstractController
                 $course->setPhoto($photoFileName);
             $courseRepository->save($course, true);
 
-            return $this->redirectToRoute('app_lesson_course', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
         }
-    }
+     }
         return $this->renderForm('course/new.html.twig', [
             'course' => $course,
             'form' => $form,

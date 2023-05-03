@@ -19,8 +19,8 @@ class CourseType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('photo', FileType::class, [
-                'mapped' => false, // don't map this field to any entity property
-           ])
+                'mapped' => false, 
+              ])
             ->add('category', ChoiceType::class, [
                 'choices'  => [
                     'Mathematics' => 'Mathematics',

@@ -20,24 +20,26 @@ class LessonController extends AbstractController
             'lessons' => $lessonRepository->findAll(),
         ]);
     }
+    
     #[Route('/new', name: 'app_lesson_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LessonRepository $lessonRepository): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+          
             $lessonRepository->save($lesson, true);
 
-            return $this->redirectToRoute('app_lesson_index', [], Response::HTTP_SEE_OTHER);
-        }
-
+            return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
+        
+       }
         return $this->renderForm('lesson/new.html.twig', [
             'lesson' => $lesson,
             'form' => $form,
         ]);
     }
+  
     #[Route('/course/{cid}/lesson', name: 'app_lesson_course_front', methods: ['GET', 'POST'])]
     public function showLessonsByCourseFront($cid)
     {

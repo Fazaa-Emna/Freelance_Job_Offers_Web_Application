@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerMuOOuv4\App_KernelDevDebugContainer([
     'container.build_hash' => 'MuOOuv4',
-    'container.build_id' => '3e323223',
-    'container.build_time' => 1683064958,
+    'container.build_id' => '32905471',
+    'container.build_time' => 1683122578,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerMuOOuv4');
