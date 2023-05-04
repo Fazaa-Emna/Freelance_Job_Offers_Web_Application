@@ -20,6 +20,14 @@ App\Entity\Application:
         confirmation: <boolean()>
         notification: '(@confirmation ? true : false)'
         idfreelance: '@freelance_*'
+App\Entity\Course:
+    application_{1..5}:
+        title: <title()>
+        description: <text(10)>
+        price: <randomElement([20, 30, 40,23,11])>
+        category: <randomElement(["mathematics", "marketing","business" "development"])>
+        photo:  <randomElement(["java.jpg", "math.jpg", "marketing.png"])>
+
 
 
  
