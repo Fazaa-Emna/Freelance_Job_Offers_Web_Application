@@ -39,7 +39,6 @@ class CourseController extends AbstractController
         'courses' => $courses
     ));
    
-    
     }
 
     #[Route('/courses', name: 'app_course_front', methods: ['GET'])]

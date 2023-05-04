@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Lesson
  *
- * @ORM\Table(name="lesson", indexes={@ORM\Index(name="IDX_F87474F34B30D9C4", columns={"cid"})})
+ * @ORM\Table(name="lesson", indexes={@ORM\Index(name="fk_cL", columns={"cid"})})
  *@ORM\Entity(repositoryClass="App\Repository\LessonRepository")
  */
 class Lesson

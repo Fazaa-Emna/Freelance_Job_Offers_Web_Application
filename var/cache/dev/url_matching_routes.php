@@ -13,6 +13,10 @@ return [
         '/admin/comment' => [[['_route' => 'app_admin_comment_index', '_controller' => 'App\\Controller\\AdminCommentController::index'], null, ['GET' => 0], null, true, false, null]],
         '/admin/comment/new' => [[['_route' => 'app_admin_comment_new', '_controller' => 'App\\Controller\\AdminCommentController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/application' => [[['_route' => 'app_application_index', '_controller' => 'App\\Controller\\ApplicationController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/back/courses' => [[['_route' => 'course_index', '_controller' => 'App\\Controller\\BackController::course_index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/back/services' => [[['_route' => 'service_index', '_controller' => 'App\\Controller\\BackController::service_index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/back/events' => [[['_route' => 'event_index', '_controller' => 'App\\Controller\\BackController::event_index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/back/blogs' => [[['_route' => 'blog_index', '_controller' => 'App\\Controller\\BackController::blog_index'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/blog' => [[['_route' => 'display_blog', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, true, false, null]],
         '/blog/add' => [[['_route' => 'addBlog', '_controller' => 'App\\Controller\\BlogController::addBlog'], null, null, null, false, false, null]],
         '/blog/bot' => [[['_route' => 'app_bot', '_controller' => 'App\\Controller\\BotController::index'], null, null, null, false, false, null]],
@@ -88,94 +92,102 @@ return [
                         .'|applicants/([^/]++)(*:203)'
                     .')'
                 .')'
-                .'|/blog(?'
-                    .'|/(?'
-                        .'|removeBlog/([^/]++)(*:244)'
-                        .'|modifBlog/([^/]++)(*:270)'
-                        .'|star/([^/]++)(*:291)'
+                .'|/b(?'
+                    .'|ack/(?'
+                        .'|courses/([^/]++)(*:241)'
+                        .'|services/([^/]++)(*:266)'
+                        .'|events/([^/]++)(*:289)'
+                        .'|blogs/([^/]++)(*:311)'
                     .')'
-                    .'|afficherBlog/([^/]++)(*:321)'
+                    .'|log(?'
+                        .'|/(?'
+                            .'|removeBlog/([^/]++)(*:349)'
+                            .'|modifBlog/([^/]++)(*:375)'
+                            .'|star/([^/]++)(*:396)'
+                        .')'
+                        .'|afficherBlog/([^/]++)(*:426)'
+                    .')'
                 .')'
-                .'|/removeComment/([^/]++)(*:353)'
-                .'|/modifComment/([^/]++)(*:383)'
+                .'|/removeComment/([^/]++)(*:459)'
+                .'|/modifComment/([^/]++)(*:489)'
                 .'|/course/(?'
                     .'|([^/]++)(?'
-                        .'|(*:413)'
-                        .'|/edit(*:426)'
-                        .'|(*:434)'
+                        .'|(*:519)'
+                        .'|/edit(*:532)'
+                        .'|(*:540)'
                     .')'
-                    .'|search(*:449)'
-                    .'|([^/]++)(*:465)'
-                    .'|course/([^/]++)(*:488)'
+                    .'|search(*:555)'
+                    .'|([^/]++)(*:571)'
+                    .'|course/([^/]++)(*:594)'
                 .')'
                 .'|/event/([^/]++)(?'
-                    .'|(*:515)'
-                    .'|/edit(*:528)'
-                    .'|(*:536)'
+                    .'|(*:621)'
+                    .'|/edit(*:634)'
+                    .'|(*:642)'
                 .')'
                 .'|/freelance(?'
                     .'|/([^/]++)(?'
                         .'|/(?'
-                            .'|myOffersBO(*:584)'
-                            .'|([^/]++)(*:600)'
+                            .'|myOffersBO(*:690)'
+                            .'|([^/]++)(*:706)'
                         .')'
-                        .'|(*:609)'
+                        .'|(*:715)'
                     .')'
-                    .'|Freelancer/([^/]++)(*:637)'
-                    .'|editOffer/([^/]++)(*:663)'
+                    .'|Freelancer/([^/]++)(*:743)'
+                    .'|editOffer/([^/]++)(*:769)'
                     .'|filter(?'
-                        .'|/([^/]++)(*:689)'
-                        .'|ByDate/([^/]++)(*:712)'
+                        .'|/([^/]++)(*:795)'
+                        .'|ByDate/([^/]++)(*:818)'
                     .')'
                 .')'
                 .'|/hackathon/(?'
-                    .'|([^/]++)(*:744)'
-                    .'|hackathon/([^/]++)/edit(*:775)'
-                    .'|([^/]++)(*:791)'
+                    .'|([^/]++)(*:850)'
+                    .'|hackathon/([^/]++)/edit(*:881)'
+                    .'|([^/]++)(*:897)'
                 .')'
                 .'|/lesson/(?'
                     .'|course/([^/]++)/lesson(?'
-                        .'|(*:836)'
-                        .'|s(*:845)'
+                        .'|(*:942)'
+                        .'|s(*:951)'
                     .')'
                     .'|([^/]++)(?'
-                        .'|(*:865)'
-                        .'|/edit(*:878)'
-                        .'|(*:886)'
+                        .'|(*:971)'
+                        .'|/edit(*:984)'
+                        .'|(*:992)'
                     .')'
                 .')'
                 .'|/packag/([^/]++)(?'
-                    .'|(*:915)'
-                    .'|/edit(*:928)'
-                    .'|(*:936)'
+                    .'|(*:1021)'
+                    .'|/edit(*:1035)'
+                    .'|(*:1044)'
                 .')'
                 .'|/service/(?'
-                    .'|([^/]++)(*:965)'
-                    .'|service/([^/]++)/packag(*:996)'
+                    .'|([^/]++)(*:1074)'
+                    .'|service/([^/]++)/packag(*:1106)'
                     .'|([^/]++)(?'
-                        .'|/edit(*:1020)'
-                        .'|(*:1029)'
+                        .'|/edit(*:1131)'
+                        .'|(*:1140)'
                     .')'
                 .')'
                 .'|/workshop/([^/]++)(?'
-                    .'|(*:1061)'
-                    .'|/edit(*:1075)'
-                    .'|(*:1084)'
+                    .'|(*:1172)'
+                    .'|/edit(*:1186)'
+                    .'|(*:1195)'
                 .')'
-                .'|/qr\\-code/([^/]++)/([\\w\\W]+)(*:1122)'
+                .'|/qr\\-code/([^/]++)/([\\w\\W]+)(*:1233)'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:1162)'
-                    .'|wdt/([^/]++)(*:1183)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:1273)'
+                    .'|wdt/([^/]++)(*:1294)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:1230)'
-                            .'|router(*:1245)'
+                            .'|search/results(*:1341)'
+                            .'|router(*:1356)'
                             .'|exception(?'
-                                .'|(*:1266)'
-                                .'|\\.css(*:1280)'
+                                .'|(*:1377)'
+                                .'|\\.css(*:1391)'
                             .')'
                         .')'
-                        .'|(*:1291)'
+                        .'|(*:1402)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -192,54 +204,58 @@ return [
         166 => [[['_route' => 'app_application_select', '_controller' => 'App\\Controller\\ApplicationController::select'], ['idapp'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         175 => [[['_route' => 'app_application_delete', '_controller' => 'App\\Controller\\ApplicationController::delete'], ['idapp'], ['POST' => 0], null, false, true, null]],
         203 => [[['_route' => 'app_application_showSecific', '_controller' => 'App\\Controller\\ApplicationController::show'], ['idFreelance'], ['GET' => 0], null, false, true, null]],
-        244 => [[['_route' => 'supp_blog', '_controller' => 'App\\Controller\\BlogController::suppClassroom'], ['id'], null, null, false, true, null]],
-        270 => [[['_route' => 'modif_blog', '_controller' => 'App\\Controller\\BlogController::modifBlog'], ['id'], null, null, false, true, null]],
-        291 => [[['_route' => 'star', '_controller' => 'App\\Controller\\BlogController::yourAction'], ['id'], null, null, false, true, null]],
-        321 => [[['_route' => 'showBlog', '_controller' => 'App\\Controller\\BlogController::showBlog'], ['id'], null, null, false, true, null]],
-        353 => [[['_route' => 'supp_comment', '_controller' => 'App\\Controller\\CommentController::deleteComment'], ['id'], null, null, false, true, null]],
-        383 => [[['_route' => 'modif_comment', '_controller' => 'App\\Controller\\CommentController::modifcomment'], ['id'], null, null, false, true, null]],
-        413 => [[['_route' => 'app_course_show', '_controller' => 'App\\Controller\\CourseController::show'], ['cid'], ['GET' => 0], null, false, true, null]],
-        426 => [[['_route' => 'app_course_edit', '_controller' => 'App\\Controller\\CourseController::edit'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        434 => [[['_route' => 'app_course_delete', '_controller' => 'App\\Controller\\CourseController::delete'], ['cid'], ['POST' => 0], null, false, true, null]],
-        449 => [[['_route' => 'search', '_controller' => 'App\\Controller\\CourseController::search'], [], null, null, false, false, null]],
-        465 => [[['_route' => 'app_course_filter', '_controller' => 'App\\Controller\\CourseController::filter'], ['cat'], ['POST' => 0], null, false, true, null]],
-        488 => [[['_route' => 'course_filter', '_controller' => 'App\\Controller\\CourseController::filterCoursesByCategory'], ['category'], null, null, false, true, null]],
-        515 => [[['_route' => 'app_event_show', '_controller' => 'App\\Controller\\EventController::show'], ['eventId'], ['GET' => 0], null, false, true, null]],
-        528 => [[['_route' => 'app_event_edit', '_controller' => 'App\\Controller\\EventController::edit'], ['eventId'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        536 => [[['_route' => 'app_event_delete', '_controller' => 'App\\Controller\\EventController::delete'], ['eventId'], ['POST' => 0], null, false, true, null]],
-        584 => [[['_route' => 'app_freelance_myOffersBO', '_controller' => 'App\\Controller\\FreelanceController::myOffers'], ['idBO'], ['GET' => 0], null, false, false, null]],
-        600 => [[['_route' => 'app_freelance_show', '_controller' => 'App\\Controller\\FreelanceController::show'], ['idfreelance', 'idBO'], ['GET' => 0], null, false, true, null]],
-        609 => [[['_route' => 'app_freelance_delete', '_controller' => 'App\\Controller\\FreelanceController::delete'], ['idfreelance'], ['POST' => 0], null, false, true, null]],
-        637 => [[['_route' => 'app_freelance_showFree', '_controller' => 'App\\Controller\\FreelanceController::showFree'], ['idfreelance'], ['GET' => 0], null, false, true, null]],
-        663 => [[['_route' => 'app_freelance_edit', '_controller' => 'App\\Controller\\FreelanceController::edit'], ['idfreelance'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        689 => [[['_route' => 'app_freelance_searchCategory', '_controller' => 'App\\Controller\\FreelanceController::searchCategory'], ['category'], ['GET' => 0], null, false, true, null]],
-        712 => [[['_route' => 'app_freelance_searchDate', '_controller' => 'App\\Controller\\FreelanceController::searchByDate'], ['date'], ['GET' => 0], null, false, true, null]],
-        744 => [[['_route' => 'app_hackathon_show', '_controller' => 'App\\Controller\\HackathonController::show'], ['hackathon'], ['GET' => 0], null, false, true, null]],
-        775 => [[['_route' => 'app_hackathon_edit', '_controller' => 'App\\Controller\\HackathonController::edit'], ['hackathon'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        791 => [[['_route' => 'app_hackathon_delete', '_controller' => 'App\\Controller\\HackathonController::delete'], ['event'], ['POST' => 0], null, false, true, null]],
-        836 => [[['_route' => 'app_lesson_course_front', '_controller' => 'App\\Controller\\LessonController::showLessonsByCourseFront'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        845 => [[['_route' => 'app_lesson_course', '_controller' => 'App\\Controller\\LessonController::showLessonsByCourse'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        865 => [[['_route' => 'app_lesson_show', '_controller' => 'App\\Controller\\LessonController::show'], ['lid'], ['GET' => 0], null, false, true, null]],
-        878 => [[['_route' => 'app_lesson_edit', '_controller' => 'App\\Controller\\LessonController::edit'], ['lid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        886 => [[['_route' => 'app_lesson_delete', '_controller' => 'App\\Controller\\LessonController::delete'], ['lid'], ['POST' => 0], null, false, true, null]],
-        915 => [[['_route' => 'app_packag_show', '_controller' => 'App\\Controller\\PackagController::show'], ['idP'], ['GET' => 0], null, false, true, null]],
-        928 => [[['_route' => 'app_packag_edit', '_controller' => 'App\\Controller\\PackagController::edit'], ['idP'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        936 => [[['_route' => 'app_packag_delete', '_controller' => 'App\\Controller\\PackagController::delete'], ['idP'], ['POST' => 0], null, false, true, null]],
-        965 => [[['_route' => 'app_service_show', '_controller' => 'App\\Controller\\ServiceController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        996 => [[['_route' => 'app_packag_service_front', '_controller' => 'App\\Controller\\ServiceController::showPackagsByServiceFront'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1020 => [[['_route' => 'app_service_edit', '_controller' => 'App\\Controller\\ServiceController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1029 => [[['_route' => 'app_service_delete', '_controller' => 'App\\Controller\\ServiceController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1061 => [[['_route' => 'app_workshop_show', '_controller' => 'App\\Controller\\WorkshopController::show'], ['workshop'], ['GET' => 0], null, false, true, null]],
-        1075 => [[['_route' => 'app_workshop_edit', '_controller' => 'App\\Controller\\WorkshopController::edit'], ['workshop'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1084 => [[['_route' => 'app_workshop_delete', '_controller' => 'App\\Controller\\WorkshopController::delete'], ['event'], ['POST' => 0], null, false, true, null]],
-        1122 => [[['_route' => 'qr_code_generate', '_controller' => 'Endroid\\QrCodeBundle\\Controller\\GenerateController'], ['builder', 'data'], null, null, false, true, null]],
-        1162 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        1183 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        1230 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        1245 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        1266 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        1280 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        1291 => [
+        241 => [[['_route' => 'course_delete', '_controller' => 'App\\Controller\\BackController::delete'], ['cid'], ['POST' => 0], null, false, true, null]],
+        266 => [[['_route' => 'service_delete', '_controller' => 'App\\Controller\\BackController::deleteS'], ['id'], ['POST' => 0], null, false, true, null]],
+        289 => [[['_route' => 'event_delete', '_controller' => 'App\\Controller\\BackController::deleteE'], ['eventId'], ['POST' => 0], null, false, true, null]],
+        311 => [[['_route' => 'blog_delete', '_controller' => 'App\\Controller\\BackController::deleteB'], ['id'], ['POST' => 0], null, false, true, null]],
+        349 => [[['_route' => 'supp_blog', '_controller' => 'App\\Controller\\BlogController::suppClassroom'], ['id'], null, null, false, true, null]],
+        375 => [[['_route' => 'modif_blog', '_controller' => 'App\\Controller\\BlogController::modifBlog'], ['id'], null, null, false, true, null]],
+        396 => [[['_route' => 'star', '_controller' => 'App\\Controller\\BlogController::yourAction'], ['id'], null, null, false, true, null]],
+        426 => [[['_route' => 'showBlog', '_controller' => 'App\\Controller\\BlogController::showBlog'], ['id'], null, null, false, true, null]],
+        459 => [[['_route' => 'supp_comment', '_controller' => 'App\\Controller\\CommentController::deleteComment'], ['id'], null, null, false, true, null]],
+        489 => [[['_route' => 'modif_comment', '_controller' => 'App\\Controller\\CommentController::modifcomment'], ['id'], null, null, false, true, null]],
+        519 => [[['_route' => 'app_course_show', '_controller' => 'App\\Controller\\CourseController::show'], ['cid'], ['GET' => 0], null, false, true, null]],
+        532 => [[['_route' => 'app_course_edit', '_controller' => 'App\\Controller\\CourseController::edit'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        540 => [[['_route' => 'app_course_delete', '_controller' => 'App\\Controller\\CourseController::delete'], ['cid'], ['POST' => 0], null, false, true, null]],
+        555 => [[['_route' => 'search', '_controller' => 'App\\Controller\\CourseController::search'], [], null, null, false, false, null]],
+        571 => [[['_route' => 'app_course_filter', '_controller' => 'App\\Controller\\CourseController::filter'], ['cat'], ['POST' => 0], null, false, true, null]],
+        594 => [[['_route' => 'course_filter', '_controller' => 'App\\Controller\\CourseController::filterCoursesByCategory'], ['category'], null, null, false, true, null]],
+        621 => [[['_route' => 'app_event_show', '_controller' => 'App\\Controller\\EventController::show'], ['eventId'], ['GET' => 0], null, false, true, null]],
+        634 => [[['_route' => 'app_event_edit', '_controller' => 'App\\Controller\\EventController::edit'], ['eventId'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        642 => [[['_route' => 'app_event_delete', '_controller' => 'App\\Controller\\EventController::delete'], ['eventId'], ['POST' => 0], null, false, true, null]],
+        690 => [[['_route' => 'app_freelance_myOffersBO', '_controller' => 'App\\Controller\\FreelanceController::myOffers'], ['idBO'], ['GET' => 0], null, false, false, null]],
+        706 => [[['_route' => 'app_freelance_show', '_controller' => 'App\\Controller\\FreelanceController::show'], ['idfreelance', 'idBO'], ['GET' => 0], null, false, true, null]],
+        715 => [[['_route' => 'app_freelance_delete', '_controller' => 'App\\Controller\\FreelanceController::delete'], ['idfreelance'], ['POST' => 0], null, false, true, null]],
+        743 => [[['_route' => 'app_freelance_showFree', '_controller' => 'App\\Controller\\FreelanceController::showFree'], ['idfreelance'], ['GET' => 0], null, false, true, null]],
+        769 => [[['_route' => 'app_freelance_edit', '_controller' => 'App\\Controller\\FreelanceController::edit'], ['idfreelance'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        795 => [[['_route' => 'app_freelance_searchCategory', '_controller' => 'App\\Controller\\FreelanceController::searchCategory'], ['category'], ['GET' => 0], null, false, true, null]],
+        818 => [[['_route' => 'app_freelance_searchDate', '_controller' => 'App\\Controller\\FreelanceController::searchByDate'], ['date'], ['GET' => 0], null, false, true, null]],
+        850 => [[['_route' => 'app_hackathon_show', '_controller' => 'App\\Controller\\HackathonController::show'], ['hackathon'], ['GET' => 0], null, false, true, null]],
+        881 => [[['_route' => 'app_hackathon_edit', '_controller' => 'App\\Controller\\HackathonController::edit'], ['hackathon'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        897 => [[['_route' => 'app_hackathon_delete', '_controller' => 'App\\Controller\\HackathonController::delete'], ['event'], ['POST' => 0], null, false, true, null]],
+        942 => [[['_route' => 'app_lesson_course_front', '_controller' => 'App\\Controller\\LessonController::showLessonsByCourseFront'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        951 => [[['_route' => 'app_lesson_course', '_controller' => 'App\\Controller\\LessonController::showLessonsByCourse'], ['cid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        971 => [[['_route' => 'app_lesson_show', '_controller' => 'App\\Controller\\LessonController::show'], ['lid'], ['GET' => 0], null, false, true, null]],
+        984 => [[['_route' => 'app_lesson_edit', '_controller' => 'App\\Controller\\LessonController::edit'], ['lid'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        992 => [[['_route' => 'app_lesson_delete', '_controller' => 'App\\Controller\\LessonController::delete'], ['lid'], ['POST' => 0], null, false, true, null]],
+        1021 => [[['_route' => 'app_packag_show', '_controller' => 'App\\Controller\\PackagController::show'], ['idP'], ['GET' => 0], null, false, true, null]],
+        1035 => [[['_route' => 'app_packag_edit', '_controller' => 'App\\Controller\\PackagController::edit'], ['idP'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1044 => [[['_route' => 'app_packag_delete', '_controller' => 'App\\Controller\\PackagController::delete'], ['idP'], ['POST' => 0], null, false, true, null]],
+        1074 => [[['_route' => 'app_service_show', '_controller' => 'App\\Controller\\ServiceController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1106 => [[['_route' => 'app_packag_service_front', '_controller' => 'App\\Controller\\ServiceController::showPackagsByServiceFront'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1131 => [[['_route' => 'app_service_edit', '_controller' => 'App\\Controller\\ServiceController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1140 => [[['_route' => 'app_service_delete', '_controller' => 'App\\Controller\\ServiceController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1172 => [[['_route' => 'app_workshop_show', '_controller' => 'App\\Controller\\WorkshopController::show'], ['workshop'], ['GET' => 0], null, false, true, null]],
+        1186 => [[['_route' => 'app_workshop_edit', '_controller' => 'App\\Controller\\WorkshopController::edit'], ['workshop'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1195 => [[['_route' => 'app_workshop_delete', '_controller' => 'App\\Controller\\WorkshopController::delete'], ['event'], ['POST' => 0], null, false, true, null]],
+        1233 => [[['_route' => 'qr_code_generate', '_controller' => 'Endroid\\QrCodeBundle\\Controller\\GenerateController'], ['builder', 'data'], null, null, false, true, null]],
+        1273 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        1294 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        1341 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        1356 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        1377 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        1391 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        1402 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

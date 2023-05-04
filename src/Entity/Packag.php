@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Packag
  *
- * @ORM\Table(name="packag", indexes={@ORM\Index(name="sid", columns={"sid"})})
+ * @ORM\Table(name="packag", indexes={@ORM\Index(name="fksid", columns={"sid"})})
  * @ORM\Entity
  */
 class Packag

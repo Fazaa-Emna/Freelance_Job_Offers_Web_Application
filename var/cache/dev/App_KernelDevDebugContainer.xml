@@ -419,6 +419,13 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\ApplicationController"/>
       </call>
     </service>
+    <service id="App\Controller\BackController" class="App\Controller\BackController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\BackController"/>
+      </call>
+    </service>
     <service id="App\Controller\BlogController" class="App\Controller\BlogController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -7358,6 +7365,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ApplicationController" class="App\Controller\ApplicationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BackController" class="App\Controller\BackController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BackController" class="App\Controller\BackController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\BackController" class="App\Controller\BackController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7864,6 +7874,45 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.w07iIQI" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="courseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.TCOXoT8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="course" type="service_closure" id=".errored..service_locator.TCOXoT8.App\Entity\Course"/>
+        <argument key="courseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.bbelbCp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="serviceRepository" type="service_closure" id="App\Repository\ServiceRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.AU.1FH5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="service" type="service_closure" id=".errored..service_locator.AU.1FH5.App\Entity\Service"/>
+        <argument key="serviceRepository" type="service_closure" id="App\Repository\ServiceRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Qim_sWz" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="eventRepository" type="service_closure" id="App\Repository\EventRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.HDn9NVy" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="blogRepository" type="service_closure" id="App\Repository\BlogRepository"/>
+        <argument key="service" type="service_closure" id=".errored..service_locator.HDn9NVy.App\Entity\Service"/>
+      </argument>
+    </service>
     <service id=".service_locator.8JKVjT_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7912,12 +7961,6 @@
         <argument key="repository" type="service_closure" id="App\Repository\CommentRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.w07iIQI" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="courseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
-      </argument>
-    </service>
     <service id=".service_locator.WNxi9GT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7929,13 +7972,6 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="course" type="service_closure" id=".errored..service_locator.lShnJV_.App\Entity\Course"/>
-      </argument>
-    </service>
-    <service id=".service_locator.TCOXoT8" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="course" type="service_closure" id=".errored..service_locator.TCOXoT8.App\Entity\Course"/>
-        <argument key="courseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
       </argument>
     </service>
     <service id=".errored.biZKtm8" class="App\Controller\NormalizerInterface"/>
@@ -7978,12 +8014,6 @@
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="event" type="service_closure" id=".errored..service_locator.kyRmj3Q.App\Entity\Event"/>
-      </argument>
-    </service>
-    <service id=".service_locator.Qim_sWz" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="eventRepository" type="service_closure" id="App\Repository\EventRepository"/>
       </argument>
     </service>
     <service id=".service_locator.aceqt7e" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8095,7 +8125,7 @@
         <argument key="workshop" type="service_closure" id=".errored..service_locator.ujiioUN.App\Entity\Workshop"/>
       </argument>
     </service>
-    <service id=".service_locator.LFzrFe8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.F0XJqYd" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminBlogController::delete" type="service_closure" id=".service_locator.zyRmekQ"/>
@@ -8114,6 +8144,14 @@
         <argument key="App\Controller\ApplicationController::new" type="service_closure" id=".service_locator.Hgca79T"/>
         <argument key="App\Controller\ApplicationController::select" type="service_closure" id=".service_locator.Ocu2hW_"/>
         <argument key="App\Controller\ApplicationController::show" type="service_closure" id=".service_locator.oyqrvAp"/>
+        <argument key="App\Controller\BackController::blog_index" type="service_closure" id=".service_locator.8af4n9B"/>
+        <argument key="App\Controller\BackController::course_index" type="service_closure" id=".service_locator.w07iIQI"/>
+        <argument key="App\Controller\BackController::delete" type="service_closure" id=".service_locator.TCOXoT8"/>
+        <argument key="App\Controller\BackController::deleteB" type="service_closure" id=".service_locator.HDn9NVy"/>
+        <argument key="App\Controller\BackController::deleteE" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController::deleteS" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController::event_index" type="service_closure" id=".service_locator.Qim_sWz"/>
+        <argument key="App\Controller\BackController::service_index" type="service_closure" id=".service_locator.bbelbCp"/>
         <argument key="App\Controller\BlogController::addBlog" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\BlogController::index" type="service_closure" id=".service_locator.8JKVjT_"/>
         <argument key="App\Controller\BlogController::modifBlog" type="service_closure" id=".service_locator.Sv1woME"/>
@@ -8200,6 +8238,14 @@
         <argument key="App\Controller\ApplicationController:new" type="service_closure" id=".service_locator.Hgca79T"/>
         <argument key="App\Controller\ApplicationController:select" type="service_closure" id=".service_locator.Ocu2hW_"/>
         <argument key="App\Controller\ApplicationController:show" type="service_closure" id=".service_locator.oyqrvAp"/>
+        <argument key="App\Controller\BackController:blog_index" type="service_closure" id=".service_locator.8af4n9B"/>
+        <argument key="App\Controller\BackController:course_index" type="service_closure" id=".service_locator.w07iIQI"/>
+        <argument key="App\Controller\BackController:delete" type="service_closure" id=".service_locator.TCOXoT8"/>
+        <argument key="App\Controller\BackController:deleteB" type="service_closure" id=".service_locator.HDn9NVy"/>
+        <argument key="App\Controller\BackController:deleteE" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController:deleteS" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController:event_index" type="service_closure" id=".service_locator.Qim_sWz"/>
+        <argument key="App\Controller\BackController:service_index" type="service_closure" id=".service_locator.bbelbCp"/>
         <argument key="App\Controller\BlogController:addBlog" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\BlogController:index" type="service_closure" id=".service_locator.8JKVjT_"/>
         <argument key="App\Controller\BlogController:modifBlog" type="service_closure" id=".service_locator.Sv1woME"/>
@@ -8734,6 +8780,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mx0UMmY" method="withContext"/>
     </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\BackController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BackController"/>
+      <argument>App\Controller\BackController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
     <service id=".service_locator.mx0UMmY.App\Controller\BlogController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\BlogController"/>
       <argument>App\Controller\BlogController</argument>
@@ -8988,12 +9040,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.LFzrFe8"/>
+      <argument type="service" id=".service_locator.F0XJqYd"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.LFzrFe8"/>
+      <argument type="service" id=".service_locator.F0XJqYd"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9018,10 +9070,12 @@
     <service id=".errored..service_locator.PK5KVtZ.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id=".errored..service_locator.KBkob.L.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id=".errored..service_locator.VFMGo3i.App\Entity\Application" class="App\Entity\Application"/>
+    <service id=".errored..service_locator.TCOXoT8.App\Entity\Course" class="App\Entity\Course"/>
+    <service id=".errored..service_locator.AU.1FH5.App\Entity\Service" class="App\Entity\Service"/>
+    <service id=".errored..service_locator.HDn9NVy.App\Entity\Service" class="App\Entity\Service"/>
     <service id=".errored..service_locator.Sv1woME.App\Entity\Blog" class="App\Entity\Blog"/>
     <service id=".errored..service_locator.uBsXWSx.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id=".errored..service_locator.lShnJV_.App\Entity\Course" class="App\Entity\Course"/>
-    <service id=".errored..service_locator.TCOXoT8.App\Entity\Course" class="App\Entity\Course"/>
     <service id=".errored..service_locator.q2U_Puq.App\Entity\Event" class="App\Entity\Event"/>
     <service id=".errored..service_locator.kyRmj3Q.App\Entity\Event" class="App\Entity\Event"/>
     <service id=".errored..service_locator._CU_umH.App\Entity\Hackathon" class="App\Entity\Hackathon"/>
@@ -10049,7 +10103,7 @@
     <service id="Endroid\QrCode\Builder\BuilderInterface $defaultQrCodeBuilder" alias="endroid_qr_code.default_builder"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.LFzrFe8"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.F0XJqYd"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -10074,6 +10128,7 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~RsvKYZ9"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
+    <service id=".service_locator.ooyzGR9" alias=".service_locator.HDn9NVy"/>
     <service id=".service_locator.uUybQbI" alias=".service_locator.8JKVjT_"/>
     <service id=".service_locator.ex303ZL" alias=".service_locator.hfS6y__"/>
     <service id=".service_locator.cN1wXVU" alias=".service_locator.Sv1woME"/>
@@ -10086,7 +10141,7 @@
     <service id=".service_locator.Ev8b9Et" alias=".service_locator.srbsFuk"/>
     <service id=".service_locator.5wA0bTR" alias=".service_locator.M5WzQmf"/>
     <service id=".service_locator.lC3YoSq" alias=".service_locator.ujiioUN"/>
-    <service id=".service_locator.dTX7FnH" alias=".service_locator.LFzrFe8"/>
+    <service id=".service_locator.OS5QqB3" alias=".service_locator.F0XJqYd"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.jl9D6sH" alias=".service_locator..pEUgI3"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -10125,6 +10180,12 @@
     <service id=".service_locator.an24Vod" alias=".service_locator.oyqrvAp"/>
     <service id=".service_locator.PJmgMdI" alias=".service_locator.VFMGo3i"/>
     <service id=".service_locator.CPRUImt" alias=".service_locator.Ocu2hW_"/>
+    <service id=".service_locator._cIqA2G" alias=".service_locator.w07iIQI"/>
+    <service id=".service_locator.Va2AdKB" alias=".service_locator.TCOXoT8"/>
+    <service id=".service_locator.98WqWwg" alias=".service_locator.bbelbCp"/>
+    <service id=".service_locator.4s3vx8n" alias=".service_locator.AU.1FH5"/>
+    <service id=".service_locator.Z5dKctx" alias=".service_locator.Qim_sWz"/>
+    <service id=".service_locator.He_EvM0" alias=".service_locator.HDn9NVy"/>
     <service id=".service_locator.F5K9wyc" alias=".service_locator.8JKVjT_"/>
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.BJtep5j" alias=".service_locator.hfS6y__"/>
@@ -10132,16 +10193,13 @@
     <service id=".service_locator.F8W5L6D" alias=".service_locator.onp6Vxn"/>
     <service id=".service_locator.lm3G7.q" alias=".service_locator.uBsXWSx"/>
     <service id=".service_locator.K81cEMe" alias=".service_locator.wILKIG8"/>
-    <service id=".service_locator._cIqA2G" alias=".service_locator.w07iIQI"/>
     <service id=".service_locator.pK16ZEc" alias=".service_locator.WNxi9GT"/>
     <service id=".service_locator.i0nZGgd" alias=".service_locator.lShnJV_"/>
-    <service id=".service_locator.Va2AdKB" alias=".service_locator.TCOXoT8"/>
     <service id=".service_locator.g4lI9Zm" alias=".service_locator..eHqkeB"/>
     <service id=".service_locator.jXxzLl6" alias=".service_locator.j1U62tk"/>
     <service id=".service_locator.ew87G4h" alias=".service_locator.us26T8f"/>
     <service id=".service_locator.mpzM39R" alias=".service_locator.q2U_Puq"/>
     <service id=".service_locator.n_VSMOo" alias=".service_locator.kyRmj3Q"/>
-    <service id=".service_locator.Z5dKctx" alias=".service_locator.Qim_sWz"/>
     <service id=".service_locator.0k58_kT" alias=".service_locator.aceqt7e"/>
     <service id=".service_locator.GrFZSQG" alias=".service_locator.0uZrOyD"/>
     <service id=".service_locator.zjmedMz" alias=".service_locator.D7KxMcm"/>
