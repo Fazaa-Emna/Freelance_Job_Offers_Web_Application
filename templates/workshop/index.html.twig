@@ -3,6 +3,28 @@
 {% block title %}Workshop index{% endblock %}
 
 {% block body %}
+<!-- Hero Area Start-->
+        <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" style="background-image:url('{{ asset('./assets/img/hero/ny.jpg') }}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Our Workshops </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <br>
+        <div class="hero-cap text-center">
+         <form method="get">
+        <input type="text" name="query" placeholder="Event Name"  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+       onblur="this.placeholder = ' Event Name '" value="{{ query }}">
+        <button type="submit" class="genric-btn primary small">Search</button>
+    </form>
+     </div>
     <div id="response-content">
         {% include 'workshop/table_content.html.twig' %}
     </div>

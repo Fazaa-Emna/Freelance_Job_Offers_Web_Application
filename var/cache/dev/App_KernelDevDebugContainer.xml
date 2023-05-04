@@ -7906,11 +7906,32 @@
         <argument key="eventRepository" type="service_closure" id="App\Repository\EventRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.fFHahJ8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="event" type="service_closure" id=".errored..service_locator.fFHahJ8.App\Entity\Event"/>
+        <argument key="eventRepository" type="service_closure" id="App\Repository\EventRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.HDn9NVy" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="blogRepository" type="service_closure" id="App\Repository\BlogRepository"/>
         <argument key="service" type="service_closure" id=".errored..service_locator.HDn9NVy.App\Entity\Service"/>
+      </argument>
+    </service>
+    <service id=".service_locator.D7KxMcm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="freelanceRepository" type="service_closure" id="App\Repository\FreelanceRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.o8_5QLQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="freelance" type="service_closure" id=".errored..service_locator.o8_5QLQ.App\Entity\Freelance"/>
+        <argument key="freelanceRepository" type="service_closure" id="App\Repository\FreelanceRepository"/>
       </argument>
     </service>
     <service id=".service_locator.8JKVjT_" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7987,11 +8008,12 @@
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.j1U62tk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ZbAHT0C" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="eventRepository" type="service_closure" id="App\Repository\EventRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
     <service id=".service_locator.us26T8f" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8030,17 +8052,12 @@
         <argument key="FreelanceRepo" type="service_closure" id="App\Repository\FreelanceRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.D7KxMcm" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="freelanceRepository" type="service_closure" id="App\Repository\FreelanceRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.s.zL5n5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.asDaYK." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="hackathonRepository" type="service_closure" id="App\Repository\HackathonRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
     <service id=".service_locator._CU_umH" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8125,7 +8142,7 @@
         <argument key="workshop" type="service_closure" id=".errored..service_locator.ujiioUN.App\Entity\Workshop"/>
       </argument>
     </service>
-    <service id=".service_locator.F0XJqYd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.HG3iDyK" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminBlogController::delete" type="service_closure" id=".service_locator.zyRmekQ"/>
@@ -8148,9 +8165,11 @@
         <argument key="App\Controller\BackController::course_index" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\BackController::delete" type="service_closure" id=".service_locator.TCOXoT8"/>
         <argument key="App\Controller\BackController::deleteB" type="service_closure" id=".service_locator.HDn9NVy"/>
-        <argument key="App\Controller\BackController::deleteE" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController::deleteE" type="service_closure" id=".service_locator.fFHahJ8"/>
+        <argument key="App\Controller\BackController::deleteFreelancer" type="service_closure" id=".service_locator.o8_5QLQ"/>
         <argument key="App\Controller\BackController::deleteS" type="service_closure" id=".service_locator.AU.1FH5"/>
         <argument key="App\Controller\BackController::event_index" type="service_closure" id=".service_locator.Qim_sWz"/>
+        <argument key="App\Controller\BackController::freelance_index_index" type="service_closure" id=".service_locator.D7KxMcm"/>
         <argument key="App\Controller\BackController::service_index" type="service_closure" id=".service_locator.bbelbCp"/>
         <argument key="App\Controller\BlogController::addBlog" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\BlogController::index" type="service_closure" id=".service_locator.8JKVjT_"/>
@@ -8174,7 +8193,7 @@
         <argument key="App\Controller\CourseController::triDESC" type="service_closure" id=".service_locator..eHqkeB"/>
         <argument key="App\Controller\EventController::delete" type="service_closure" id=".service_locator.kyRmj3Q"/>
         <argument key="App\Controller\EventController::edit" type="service_closure" id=".service_locator.kyRmj3Q"/>
-        <argument key="App\Controller\EventController::index" type="service_closure" id=".service_locator.j1U62tk"/>
+        <argument key="App\Controller\EventController::index" type="service_closure" id=".service_locator.ZbAHT0C"/>
         <argument key="App\Controller\EventController::indexBack" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\EventController::indexFront" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\EventController::new" type="service_closure" id=".service_locator.us26T8f"/>
@@ -8193,7 +8212,7 @@
         <argument key="App\Controller\FreelanceController::showFree" type="service_closure" id=".service_locator.0uZrOyD"/>
         <argument key="App\Controller\HackathonController::delete" type="service_closure" id=".service_locator.41C7zyd"/>
         <argument key="App\Controller\HackathonController::edit" type="service_closure" id=".service_locator.41C7zyd"/>
-        <argument key="App\Controller\HackathonController::index" type="service_closure" id=".service_locator.s.zL5n5"/>
+        <argument key="App\Controller\HackathonController::index" type="service_closure" id=".service_locator.asDaYK."/>
         <argument key="App\Controller\HackathonController::indexFront" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\HackathonController::new" type="service_closure" id=".service_locator.us26T8f"/>
         <argument key="App\Controller\HackathonController::show" type="service_closure" id=".service_locator._CU_umH"/>
@@ -8215,7 +8234,7 @@
         <argument key="App\Controller\ServiceController::show" type="service_closure" id=".service_locator.L5aPaCp"/>
         <argument key="App\Controller\WorkshopController::delete" type="service_closure" id=".service_locator.ujiioUN"/>
         <argument key="App\Controller\WorkshopController::edit" type="service_closure" id=".service_locator.ujiioUN"/>
-        <argument key="App\Controller\WorkshopController::index" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\WorkshopController::index" type="service_closure" id=".service_locator.Zhsi5nT"/>
         <argument key="App\Controller\WorkshopController::new" type="service_closure" id=".service_locator.us26T8f"/>
         <argument key="App\Controller\WorkshopController::show" type="service_closure" id=".service_locator.M5WzQmf"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -8242,9 +8261,11 @@
         <argument key="App\Controller\BackController:course_index" type="service_closure" id=".service_locator.w07iIQI"/>
         <argument key="App\Controller\BackController:delete" type="service_closure" id=".service_locator.TCOXoT8"/>
         <argument key="App\Controller\BackController:deleteB" type="service_closure" id=".service_locator.HDn9NVy"/>
-        <argument key="App\Controller\BackController:deleteE" type="service_closure" id=".service_locator.AU.1FH5"/>
+        <argument key="App\Controller\BackController:deleteE" type="service_closure" id=".service_locator.fFHahJ8"/>
+        <argument key="App\Controller\BackController:deleteFreelancer" type="service_closure" id=".service_locator.o8_5QLQ"/>
         <argument key="App\Controller\BackController:deleteS" type="service_closure" id=".service_locator.AU.1FH5"/>
         <argument key="App\Controller\BackController:event_index" type="service_closure" id=".service_locator.Qim_sWz"/>
+        <argument key="App\Controller\BackController:freelance_index_index" type="service_closure" id=".service_locator.D7KxMcm"/>
         <argument key="App\Controller\BackController:service_index" type="service_closure" id=".service_locator.bbelbCp"/>
         <argument key="App\Controller\BlogController:addBlog" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\BlogController:index" type="service_closure" id=".service_locator.8JKVjT_"/>
@@ -8268,7 +8289,7 @@
         <argument key="App\Controller\CourseController:triDESC" type="service_closure" id=".service_locator..eHqkeB"/>
         <argument key="App\Controller\EventController:delete" type="service_closure" id=".service_locator.kyRmj3Q"/>
         <argument key="App\Controller\EventController:edit" type="service_closure" id=".service_locator.kyRmj3Q"/>
-        <argument key="App\Controller\EventController:index" type="service_closure" id=".service_locator.j1U62tk"/>
+        <argument key="App\Controller\EventController:index" type="service_closure" id=".service_locator.ZbAHT0C"/>
         <argument key="App\Controller\EventController:indexBack" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\EventController:indexFront" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\EventController:new" type="service_closure" id=".service_locator.us26T8f"/>
@@ -8287,7 +8308,7 @@
         <argument key="App\Controller\FreelanceController:showFree" type="service_closure" id=".service_locator.0uZrOyD"/>
         <argument key="App\Controller\HackathonController:delete" type="service_closure" id=".service_locator.41C7zyd"/>
         <argument key="App\Controller\HackathonController:edit" type="service_closure" id=".service_locator.41C7zyd"/>
-        <argument key="App\Controller\HackathonController:index" type="service_closure" id=".service_locator.s.zL5n5"/>
+        <argument key="App\Controller\HackathonController:index" type="service_closure" id=".service_locator.asDaYK."/>
         <argument key="App\Controller\HackathonController:indexFront" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\HackathonController:new" type="service_closure" id=".service_locator.us26T8f"/>
         <argument key="App\Controller\HackathonController:show" type="service_closure" id=".service_locator._CU_umH"/>
@@ -8309,7 +8330,7 @@
         <argument key="App\Controller\ServiceController:show" type="service_closure" id=".service_locator.L5aPaCp"/>
         <argument key="App\Controller\WorkshopController:delete" type="service_closure" id=".service_locator.ujiioUN"/>
         <argument key="App\Controller\WorkshopController:edit" type="service_closure" id=".service_locator.ujiioUN"/>
-        <argument key="App\Controller\WorkshopController:index" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\WorkshopController:index" type="service_closure" id=".service_locator.Zhsi5nT"/>
         <argument key="App\Controller\WorkshopController:new" type="service_closure" id=".service_locator.us26T8f"/>
         <argument key="App\Controller\WorkshopController:show" type="service_closure" id=".service_locator.M5WzQmf"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -9040,12 +9061,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.F0XJqYd"/>
+      <argument type="service" id=".service_locator.HG3iDyK"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.F0XJqYd"/>
+      <argument type="service" id=".service_locator.HG3iDyK"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9072,7 +9093,9 @@
     <service id=".errored..service_locator.VFMGo3i.App\Entity\Application" class="App\Entity\Application"/>
     <service id=".errored..service_locator.TCOXoT8.App\Entity\Course" class="App\Entity\Course"/>
     <service id=".errored..service_locator.AU.1FH5.App\Entity\Service" class="App\Entity\Service"/>
+    <service id=".errored..service_locator.fFHahJ8.App\Entity\Event" class="App\Entity\Event"/>
     <service id=".errored..service_locator.HDn9NVy.App\Entity\Service" class="App\Entity\Service"/>
+    <service id=".errored..service_locator.o8_5QLQ.App\Entity\Freelance" class="App\Entity\Freelance"/>
     <service id=".errored..service_locator.Sv1woME.App\Entity\Blog" class="App\Entity\Blog"/>
     <service id=".errored..service_locator.uBsXWSx.App\Entity\Comment" class="App\Entity\Comment"/>
     <service id=".errored..service_locator.lShnJV_.App\Entity\Course" class="App\Entity\Course"/>
@@ -10103,7 +10126,7 @@
     <service id="Endroid\QrCode\Builder\BuilderInterface $defaultQrCodeBuilder" alias="endroid_qr_code.default_builder"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.F0XJqYd"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.HG3iDyK"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -10129,6 +10152,7 @@
     <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~RsvKYZ9"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.ooyzGR9" alias=".service_locator.HDn9NVy"/>
+    <service id=".service_locator..MShdkL" alias=".service_locator.o8_5QLQ"/>
     <service id=".service_locator.uUybQbI" alias=".service_locator.8JKVjT_"/>
     <service id=".service_locator.ex303ZL" alias=".service_locator.hfS6y__"/>
     <service id=".service_locator.cN1wXVU" alias=".service_locator.Sv1woME"/>
@@ -10141,7 +10165,7 @@
     <service id=".service_locator.Ev8b9Et" alias=".service_locator.srbsFuk"/>
     <service id=".service_locator.5wA0bTR" alias=".service_locator.M5WzQmf"/>
     <service id=".service_locator.lC3YoSq" alias=".service_locator.ujiioUN"/>
-    <service id=".service_locator.OS5QqB3" alias=".service_locator.F0XJqYd"/>
+    <service id=".service_locator.gUXY7__" alias=".service_locator.HG3iDyK"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.jl9D6sH" alias=".service_locator..pEUgI3"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -10185,7 +10209,10 @@
     <service id=".service_locator.98WqWwg" alias=".service_locator.bbelbCp"/>
     <service id=".service_locator.4s3vx8n" alias=".service_locator.AU.1FH5"/>
     <service id=".service_locator.Z5dKctx" alias=".service_locator.Qim_sWz"/>
+    <service id=".service_locator.aM6V7Wn" alias=".service_locator.fFHahJ8"/>
     <service id=".service_locator.He_EvM0" alias=".service_locator.HDn9NVy"/>
+    <service id=".service_locator.zjmedMz" alias=".service_locator.D7KxMcm"/>
+    <service id=".service_locator.WGI0sVt" alias=".service_locator.o8_5QLQ"/>
     <service id=".service_locator.F5K9wyc" alias=".service_locator.8JKVjT_"/>
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.BJtep5j" alias=".service_locator.hfS6y__"/>
@@ -10196,14 +10223,13 @@
     <service id=".service_locator.pK16ZEc" alias=".service_locator.WNxi9GT"/>
     <service id=".service_locator.i0nZGgd" alias=".service_locator.lShnJV_"/>
     <service id=".service_locator.g4lI9Zm" alias=".service_locator..eHqkeB"/>
-    <service id=".service_locator.jXxzLl6" alias=".service_locator.j1U62tk"/>
+    <service id=".service_locator.bbrLS9E" alias=".service_locator.ZbAHT0C"/>
     <service id=".service_locator.ew87G4h" alias=".service_locator.us26T8f"/>
     <service id=".service_locator.mpzM39R" alias=".service_locator.q2U_Puq"/>
     <service id=".service_locator.n_VSMOo" alias=".service_locator.kyRmj3Q"/>
     <service id=".service_locator.0k58_kT" alias=".service_locator.aceqt7e"/>
     <service id=".service_locator.GrFZSQG" alias=".service_locator.0uZrOyD"/>
-    <service id=".service_locator.zjmedMz" alias=".service_locator.D7KxMcm"/>
-    <service id=".service_locator.nRIylp3" alias=".service_locator.s.zL5n5"/>
+    <service id=".service_locator.hEjcGvL" alias=".service_locator.asDaYK."/>
     <service id=".service_locator.gS4HUvq" alias=".service_locator._CU_umH"/>
     <service id=".service_locator.Ogyw74n" alias=".service_locator.41C7zyd"/>
     <service id=".service_locator.KAJm2XO" alias=".service_locator.5EKs91d"/>

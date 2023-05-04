@@ -46,17 +46,33 @@ class CourseController extends AbstractController
     {
        
         $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+
+        $query = $request->query->get('query');
+        $courses = [];
+
+        if ($query) {
+            $courses = $this->getDoctrine()->getRepository(Course::class)
+                ->createQueryBuilder('s')
+                ->where('s.title LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        }
+
         $pagination = $paginator->paginate(
             $courses, // query results
             $request->query->getInt('page', 1), // page number
-            1 // number of items per page
+            2 // number of items per page
         );
 
             // Get all courses if the search form was not submitted
           
             return $this->render('course/course_front.html.twig', [
                 'courses' => $courseRepository->findAll(),
-                'pagination' => $pagination
+                'pagination' => $pagination,
+                'query' => $query
 
             ]);
     
@@ -255,4 +271,5 @@ public function filterCoursesByCategory(Request $request, $category)
         'pagination' => $pagination,
     ]);
 }
+   
 }

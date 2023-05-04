@@ -34,7 +34,12 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="count-job mb-35">
-                                          
+  
+          <form method="get">
+        <input type="text" name="query" placeholder="course Name"  class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+       onblur="this.placeholder = ' course Name '" value="{{ query }}">
+        <button type="submit" class="genric-btn primary small">Search</button>
+    </form>
                                             <!-- Select job items start -->
                                             <div class="select-job-items">
                                                 <span>Sort Price</span>

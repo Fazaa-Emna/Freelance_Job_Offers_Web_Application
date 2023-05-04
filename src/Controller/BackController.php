@@ -6,6 +6,7 @@ use App\Entity\Course;
 use App\Entity\Service;
 use App\Entity\Event;
 use App\Entity\Freelance;
+use App\Repository\FreelanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Form\SearchForm;
 use App\Repository\CourseRepository;
 use App\Repository\ServiceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EventRepository;
 use App\Repository\BlogRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +23,43 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/back')]
 class BackController extends AbstractController
 {
+    #[Route('/', name: 'index', methods: ['GET','POST'])]
+    public function index(Request $request ): Response
+    {      
+        $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
     
+        $data = [];
+        $totalsByCategory = [];
+
+        // Loop over each service and group them by category, calculating the total price for each category
+        foreach ($services as $service) {
+            $category = $service->getCat();
+            $price = $service->getPrix();
+
+            if (!isset($totalsByCategory[$category])) {
+                $totalsByCategory[$category] = 0;
+            }
+
+            $totalsByCategory[$category] += $price;
+        }
+
+        // Sort the categories alphabetically
+        ksort($totalsByCategory);
+
+        // Extract the category names and totals
+        $labels = [];
+        $data = [];
+
+        foreach ($totalsByCategory as $category => $total) {
+            $labels[] = $category;
+            $data[] = $total;
+        }
+  
+    return $this->render('back/index.html.twig', [
+        'chartData' => json_encode($data),
+       
+]); 
+    }
     #[Route('/courses', name: 'course_index', methods: ['GET','POST'])]
     public function course_index(Request $request,CourseRepository $courseRepository ): Response
     {      
@@ -56,7 +94,7 @@ class BackController extends AbstractController
     ));
    
     }
-    
+   
     #[Route('/services/{id}', name: 'service_delete', methods: ['POST'])]
     public function deleteS(Request $request, Service $service, ServiceRepository $serviceRepository): Response
     {
@@ -79,10 +117,10 @@ class BackController extends AbstractController
     }
     
     #[Route('/events/{eventId}', name: 'event_delete', methods: ['POST'])]
-    public function deleteE(Request $request, Service $service, ServiceRepository $serviceRepository): Response
+    public function deleteE(Request $request, Event $event, EventRepository $eventRepository): Response
     {
-        if ($this->isCsrfTokenValid('deleteE'.$service->getId(), $request->request->get('_token'))) {
-            $serviceRepository->remove($service, true);
+        if ($this->isCsrfTokenValid('deleteE'.$event->getEventId(), $request->request->get('_token'))) {
+            $eventRepository->remove($event, true);
         }
 
         return $this->redirectToRoute('event_index', [], Response::HTTP_SEE_OTHER);
@@ -106,5 +144,27 @@ class BackController extends AbstractController
         }
 
         return $this->redirectToRoute('blog_index', [], Response::HTTP_SEE_OTHER);
+    }
+      
+    #[Route('/freelances', name: 'freelance_index', methods: ['GET','POST'])]
+    public function freelance_index_index(Request $request,FreelanceRepository $freelanceRepository ): Response
+    {      
+        $freelances = $this->getDoctrine()->getRepository(Freelance::class)->findAll();
+    
+
+    return $this->render('back/freelance.html.twig', array(
+        'freelances' => $freelances
+    ));
+   
+    }
+    
+    #[Route('/freelances/{idfreelance}', name: 'freelance_delete', methods: ['POST'])]
+    public function deleteFreelancer(Request $request, Freelance $freelance, FreelanceRepository $freelanceRepository, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('deleteF' . $freelance->getIdfreelance(), $request->request->get('_token'))) {
+            $entityManager->remove($freelance);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('freelance_index', [], Response::HTTP_SEE_OTHER);
     }
 }

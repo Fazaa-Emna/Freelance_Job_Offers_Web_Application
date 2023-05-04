@@ -19,21 +19,37 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Services\MailerService;
 use App\Services\QRCodeService;
+use Knp\Component\Pager\PaginatorInterface;
 #[Route('/hackathon')]
 class HackathonController extends AbstractController
 {
     #[Route('/', name: 'app_hackathon_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager,Request $request,HackathonRepository $hackathonRepository): Response
+    public function index(EntityManagerInterface $entityManager,Request $request,HackathonRepository $hackathonRepository,PaginatorInterface $paginator): Response
     {
         /*$events = $entityManager
             ->getRepository(Event::class)
             ->findAll();*/
         $form = $this->createForm(HackathonFilterType::class);
         $queries = $request->query->all();
+       
+        $query = $request->query->get('query');
+        $hackathons = [];
 
-        $hackathonName = $queries['inputName'] ?? '';
+        if ($query) {
+            $hackathons = $this->getDoctrine()->getRepository(Hackathon::class)
+                ->createQueryBuilder('h')
+                ->join('h.event', 'e')
+                ->where('e.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $hackathons = $this->getDoctrine()->getRepository(Hackathon::class)->findAll();
+        }
 
-        $hackathons = $hackathonRepository->search($hackathonName);
+        //$hackathonName = $queries['inputName'] ?? '';
+
+        //$hackathons = $hackathonRepository->search($hackathonName);
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
@@ -42,9 +58,15 @@ class HackathonController extends AbstractController
                 ])
             ]);
         }
+        $pagination = $paginator->paginate(
+            $hackathons, // query results
+            $request->query->getInt('page', 1), // page number
+            7 // number of items per page
+        );
         return $this->render('hackathon/index.html.twig', [
-            'hackathons' => $hackathons,
-            'form' => $form->createView()
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+            'query' => $query
         ]);
     }
 
@@ -121,9 +143,9 @@ class HackathonController extends AbstractController
             ->margin(10)
             ->encoding(new Encoding('UTF-8'))
             ->data($data)
-            ->logoPath($path.'logo.png')
-            ->logoResizeToWidth('100')
-            ->logoResizeToHeight('100')
+            //->logoPath($path.'logo.png')
+            //->logoResizeToWidth('100')
+            //->logoResizeToHeight('100')
             ->backgroundColor(new Color(223, 242, 255))
             ->build();
 

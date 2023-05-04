@@ -1,84 +1,104 @@
 {% extends 'base.html.twig'%}
 {% block body %}
-
-<div style= "display: flex; align-items: center;justify-content:center; margin-top:100px;padding:10px;">
-
-      <div class="card">
-        <div class="card-body">
-        <a class='btn btn-primary' href="{{path ('display_blog') }}">return </a>
-          <h5 class="card-title">Blog</h5>
-
-          <!-- General Form Elements -->
-          <div class="row mb-10 col-sm-10">
-            <label for="inputText" class="col-sm-6 col-form-label"> </label>
-                  <h5 class="card-title">{{ blog.title }}</h5>
-            </div>
-
-                <div class="row mb-10 col-sm-10">
-            <label for="inputText" class="col-sm-6 col-form-label"> </label>
-              <h5 class="card-title">{{ blog.body }}</h5>
-            
-                    
+<div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background={{asset('assets/img/hero/about.jpg')}}>
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="hero-cap text-center">
+                          <h2>Blog Details</h2>
+                      </div>
+                  </div>
               </div>
-              <div class="card-footer">
-    <a href="{{ path('modif_blog', {'id': blog.id}) }}" class="btn btn-primary">Modifier</a>
-    <a href="{{ path('supp_blog', {'id': blog.id}) }}" class="btn btn-danger">Supprimer</a>
+          </div>
+      </div>
+   </div>
+         <div class="card-footer">
+    <a href="{{ path('modif_blog', {'id': blog.id}) }}" class="btn btn-primary">add blog</a>
+    <a href="{{ path('supp_blog', {'id': blog.id}) }}" class="btn btn-danger">delete</a>
   </div>
+   <br><br>
+<div class="container">
+         <div class="row">
+      <div class="col-lg-8 posts-list">
+        
+        <div class="single-post">
+                  <div class="feature-img">
+                     <img class="img-fluid" src={{asset('assets/img/blog/single_blog_1.png')}} alt="">
+                  </div>
+                  <div class="blog_details">
+                     <h2>  {{blog.title}}
+                     </h2>
+                     <ul class="blog-info-link mt-3 mb-4">
+                        <li><a href="#"><i class="fa fa-user"></i> {{blog.note}}</a></li>
+                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                     </ul>
+                     
+                    
+                     <div class="quote-wrapper">
+                        <div class="quotes">
+                           {{blog.body}}
+                        </div>
+                     </div>
+                    
+                  </div>
+               
+                     
+                    </div>
+                 </div>
+                </div>
+
+        
             </div>
 
 
                   
-          <div class="col-sm-10" style="display:flex; align-items:center; justify-content:center">
+          
+
+
               
-            
-             
-          </div>
-
-
-      </div>
-    </div>
-
-  </div> 
-
-<table class="table">
-            <h2 class="col-sm-4">Table de comment</h2>
-            <thead>           
-                <th scope="col"> Comment </th>
-                <th scope="col"> Modification</th>
-                <th scope="col"> suppression</th>
-            </thead>
-            <tbody>
-
-                {% for comment in comments %}                    
-                    <tr>
-                        
-                        <td > {{comment.body}} </td>
-                        <td >
-                            <a class = 'btn btn-success' href="{{path ('modif_comment',{'id':comment.id}) }}">Modifier </a>
-                        
-                        
-                        <td>
-                            <a class = 'btn btn-danger' href="{{path ('supp_comment',{'id':comment.id}) }}">Supprimer </a>
-                        </td>
+                 <div class="comment-list">
+                   {% for comment in comments %}
+                    <p class="comment">
+                                 <p>Zienb Ben Arab</p>
+                              </p>
+                    {{comment.body}}
+                <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                              <img src={{asset('assets/img/comment/comment_1.png"')}} alt="">
+                           </div>
+                           <div class="desc">
+                              <p class="comment">
+                                 <p>Zienb Ben Arab</p>
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       
+                                       {{comment.body}}
+                                    </h5>
+                                    
+                                 </div>
+                                 
+                              </div>
+                           </div>
+                        </div>
+                     </div>                    
+                       
 
                          
-                       
-                    </tr>    
+                         <a class = 'btn btn-success' href="{{path ('modif_comment',{'id':comment.id}) }}">Modifier </a>
+                        
+                        
+                     
+                            <a class = 'btn btn-danger' href="{{path ('supp_comment',{'id':comment.id}) }}">Supprimer </a>
+                      
                 {% endfor %}
-                
-            </tbody>
-        </table>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br> 
-    
-        <a class='btn btn-primary' href="{{path ('add_comment') }}">ajouter </a>
-        <br>
-        <br>
-        <br>
-        <a class='btn btn-primary' href="{{path ('display_blog') }}">return </a>
+                   <a class='btn btn-primary' href="{{path ('add_comment') }}">add a comment </a>
+           
+      
+       
         </div>
         <script
             src="https://code.jquery.com/jquery-3.6.3.js"
@@ -153,14 +173,4 @@ var data;
 
 
 
-<div id="stars">
-                            <ul>
-                                <lt><i value="1" class="fa fa-star fa-fw"></i></lt>
-                                <lt><i value="2" class="fa fa-star fa-fw"></i></lt>
-                                <lt><i value="3" class="fa fa-star fa-fw"></i></lt>
-                                <lt><i value="4" class="fa fa-star fa-fw"></i></lt>
-                                <lt><i value="5" class="fa fa-star fa-fw"></i></lt>
-                                <div id="msg">{{blog.note | number_format(2) }}/5</div>
-                            </ul>
-                        </div>
        {% endblock %}

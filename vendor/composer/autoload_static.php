@@ -884,6 +884,7 @@ class ComposerStaticInite410021b7fac429d5e3c125a66e09425
         'App\\Controller\\AdminBlogController' => __DIR__ . '/../..' . '/src/Controller/AdminBlogController.php',
         'App\\Controller\\AdminCommentController' => __DIR__ . '/../..' . '/src/Controller/AdminCommentController.php',
         'App\\Controller\\ApplicationController' => __DIR__ . '/../..' . '/src/Controller/ApplicationController.php',
+        'App\\Controller\\BackController' => __DIR__ . '/../..' . '/src/Controller/BackController.php',
         'App\\Controller\\BlogController' => __DIR__ . '/../..' . '/src/Controller/BlogController.php',
         'App\\Controller\\BotController' => __DIR__ . '/../..' . '/src/Controller/BotController.php',
         'App\\Controller\\CommentController' => __DIR__ . '/../..' . '/src/Controller/CommentController.php',

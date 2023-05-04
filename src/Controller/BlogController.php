@@ -26,9 +26,11 @@ class BlogController extends AbstractController
 public function index(Request $request, BlogRepository $repository,ManagerRegistry $doctrine): Response
 {
     $repoC = $doctrine->getRepository(Blog::class);
- 
+    $blogs = $this->getDoctrine()->getRepository(Blog::class)->findAll();
+
+    $query = $request->query->get('query');
     $currentSort = $request->query->get('sort', 'ASC');
-    
+
     if ($currentSort == 'ASC') {
         $blogs = $repoC->findBy([], ['title' => 'ASC']);
         $nextSort = 'DESC';
@@ -40,6 +42,7 @@ public function index(Request $request, BlogRepository $repository,ManagerRegist
     return $this->render('blog/index.html.twig', [
         'b' => $blogs,
         'nextSort' => $nextSort,
+      
     ]);
 }
 

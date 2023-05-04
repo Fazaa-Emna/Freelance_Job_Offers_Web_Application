@@ -38,9 +38,6 @@ class ServiceController extends AbstractController
             }
     
             $data = [];
-           
-    
-         
             $totalsByCategory = [];
 
             // Loop over each service and group them by category, calculating the total price for each category

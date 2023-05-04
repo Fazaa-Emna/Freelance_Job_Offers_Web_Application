@@ -18,19 +18,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/workshop')]
 class WorkshopController extends AbstractController
 {
     #[Route('/', name: 'app_workshop_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,Request $request,PaginatorInterface $paginator): Response
     {
         $workshops = $entityManager
             ->getRepository(Workshop::class)
             ->findAll();
 
+            $query = $request->query->get('query');
+        $workshops = [];
+
+        if ($query) {
+            $workshops = $this->getDoctrine()->getRepository(Workshop::class)
+                ->createQueryBuilder('h')
+                ->join('h.event', 'e')
+                ->where('e.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $workshops = $this->getDoctrine()->getRepository(Workshop::class)->findAll();
+        }
+        $pagination = $paginator->paginate(
+            $workshops, // query results
+            $request->query->getInt('page', 1), // page number
+            7 // number of items per page
+        );
         return $this->render('workshop/index.html.twig', [
-            'workshops' => $workshops,
+            'pagination' => $pagination,
+            'query' => $query
         ]);
     }
 
@@ -80,9 +101,9 @@ class WorkshopController extends AbstractController
             ->margin(10)
             ->encoding(new Encoding('UTF-8'))
             ->data($data)
-            ->logoPath($path.'logo.png')
-            ->logoResizeToWidth('100')
-            ->logoResizeToHeight('100')
+            //->logoPath($path.'logo.png')
+            //->logoResizeToWidth('100')
+            //->logoResizeToHeight('100')
             ->backgroundColor(new Color(223, 242, 255))
             ->build();
 

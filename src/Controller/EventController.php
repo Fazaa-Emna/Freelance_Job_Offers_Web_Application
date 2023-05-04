@@ -10,6 +10,7 @@ use App\Services\MailerService;
 use App\Services\QRCodeService;
 use ContainerGFh4RKO\getEventFilterTypeService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
@@ -23,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventController extends AbstractController
 {
     #[Route('/', name: 'app_event_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager,Request $request,EventRepository $eventRepository): Response
+    public function index(EntityManagerInterface $entityManager,Request $request,EventRepository $eventRepository,PaginatorInterface $paginator): Response
     {
         /*$events = $entityManager
             ->getRepository(Event::class)
@@ -31,9 +32,23 @@ class EventController extends AbstractController
         $form = $this->createForm(EventFilterType::class);
         $queries = $request->query->all();
 
+        $query = $request->query->get('query');
+        $events = [];
+
+        if ($query) {
+            $events = $this->getDoctrine()->getRepository(Event::class)
+                ->createQueryBuilder('e')
+                ->where('e.eventName LIKE :query')
+                ->setParameter('query', "%{$query}%")
+                ->getQuery()
+                ->getResult();
+        } else {
+            $events = $this->getDoctrine()->getRepository(Event::class)->findAll();
+        }
+
         $eventName = $queries['inputName'] ?? '';
 
-        $events = $eventRepository->search($eventName);
+        //$events = $eventRepository->search($eventName);
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
@@ -42,9 +57,17 @@ class EventController extends AbstractController
                 ])
             ]);
         }
+        $pagination = $paginator->paginate(
+            $events, // query results
+            $request->query->getInt('page', 1), // page number
+            7 // number of items per page
+        );
+
         return $this->render('event/index.html.twig', [
-            'events' => $events,
-            'form' => $form->createView()
+           
+            'form' => $form->createView(),
+            'query' => $query,
+            'pagination' => $pagination,
         ]);
     }
 
@@ -119,9 +142,9 @@ class EventController extends AbstractController
             ->margin(10)
             ->encoding(new Encoding('UTF-8'))
             ->data($data)
-            ->logoPath($path.'logo.png')
-            ->logoResizeToWidth('100')
-            ->logoResizeToHeight('100')
+            //->logoPath($path.'logo.png')
+            //->logoResizeToWidth('100')
+            //->logoResizeToHeight('100')
             ->backgroundColor(new Color(223, 242, 255))
             ->build();
 

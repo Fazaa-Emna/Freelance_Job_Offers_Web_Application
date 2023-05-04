@@ -9,6 +9,7 @@ return array(
     'App\\Controller\\AdminBlogController' => $baseDir . '/src/Controller/AdminBlogController.php',
     'App\\Controller\\AdminCommentController' => $baseDir . '/src/Controller/AdminCommentController.php',
     'App\\Controller\\ApplicationController' => $baseDir . '/src/Controller/ApplicationController.php',
+    'App\\Controller\\BackController' => $baseDir . '/src/Controller/BackController.php',
     'App\\Controller\\BlogController' => $baseDir . '/src/Controller/BlogController.php',
     'App\\Controller\\BotController' => $baseDir . '/src/Controller/BotController.php',
     'App\\Controller\\CommentController' => $baseDir . '/src/Controller/CommentController.php',
