@@ -16,6 +16,6 @@ add_service_json_new:
     methods: [GET]
 
 delete_service_json:
-    path: /DeleteServiceJson/{id}
+    path: /deleteServiceJson/{id}
     controller: App\Controller\Service1Controller::delete
     methods: GET

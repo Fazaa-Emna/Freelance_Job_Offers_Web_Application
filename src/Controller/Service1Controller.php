@@ -70,21 +70,36 @@ class Service1Controller extends AbstractController
  
 
 
-    #[Route('/DeleteServiceJSON/{id}', name: 'app_service_delete')]
-    public function delete($id,Request $request, ServiceRepository $ServiceRepository, ManagerRegistry $doctrine): Response
+    #[Route('/deleteServiceJson/{id}', name: 'delete')]
+    public function delete( Request $req,NormalizerInterface $Normalizer,$id)
     {
-      
-        
-        $service = $ServiceRepository->find($id);
-        $em = $doctrine->getManager();
+        $em = $this->getDoctrine()->getManager();
+        $service =$em->getRepository(Service::class)->find($id);
         $em->remove($service);
         $em->flush();
 
-        $serializer=new Serializer([new ObjectNormalizer()]);
-        $formatted=$serializer->normalize($serializer);
-        return new JsonResponse($formatted);
-
+        $jsonContent = $Normalizer->normalize($service, 'json', ['groups'=>'post:read']);
+        return new JsonResponse(json_encode($jsonContent));
     }
-     
-    
+
+
+    #[Route('/updateServiceJson/{id}', name: 'update')]
+    public function update( Request $req,NormalizerInterface $Normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $service =$em->getRepository(Service::class)->find($id);
+   
+        $service-> setName($req->get('name'));
+        $service->setDescr($req->get('descr'));
+        $service->setPrix($req->get('prix'));
+        $service->setFile($req->get('file'));
+        $service->setCat($req->get('cat'));
+        $em->flush();
+
+        $jsonContent = $Normalizer->normalize($service, 'json', ['groups'=>'post:read']);
+        return new JsonResponse(json_encode($jsonContent));
+
+       
+    }
+
 }
