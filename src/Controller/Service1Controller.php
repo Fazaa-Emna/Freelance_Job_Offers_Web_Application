@@ -32,11 +32,11 @@ class Service1Controller extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $service=new Service();
-        $course->setName($req->get('name'));
-        $course->setDescr($req->get('descr'));
-        $course->setPrix($req->get('prix'));
-        $course->setFile($req->get('file'));
-        $course->setCat($req->get('cat'));
+        $service->setName($req->get('name'));
+        $service->setDescr($req->get('descr'));
+        $service->setPrix($req->get('prix'));
+        $service->setFile($req->get('file'));
+        $service->setCat($req->get('cat'));
 
        
         $em->persist($service);

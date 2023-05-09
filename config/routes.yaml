@@ -10,6 +10,10 @@ back:
     path: /services/back
     controller: App\Controller\ServiceBackController::index
 
+add_service_json_new:
+    path: /addServiceJson/new
+    controller: App\Controller\Service1Controller::new
+    methods: [GET]
 
 delete_service_json:
     path: /DeleteServiceJson/{id}
