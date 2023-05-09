@@ -11,5 +11,7 @@ back:
     controller: App\Controller\ServiceBackController::index
 
 
-
-
+delete_service_json:
+    path: /DeleteServiceJson/{id}
+    controller: App\Controller\Service1Controller::delete
+    methods: GET

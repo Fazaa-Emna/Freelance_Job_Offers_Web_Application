@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Service
@@ -18,6 +19,7 @@ class Service
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("post:read")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Groups("post:read")
      */
     private $name;
 
@@ -32,6 +35,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="descr", type="string", length=255, nullable=false)
+     * @Groups("post:read")
      */
     private $descr;
 
@@ -39,6 +43,7 @@ class Service
      * @var int
      *
      * @ORM\Column(name="prix", type="integer", nullable=false)
+     * @Groups("post:read")
      */
     private $prix;
 
@@ -46,6 +51,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="file", type="string", length=255, nullable=false)
+     * @Groups("post:read")
      */
     private $file;
 
@@ -53,6 +59,7 @@ class Service
      * @var string
      *
      * @ORM\Column(name="cat", type="string", length=255, nullable=false)
+     * @Groups("post:read")
      */
     private $cat;
 
